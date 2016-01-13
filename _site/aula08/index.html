@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aula 08 - Aula dos alunos</title>
+	<meta name="description" content="Slides dessa aula">
+	
+	<link rel="canonical" href="http://curso-r.github.io/versao2016//aula08/">
+	<link rel="alternate" type="application/rss+xml" title="Curso-R 2016" href="http://curso-r.github.io/versao2016//feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	
+	<!-- <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/railscasts.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai.min.css"> -->
+	<!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/languages/dos.min.js"></script> -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Curso-R 2016</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        
+          <li>
+        
+        <a href="/"><span class="glyphicon glyphicon-th-large"></span> Blog</a></li>
+
+        
+          
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon glyphicon-file"></span> Projects</a></li>
+          
+        
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon glyphicon-heart"></span> About</a></li>
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>Aula 08 - Aula dos alunos</h1>
+        <p>Feb 4, 2015</p>
+      </header>
+      <hr>
+      <article>
+        <p><a href="http://curso-r.github.io/slides/aula_08_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<h1 id="parte-1-um-pouco-mais-de-modelos">Parte 1: Um pouco mais de modelos</h1>
+
+<h2 id="modelos-de-sobrevivncia">Modelos de sobrevivência</h2>
+
+<p>A Análise de Sobrevivência compreende os estudos em que o interesse principal é avaliar o tempo até a ocorrência de um evento pré-determinado. Esses tempos, chamados de <em>tempos de falha</em>, podem, então, ser explicados por outras variáveis a partir de modelos de regressão paramétricos ou semi-paramétricos. Uma característica fundamental desse tipo de estudo é a presença de censura, definida como a observação parcial do tempo de falha.</p>
+
+<p>Para ilustrar as funções discutidas aqui, utilizaremos o banco de dados <code>ovarian</code>, do pacote <code>survival</code>. Este banco traz o tempo de sobrevivência (ou censura) de 26 mulheres com câncer de ovário e o objetivo do estudo foi comparar dois tratamentos distintos para essa doença.</p>
+
+<p>Nesse exemplo, o tempo de falha é o intervalo entre a entrada no estudo e a ocorrência do evento de interesse que, aqui, é a morte da paciente. A censura neste caso é causada pelo abandono do estudo ou pela não ocorrência do evento até o fim do acompanhamento, ou seja, os casos em que a paciente estava viva no fim do estudo.</p>
+
+<p>Para mais informações sobre o banco de dados, consulte o <code>help(ovarian)</code>.</p>
+
+<p>Para mais informações sobre Análise de Sobrevivência, consultar as seguintes referências:</p>
+
+<ul>
+  <li>
+    <p>Colosimo, E.A. e Giolo, S.R.. (2005) Análise de Sobrevivência Aplicada. ABE — Projeto fisher. Editora Edgard Blucher</p>
+  </li>
+  <li>
+    <p>Kalbfleisch, J. D.; Prentice, Ross L. (2002). The statistical analysis of failure time data. New York: John Wiley &amp; Sons.</p>
+  </li>
+  <li>
+    <p>Lawless, Jerald F. (2003). Statistical Models and Methods for Lifetime Data (2nd ed.). Hoboken: John Wiley and Sons.</p>
+  </li>
+</ul>
+
+<h3 id="kaplan-meier-e-log-rank">Kaplan-Meier e Log-rank</h3>
+
+<p>O Kaplan-Meier é a principal ferramenta para visualizar dados de sobrevivência. Esses gráficos ajustam curvas tipo-escada da proporção de indivíduos <em>em risco</em> — que ainda não falharam e não foram censurados — ao longo do tempo. Para plotar um Kaplan-Meier no R, utilizamos a função <code>survfit()</code> e a função <code>plot()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">fit <span class="o">&lt;-</span> survfit<span class="p">(</span>Surv<span class="p">(</span>futime<span class="p">,</span> fustat<span class="p">)</span> <span class="o">~</span> rx<span class="p">,</span> data <span class="o">=</span> ovarian<span class="p">)</span>
+
+plot<span class="p">(</span>fit<span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-23-aula08/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" /></p>
+
+<p>Também podemos construir um Kaplan-Meier com o <code>ggplot2</code>, mas observe que é necessário fazer algums modificações no objeto <code>fit</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m <span class="o">&lt;-</span> <span class="kp">length</span><span class="p">(</span>fit<span class="o">$</span>strata<span class="p">)</span>
+
+df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>time <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> m<span class="p">),</span> fit<span class="o">$</span>time<span class="p">),</span>
+                 surv <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> m<span class="p">),</span> fit<span class="o">$</span>surv<span class="p">),</span>
+                 group <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">names</span><span class="p">(</span>fit<span class="o">$</span>strata<span class="p">),</span> 
+                          <span class="kp">rep</span><span class="p">(</span><span class="kp">names</span><span class="p">(</span>fit<span class="o">$</span>strata<span class="p">),</span> fit<span class="o">$</span>strata<span class="p">)))</span>
+
+ggplot<span class="p">(</span>data <span class="o">=</span> df<span class="p">)</span> <span class="o">+</span>  
+        geom_step<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> time<span class="p">,</span> y <span class="o">=</span> surv<span class="p">,</span> colour <span class="o">=</span> <span class="kp">as.factor</span><span class="p">(</span>group<span class="p">)))</span> <span class="o">+</span>
+        ylim<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+        labs<span class="p">(</span>colour <span class="o">=</span> <span class="s">&quot;Curvas&quot;</span><span class="p">,</span> y <span class="o">=</span> <span class="s">&quot;Proporção de sobreviventes&quot;</span><span class="p">,</span>
+             x <span class="o">=</span> <span class="s">&quot;Tempo&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-23-aula08/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3" /></p>
+
+<p>O teste de log-rank para comparação de grupos é realizado pela função <code>survdiff()</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">survdiff<span class="p">(</span>Surv<span class="p">(</span>futime<span class="p">,</span> fustat<span class="p">)</span> <span class="o">~</span> rx<span class="p">,</span> data <span class="o">=</span> ovarian<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Call:
+## survdiff(formula = Surv(futime, fustat) ~ rx, data = ovarian)
+## 
+##       N Observed Expected (O-E)^2/E (O-E)^2/V
+## rx=1 13        7     5.23     0.596      1.06
+## rx=2 13        5     6.77     0.461      1.06
+## 
+##  Chisq= 1.1  on 1 degrees of freedom, p= 0.303</code></pre></div>
+
+<h3 id="modelos-paramtricos">Modelos paramétricos</h3>
+
+<p>Para ajustar modelos paramétricos, podemos utilizar a função <code>survreg()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">fit <span class="o">&lt;-</span> survreg<span class="p">(</span>Surv<span class="p">(</span>futime<span class="p">,</span> fustat<span class="p">)</span> <span class="o">~</span> rx <span class="o">+</span> age<span class="p">,</span> data <span class="o">=</span> ovarian<span class="p">,</span> 
+               dist <span class="o">=</span> <span class="s">&quot;exponential&quot;</span><span class="p">)</span>
+
+<span class="kp">summary</span><span class="p">(</span>fit<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## 
+## Call:
+## survreg(formula = Surv(futime, fustat) ~ rx + age, data = ovarian, 
+##     dist = &quot;exponential&quot;)
+##              Value Std. Error     z        p
+## (Intercept) 12.123     2.3966  5.06 4.23e-07
+## rx           0.661     0.6159  1.07 2.83e-01
+## age         -0.105     0.0319 -3.30 9.81e-04
+## 
+## Scale fixed at 1 
+## 
+## Exponential distribution
+## Loglik(model)= -91.2   Loglik(intercept only)= -98
+## 	Chisq= 13.65 on 2 degrees of freedom, p= 0.0011 
+## Number of Newton-Raphson Iterations: 5 
+## n= 26</code></pre></div>
+
+<p>Observe que no exemplo acima utilizamos a distribuição Exponencial. O argumento <code>dist = </code> pode ser modificado para ajustarmos modelos com outras distribuições:</p>
+
+<ul>
+  <li><code>dist = "weibull"</code> — distribuição Weibull (default)</li>
+  <li><code>dist = "gaussian"</code> — distribuição Normal</li>
+  <li><code>dist = "logistic"</code> — distribuição Logística</li>
+  <li><code>dist = "lognormal"</code> — distribuição Log-normal</li>
+  <li><code>dist = "loglogistic"</code> — distribuição Log-logística</li>
+</ul>
+
+<h3 id="modelo-semi-paramtrico-de-cox">Modelo semi-paramétrico de Cox</h3>
+
+<p>No R, a função mais utilizada para ajustar modelos de Cox é a <code>coxph()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">fit <span class="o">&lt;-</span> coxph<span class="p">(</span>Surv<span class="p">(</span>futime<span class="p">,</span> fustat<span class="p">)</span> <span class="o">~</span> age <span class="o">+</span> rx<span class="p">,</span> data <span class="o">=</span> ovarian<span class="p">)</span>
+
+<span class="kp">summary</span><span class="p">(</span>fit<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Call:
+## coxph(formula = Surv(futime, fustat) ~ age + rx, data = ovarian)
+## 
+##   n= 26, number of events= 12 
+## 
+##         coef exp(coef) se(coef)      z Pr(&gt;|z|)   
+## age  0.14733   1.15873  0.04615  3.193  0.00141 **
+## rx  -0.80397   0.44755  0.63205 -1.272  0.20337   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+##     exp(coef) exp(-coef) lower .95 upper .95
+## age    1.1587      0.863    1.0585     1.268
+## rx     0.4475      2.234    0.1297     1.545
+## 
+## Concordance= 0.798  (se = 0.091 )
+## Rsquare= 0.457   (max possible= 0.932 )
+## Likelihood ratio test= 15.89  on 2 df,   p=0.0003551
+## Wald test            = 13.47  on 2 df,   p=0.00119
+## Score (logrank) test = 18.56  on 2 df,   p=9.341e-05</code></pre></div>
+
+<h2 id="generalized-additive-model-gam">Generalized Additive Model (GAM)</h2>
+
+<p>Os modelos aditivos generalizados ou GAM são modelos baseados na teoria desenvolvida por Trevor
+Hastie e Robert Tibshirani, e podem ser vistos como uma generalização de GLM, no sentido de que todos os
+GLM sãoo casos particulares de GAM.</p>
+
+<p>Na regressão normal e em GLM assumimos, em geral, que as variáveis aleatórias correspondentes aos indivíduos são independentes, e que existe uma função, denominada função de ligação, que une as médias destas variáveis aleatórias a um certo preditor linear.</p>
+
+<p>A grande mudança nos modelos aditivos generalizados está na forma do preditor. Para cada variável explicativa, temos associada uma função a ser estimada (ou suavizada), sendo que o preditor fica definido como a soma dessas funções</p>
+
+<script type="math/tex; mode=display">g(\mu_i) = f_0 + \sum f(x_{ij})</script>
+
+<p>Para evitar o desconforto da interpretação das contribuições marginais (funções), uma alternativa é utilizar as funções de suavização para ajustar variáveis de controle em que não há interesse direto, e manter a parte principal com termos paramétricos. Geralmente isso facilita a interpretação e melhora o ajuste do modelo em relação ao GLM.</p>
+
+<h3 id="pacote-mgcv">Pacote mgcv</h3>
+
+<p>O pacote <code>mgcv</code> é um dos pacotes mais completos do R e permite simulação, ajuste, visualização e análise de resíduos para <code>gam</code>. O pacote gerou até <a href="http://books.google.co.uk/books?id=hr17lZC-3jQC">um livro</a>.</p>
+
+<p>Na prática, a utilização do GAM não difere muito de modelos GLM. Uma das únicas diferenças na especificação do modelo é que podemos utilizar a função <code>s</code> para determinar quais termos queremos que sejam ajustados com funções aditivas.</p>
+
+<h4 id="exemplo-pnud">Exemplo: PNUD</h4>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">data<span class="p">(</span>pnud_muni<span class="p">,</span> package<span class="o">=</span><span class="s">&#39;abjutils&#39;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in find.package(package, lib.loc, verbose = verbose): there is no package called &#39;abjutils&#39;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>mgcv<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Carregando pacotes exigidos: nlme
+## This is mgcv 1.8-7. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">fit_model <span class="o">&lt;-</span> gam<span class="p">(</span>espvida <span class="o">~</span> ano <span class="o">+</span> s<span class="p">(</span>rdpc<span class="p">)</span> <span class="o">+</span> s<span class="p">(</span>i_escolaridade<span class="p">),</span> data<span class="o">=</span>pnud_muni<span class="p">,</span> family<span class="o">=</span>Gamma<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in is.data.frame(data): objeto &#39;pnud_muni&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">summary</span><span class="p">(</span>fit_model<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in summary(fit_model): objeto &#39;fit_model&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">par<span class="p">(</span>mfrow<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+plot<span class="p">(</span>fit_model<span class="p">,</span> scheme<span class="o">=</span><span class="m">1</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in plot(fit_model, scheme = 1): objeto &#39;fit_model&#39; não encontrado</code></pre></div>
+
+<h3 id="pacote-gamlss">Pacote gamlss</h3>
+
+<p>Se por algum motivo existir algum problema na análise em relação à distribuição, heterocedasticidade, e utilização de preditores lineares, uma possível alternativa é o GAMLSS.</p>
+
+<p>GAMLSS significa Generalized Additive Models for Location, Scale and Shape. Com GAMLSS é possível modelar não só a média da distribuição $\mu_i$ (primeiro momento), mas também a variância $\sigma_i$ (segundo momento), a assimetria $\phi_i$ (terceiro momento) e a curtose $\rho_i$ (quarto momento), usando preditores.</p>
+
+<p>Por ser um modelo aditivo, o GAMLSS permite que sejam adicionados termos de suavização na fórmula do modelo, o que o torna uma generalização natural do GAM (em relação à modelagem, não ao método de ajuste).</p>
+
+<p>Por fim, o modelo GAMLSS possui <strong>mais de 50</strong> famílias de distribuições implementadas, o que nos dá uma enorme gama de opções para criação de modelos.</p>
+
+<p>Também é possível adicionar efeitos aleatórios utilizando o GAMLSS, mas essa parte ainda é experimental.</p>
+
+<p>Mas tudo vem com um preço. Por ser um grande canhão, o método de ajuste de modelos GAMLSS geralmente são baseados técnicas de otimização aproximadas. Além disso, o ajuste de modelos pode ser mais lento que os concorrentes. Por fim, a análise de resíduos para GAMLSS é bastante limitada (e provavelmente continuará sendo).</p>
+
+<p>Recomendamos a utilização do <code>gamlss</code> com muito cuidado, e sempre acompanhando outras modelagens, usando <code>glm</code> ou <code>gam</code>, por exemplo.</p>
+
+<h4 id="exemplo-pnud-1">Exemplo: PNUD</h4>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>gamlss<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in library(gamlss): there is no package called &#39;gamlss&#39;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Cuidado! O pacote gamlss carrega MASS, que por sua vez mascara a função select do dplyr.</span>
+
+dados <span class="o">&lt;-</span> pnud_muni <span class="o">%&gt;%</span> 
+  dplyr<span class="o">::</span>select<span class="p">(</span>rdpc<span class="p">,</span> i_escolaridade<span class="p">,</span> espvida<span class="p">,</span> ano<span class="p">)</span> <span class="o">%&gt;%</span> 
+  na.omit <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>ano<span class="o">=</span><span class="kp">factor</span><span class="p">(</span>ano<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;%&gt;%&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">fit_model <span class="o">&lt;-</span> gamlss<span class="p">(</span>formula<span class="o">=</span>espvida <span class="o">~</span> cs<span class="p">(</span>rdpc<span class="p">)</span> <span class="o">+</span> cs<span class="p">(</span>i_escolaridade<span class="p">),</span>
+                    sigma.formula <span class="o">=</span> <span class="o">~</span> ano<span class="p">,</span>
+                    data<span class="o">=</span>dados<span class="p">,</span> 
+                    family<span class="o">=</span>NET<span class="p">())</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;gamlss&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">summary</span><span class="p">(</span>fit_model<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in summary(fit_model): objeto &#39;fit_model&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>fit_model<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in plot(fit_model): objeto &#39;fit_model&#39; não encontrado</code></pre></div>
+
+<p><strong>Leitura:</strong> Iniciação científica: <a href="https://www.dropbox.com/s/du1h5kmunmwjl65/iniciacao.pdf?dl=0">De GLM a GAMLSS</a></p>
+
+<h2 id="modelos-bayesianos">Modelos Bayesianos</h2>
+
+<p>A comunidade bayesiana do <code>R</code> é cada vez maior, e muitas técnicas estão surgindo com o passar dos anos. A cada dia temos novas contribuições, e pode-se dizer que hoje o <code>R</code> é uma das melhores plataformas para utilização de modelos bayesianos no mundo.</p>
+
+<h3 id="um-pouco-muito-pouco-de-teoria">Um pouco (muito pouco) de teoria</h3>
+
+<p>A diferença primordial dos modelos bayesianos para os modelos clássicos / frequentistas nasce da interpretação da probabilidade. Segundo a teoria bayesiana, a probabilidade é subjetiva e está associada com a opinião de um indivíduo acerca de um evento, que é incerto.</p>
+
+<p>Traduzindo para modelos, os parâmetros de um modelo (que são nossas quantidades de interesse) não são mais tratados como pontos a serem estimados, mas sim como variâveis aleatórias a serem estudadas.</p>
+
+<p>A ideia é que, em cada estudo, o pesquisador tenha uma ideia de como se comporta o seu parâmetro de interesse, e possa traduzir essa ideia na forma de uma distribuição de probabilidades (<em>priori</em>). Depois, os dados são observados e, com isso, a opinião inicial é atualizada (<em>posteriori</em>). A estatística bayesiana utiliza um brilhante algoritmo para realizar essa atualização, que é o Teorema de Bayes.</p>
+
+<p>A grande dificuldade em modelos bayesianos ocorre porque o algoritmo de atualização da distribuição de probabilidades muitas vezes necessita que calculemos algumas integrais extremamente difíceis (impossíveis analiticamente, e muito difíceis computacionalmente).</p>
+
+<p>Tenha em mente que os pacotes de análise bayesiana geralmente focam nesse problema: como simular dados da distribuição <em>a posteriori</em>. A maioria dos algoritmos que tentam resolver essa tarefa são baseados em técnicas MCMC (Markov Chains Monte Carlo), que basicamente são meios de simular dados nas regiões de maior massa da posteriori.</p>
+
+<p>Estatística bayesiana é muito simples na teoria, mas os modelos podem ser bem demorados para serem ajustados, e existe um espaço amplo para subjetividades na hora de escolher a melhor metodologia para simular da posteriori.</p>
+
+<h3 id="pacotes-que-fazem-anlise-bayesiana">Pacotes que fazem análise bayesiana</h3>
+
+<ul>
+  <li><code>rjags</code>: Forma de utilizar o software JAGS no R (geralmente para fazer MCMC).</li>
+  <li><code>R2WinBUGS</code> e <code>rbugs</code>: Forma de utilizar o WinBugs e o OpenBugs no R.</li>
+  <li><code>LaplacesDemon</code>: Pacote completamente implementado em R para inferência bayesiana.</li>
+</ul>
+
+<p>Acesse <a href="http://cran.r-project.org/web/views/Bayesian.html">aqui</a> para uma lista completa de pacotes.</p>
+
+<h3 id="laplacesdemon">LaplacesDemon</h3>
+
+<p>O pacote <code>LaplacesDemon</code>, ou simplesmente LD, é um gigantesco framework do R para realização de análise bayesiana de dados. É interessante notar que houve uma preocupação grande em tornar o código todo disponível em <code>R</code>, tanto que, por conta dos problemas de performance, foi criado também o pacote <code>LaplacesDemonCpp</code>, que tem suas funções implementadas em <code>C++</code>.</p>
+
+<p>Para mais informações sobre o pacote LD, ver <a href="">aqui</a>.</p>
+
+<p>Para realizar uma análise bayesiana, geralmente o que sabemos é a nossa <em>priori</em>, a função de verossimilhança (ambas determinadas de pelo estatístico ou pesquisador) e os dados colhidos em uma amostra. Nosso objetivo é obter a posteriori</p>
+
+<script type="math/tex; mode=display">f(\theta|x) = \frac{l(x | \theta)f(\theta)}{\int_{\theta} l(x|\theta)f(\theta)}</script>
+
+<p>Para exemplos de uso do LD, ver</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">vignette<span class="p">(</span><span class="s">&#39;Examples&#39;</span><span class="p">,</span> package <span class="o">=</span> <span class="s">&#39;LaplacesDemon&#39;</span><span class="p">)</span></code></pre></div>
+
+<p>Algumas categorias de técnicas para realizar a aproximação bayesiana são</p>
+
+<ul>
+  <li>ABC (Aproximate Bayesian Computation)</li>
+  <li>Importance Sampling</li>
+  <li>Iterative Quadrature</li>
+  <li>Laplace Aproximation</li>
+  <li>MCMC (Markov Chains Monte Carlo)</li>
+  <li>VB (Variational Bayes)</li>
+</ul>
+
+<h3 id="exemplo-anlise-de-ponto-de-mudana">Exemplo: Análise de ponto de mudança</h3>
+
+<p>Temos um banco de dados assim</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">N <span class="o">&lt;-</span> <span class="m">29</span>
+
+y <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1.12</span><span class="p">,</span> <span class="m">1.12</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="m">1.03</span><span class="p">,</span> <span class="m">0.92</span><span class="p">,</span> <span class="m">0.90</span><span class="p">,</span> <span class="m">0.81</span><span class="p">,</span> <span class="m">0.83</span><span class="p">,</span> <span class="m">0.65</span><span class="p">,</span> <span class="m">0.67</span><span class="p">,</span> <span class="m">0.60</span><span class="p">,</span>
+       <span class="m">0.59</span><span class="p">,</span> <span class="m">0.51</span><span class="p">,</span> <span class="m">0.44</span><span class="p">,</span> <span class="m">0.43</span><span class="p">,</span> <span class="m">0.43</span><span class="p">,</span> <span class="m">0.33</span><span class="p">,</span> <span class="m">0.30</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.24</span><span class="p">,</span> <span class="m">0.13</span><span class="p">,</span> <span class="m">-0.01</span><span class="p">,</span>
+      <span class="m">-0.13</span><span class="p">,</span> <span class="m">-0.14</span><span class="p">,</span> <span class="m">-0.30</span><span class="p">,</span> <span class="m">-0.33</span><span class="p">,</span> <span class="m">-0.46</span><span class="p">,</span> <span class="m">-0.43</span><span class="p">,</span> <span class="m">-0.65</span><span class="p">)</span>
+
+x <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">-1.39</span><span class="p">,</span> <span class="m">-1.39</span><span class="p">,</span> <span class="m">-1.08</span><span class="p">,</span> <span class="m">-1.08</span><span class="p">,</span> <span class="m">-0.94</span><span class="p">,</span> <span class="m">-0.80</span><span class="p">,</span> <span class="m">-0.63</span><span class="p">,</span> <span class="m">-0.63</span><span class="p">,</span> <span class="m">-0.25</span><span class="p">,</span> <span class="m">-0.25</span><span class="p">,</span>
+       <span class="m">-0.12</span><span class="p">,</span> <span class="m">-0.12</span><span class="p">,</span> <span class="m">0.01</span><span class="p">,</span> <span class="m">0.11</span><span class="p">,</span> <span class="m">0.11</span><span class="p">,</span> <span class="m">0.11</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.25</span><span class="p">,</span> <span class="m">0.34</span><span class="p">,</span> <span class="m">0.34</span><span class="p">,</span> <span class="m">0.44</span><span class="p">,</span>
+        <span class="m">0.59</span><span class="p">,</span> <span class="m">0.70</span><span class="p">,</span> <span class="m">0.70</span><span class="p">,</span> <span class="m">0.85</span><span class="p">,</span> <span class="m">0.85</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="m">0.99</span><span class="p">,</span> <span class="m">1.19</span><span class="p">)</span>
+
+<span class="kt">data_frame</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> <span class="o">%&gt;%</span> ggplot<span class="p">()</span> <span class="o">+</span> geom_point<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>x<span class="p">,</span> y<span class="o">=</span>y<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;%&gt;%&quot;</code></pre></div>
+
+<p>Queremos ajustar no gráfico um modelo linear de ponto de mudança, que vai ajustar duas retas, uma antes e outra depois de certo ponto. O ponto de mudança é determinado pelo modelo.</p>
+
+<h4 id="dados">Dados</h4>
+
+<p>No LD, dados não são especificados em um <code>data.frame</code>. Ao invés disso, temos de criar uma lista contendo, além dos dados, algumas informações iniciais, como</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">mon.names <span class="o">&lt;-</span> <span class="s">&quot;LP&quot;</span> <span class="c1"># variáveis para monitoramento. No caso, Log Posterior</span>
+parm.names <span class="o">&lt;-</span> as.parm.names<span class="p">(</span><span class="kt">list</span><span class="p">(</span>alpha<span class="o">=</span><span class="m">0</span><span class="p">,</span> beta<span class="o">=</span><span class="kp">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> sigma<span class="o">=</span><span class="m">0</span><span class="p">,</span> theta<span class="o">=</span><span class="m">0</span><span class="p">))</span> <span class="c1"># nomes dos parâmetros</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;as.parm.names&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">pos.alpha <span class="o">&lt;-</span> <span class="kp">grep</span><span class="p">(</span><span class="s">&quot;alpha&quot;</span><span class="p">,</span> parm.names<span class="p">)</span> <span class="c1"># posição do parâmetro alpha</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in grep(&quot;alpha&quot;, parm.names): objeto &#39;parm.names&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">pos.beta <span class="o">&lt;-</span> <span class="kp">grep</span><span class="p">(</span><span class="s">&quot;beta&quot;</span><span class="p">,</span> parm.names<span class="p">)</span>   <span class="c1"># posição dos parâmetros beta</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in grep(&quot;beta&quot;, parm.names): objeto &#39;parm.names&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">pos.sigma <span class="o">&lt;-</span> <span class="kp">grep</span><span class="p">(</span><span class="s">&quot;sigma&quot;</span><span class="p">,</span> parm.names<span class="p">)</span> <span class="c1"># posição do parâmetro sigma</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in grep(&quot;sigma&quot;, parm.names): objeto &#39;parm.names&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">pos.theta <span class="o">&lt;-</span> <span class="kp">grep</span><span class="p">(</span><span class="s">&quot;theta&quot;</span><span class="p">,</span> parm.names<span class="p">)</span> <span class="c1"># posição do parâmetro theta</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in grep(&quot;theta&quot;, parm.names): objeto &#39;parm.names&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Função que gera valores iniciais para os parâmetros. No caso, sem muito critério.</span>
+PGF <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>Data<span class="p">)</span> <span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">1</span><span class="p">),</span> rnorm<span class="p">(</span><span class="m">2</span><span class="p">),</span> runif<span class="p">(</span><span class="m">1</span><span class="p">),</span> runif<span class="p">(</span><span class="m">1</span><span class="p">)))</span>
+
+MyData <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>N<span class="o">=</span>N<span class="p">,</span> 
+               PGF<span class="o">=</span>PGF<span class="p">,</span> 
+               mon.names<span class="o">=</span>mon.names<span class="p">,</span> 
+               parm.names<span class="o">=</span>parm.names<span class="p">,</span>
+               pos.alpha<span class="o">=</span>pos.alpha<span class="p">,</span> 
+               pos.beta<span class="o">=</span>pos.beta<span class="p">,</span> 
+               pos.sigma<span class="o">=</span>pos.sigma<span class="p">,</span>
+               pos.theta<span class="o">=</span>pos.theta<span class="p">,</span> 
+               x<span class="o">=</span>x<span class="p">,</span> 
+               y<span class="o">=</span>y<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): objeto &#39;parm.names&#39; não encontrado</code></pre></div>
+
+<h4 id="modelo">Modelo</h4>
+
+<p>No LD precisamos espeficiar uma função <code>Model</code> que será responsável por calcular as informações necessárias para atualização do modelo.</p>
+
+<p>A função recebe um vetor numérico de parâmetros, e a lista com os dados, e retorna uma lista contendo a <code>LP</code> (log posteriori sem normalização) calculada, o <code>Dev</code> (deviance), as informações monitoradas (no caso, LP), um <code>yhat</code> (chute para o valor de y, de acordo com os parâmetros calculados), e <code>parm</code> o vetor de parâmetros (usualmente ajustado para ficar dentro do espaço paramétrico).</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">Model <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>parm<span class="p">,</span> Data<span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1">### Parameters</span>
+  alpha <span class="o">&lt;-</span> parm<span class="p">[</span>Data<span class="o">$</span>pos.alpha<span class="p">]</span>
+  beta <span class="o">&lt;-</span> parm<span class="p">[</span>Data<span class="o">$</span>pos.beta<span class="p">]</span>
+  sigma <span class="o">&lt;-</span> interval<span class="p">(</span>parm<span class="p">[</span>Data<span class="o">$</span>pos.sigma<span class="p">],</span> <span class="m">1e-100</span><span class="p">,</span> <span class="kc">Inf</span><span class="p">)</span>
+  parm<span class="p">[</span>Data<span class="o">$</span>pos.sigma<span class="p">]</span> <span class="o">&lt;-</span> sigma <span class="c1"># atualiza o valor para retornar depois</span>
+  theta <span class="o">&lt;-</span> interval<span class="p">(</span>parm<span class="p">[</span>Data<span class="o">$</span>pos.theta<span class="p">],</span> <span class="m">-1.3</span><span class="p">,</span> <span class="m">1.1</span><span class="p">)</span>
+  parm<span class="p">[</span>Data<span class="o">$</span>pos.theta<span class="p">]</span> <span class="o">&lt;-</span> theta <span class="c1"># atualiza o valor para retornar depois</span>
+  
+  <span class="c1">### Log-Prior (calcula com base nas funções das prioris predefinidas)</span>
+  alpha.prior <span class="o">&lt;-</span> dnormv<span class="p">(</span>alpha<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> log<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+  beta.prior <span class="o">&lt;-</span> <span class="kp">sum</span><span class="p">(</span>dnormv<span class="p">(</span><span class="kp">beta</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> log<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+  sigma.prior <span class="o">&lt;-</span> dhalfcauchy<span class="p">(</span>sigma<span class="p">,</span> <span class="m">25</span><span class="p">,</span> log<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+  theta.prior <span class="o">&lt;-</span> dunif<span class="p">(</span>theta<span class="p">,</span> <span class="m">-1.3</span><span class="p">,</span> <span class="m">1.1</span><span class="p">,</span> log<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+  
+  <span class="c1">### Log-Likelihood (calcula a log-verossimilhança com base no modelo concebido)</span>
+  mu <span class="o">&lt;-</span> alpha <span class="o">+</span> <span class="kp">beta</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">*</span>x <span class="o">+</span> <span class="kp">beta</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span>x <span class="o">-</span> theta<span class="p">)</span><span class="o">*</span><span class="p">((</span>x <span class="o">-</span> theta<span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+  LL <span class="o">&lt;-</span> <span class="kp">sum</span><span class="p">(</span>dnorm<span class="p">(</span>Data<span class="o">$</span>y<span class="p">,</span> mu<span class="p">,</span> sigma<span class="p">,</span> log<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+  
+  <span class="c1">### Log-Posterior (calcula a log posteriori)</span>
+  LP <span class="o">&lt;-</span> LL <span class="o">+</span> alpha.prior <span class="o">+</span> beta.prior <span class="o">+</span> sigma.prior <span class="o">+</span> theta.prior
+  
+  Modelout <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>LP<span class="o">=</span>LP<span class="p">,</span> 
+                   Dev<span class="o">=</span><span class="m">-2</span><span class="o">*</span>LL<span class="p">,</span> 
+                   Monitor<span class="o">=</span>LP<span class="p">,</span> 
+                   yhat<span class="o">=</span>rnorm<span class="p">(</span><span class="kp">length</span><span class="p">(</span>mu<span class="p">),</span> mu<span class="p">,</span> sigma<span class="p">),</span> 
+                   parm<span class="o">=</span>parm<span class="p">)</span>
+  
+  <span class="kr">return</span><span class="p">(</span>Modelout<span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+
+<h4 id="atualizao-ajuste">Atualização (“ajuste”)</h4>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">set.seed</span><span class="p">(</span><span class="m">666</span><span class="p">)</span> <span class="c1"># reprodutibilidade</span>
+
+Initial.Values <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">-0.4</span><span class="p">,</span> <span class="m">-0.6</span><span class="p">,</span> <span class="m">0.02</span><span class="p">,</span> <span class="m">0.04</span><span class="p">)</span> <span class="c1"># valores iniciais da cadeia</span>
+
+Fit <span class="o">&lt;-</span> LaplacesDemon<span class="p">(</span>Model<span class="p">,</span> MyData<span class="p">,</span> Initial.Values<span class="p">,</span> 
+                     Iterations <span class="o">=</span> <span class="m">1000000</span><span class="p">,</span> 
+                     Status <span class="o">=</span> <span class="m">100000</span><span class="p">,</span>
+                     Thinning <span class="o">=</span> <span class="m">1000</span><span class="p">,</span>
+                     Algorithm<span class="o">=</span><span class="s">&quot;HARM&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;LaplacesDemon&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">print</span><span class="p">(</span>Fit<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in print(Fit): objeto &#39;Fit&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">Consort<span class="p">(</span>Fit<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;Consort&quot;</code></pre></div>
+
+<h4 id="plotando-resultado">Plotando resultado</h4>
+
+<p>Diagnóstico</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>Fit<span class="p">,</span> BurnIn<span class="o">=</span><span class="m">100000</span><span class="p">,</span> MyData<span class="p">,</span> PDF<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> Parms<span class="o">=</span><span class="kc">NULL</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in plot(Fit, BurnIn = 1e+05, MyData, PDF = FALSE, Parms = NULL): objeto &#39;Fit&#39; não encontrado</code></pre></div>
+
+<p>Resultados</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">caterpillar.plot<span class="p">(</span>Fit<span class="p">,</span> Parms<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;beta&quot;</span><span class="p">,</span> <span class="s">&#39;theta&#39;</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;caterpillar.plot&quot;</code></pre></div>
+
+<p>Valores preditos</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">Pred <span class="o">&lt;-</span> predict<span class="p">(</span>Fit<span class="p">,</span> Model<span class="p">,</span> MyData<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in predict(Fit, Model, MyData): objeto &#39;Fit&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>Pred<span class="p">,</span> Style<span class="o">=</span><span class="s">&quot;Fitted&quot;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in plot(Pred, Style = &quot;Fitted&quot;): objeto &#39;Pred&#39; não encontrado</code></pre></div>
+
+<p>Um gráfico muito difícil para frequentistas</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m <span class="o">&lt;-</span> Fit<span class="o">$</span>Posterior2 <span class="o">%&gt;%</span> <span class="kt">data.frame</span> <span class="o">%&gt;%</span> summarise_each<span class="p">(</span>funs<span class="p">(</span>median<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;%&gt;%&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">data_frame</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> <span class="o">%&gt;%</span> 
+  ggplot<span class="p">()</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>x<span class="p">,</span> y<span class="o">=</span>y<span class="p">))</span> <span class="o">+</span>
+  geom_segment<span class="p">(</span>x<span class="o">=</span><span class="m">-1.5</span><span class="p">,</span> xend<span class="o">=</span>m<span class="o">$</span>theta<span class="p">,</span> y<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span><span class="m">-1.5</span><span class="p">),</span> 
+               yend<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span>m<span class="o">$</span>theta<span class="p">))</span> <span class="o">+</span>
+  geom_segment<span class="p">(</span>x<span class="o">=</span>m<span class="o">$</span>theta<span class="p">,</span> xend<span class="o">=</span><span class="m">1.2</span><span class="p">,</span> y<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span>m<span class="o">$</span>theta<span class="p">),</span> 
+               yend<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span><span class="m">1.2</span><span class="p">)</span> <span class="o">+</span> m<span class="o">$</span>beta.2.<span class="o">*</span><span class="p">(</span><span class="m">1.2</span><span class="o">-</span>m<span class="o">$</span>theta<span class="p">))</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>theta<span class="p">,</span> y<span class="o">=</span>alpha <span class="o">+</span> beta.1. <span class="o">*</span> theta<span class="p">),</span> 
+             data<span class="o">=</span><span class="kt">data.frame</span><span class="p">(</span>Fit<span class="o">$</span>Posterior2<span class="p">),</span> alpha<span class="o">=</span><span class="m">.05</span><span class="p">,</span>
+             colour<span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;%&gt;%&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">data_frame</span><span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span> <span class="o">%&gt;%</span> 
+  ggplot<span class="p">()</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>x<span class="p">,</span> y<span class="o">=</span>y<span class="p">))</span> <span class="o">+</span>
+  geom_segment<span class="p">(</span>x<span class="o">=</span><span class="m">-1.5</span><span class="p">,</span> xend<span class="o">=</span>m<span class="o">$</span>theta<span class="p">,</span> y<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span><span class="m">-1.5</span><span class="p">),</span> 
+               yend<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span>m<span class="o">$</span>theta<span class="p">))</span> <span class="o">+</span>
+  geom_segment<span class="p">(</span>x<span class="o">=</span>m<span class="o">$</span>theta<span class="p">,</span> xend<span class="o">=</span><span class="m">1.2</span><span class="p">,</span> y<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span>m<span class="o">$</span>theta<span class="p">),</span> 
+               yend<span class="o">=</span>m<span class="o">$</span>alpha <span class="o">+</span> m<span class="o">$</span>beta.1. <span class="o">*</span> <span class="p">(</span><span class="m">1.2</span><span class="p">)</span> <span class="o">+</span> m<span class="o">$</span>beta.2.<span class="o">*</span><span class="p">(</span><span class="m">1.2</span><span class="o">-</span>m<span class="o">$</span>theta<span class="p">))</span> <span class="o">+</span>
+  geom_density2d<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>theta<span class="p">,</span> y<span class="o">=</span>alpha <span class="o">+</span> beta.1. <span class="o">*</span> theta<span class="p">),</span> 
+             data<span class="o">=</span><span class="kt">data.frame</span><span class="p">(</span>Fit<span class="o">$</span>Posterior2<span class="p">),</span> 
+             colour<span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span> <span class="o">+</span>
+  scale_x_continuous<span class="p">(</span>limits<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">-.25</span><span class="p">,</span><span class="m">.25</span><span class="p">))</span> <span class="o">+</span>
+  scale_y_continuous<span class="p">(</span>limits<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">.25</span><span class="p">,</span><span class="m">.75</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;%&gt;%&quot;</code></pre></div>
+
+<h2 id="sobre-redes-neurais">Sobre redes neurais</h2>
+
+<p>Exemplo retirado <a href="http://gekkoquant.com/2012/05/26/neural-networks-with-r-simple-example/">deste site</a> e levemente modificado.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>neuralnet<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in library(neuralnet): there is no package called &#39;neuralnet&#39;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">trainningdata <span class="o">&lt;-</span> <span class="kt">data_frame</span><span class="p">(</span>Input<span class="o">=</span>runif<span class="p">(</span><span class="m">50</span><span class="p">,</span> min<span class="o">=</span><span class="m">0</span><span class="p">,</span> max<span class="o">=</span><span class="m">100</span><span class="p">),</span> Output<span class="o">=</span><span class="kp">sqrt</span><span class="p">(</span>Input<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;data_frame&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Train the neural network</span>
+<span class="c1"># Going to have 10 hidden layers</span>
+<span class="c1"># Threshold is a numeric value specifying the threshold for the partial</span>
+<span class="c1"># derivatives of the error function as stopping criteria.</span>
+
+net.sqrt <span class="o">&lt;-</span> neuralnet<span class="p">(</span>Output <span class="o">~</span> Input<span class="p">,</span> data <span class="o">=</span> trainingdata<span class="p">,</span> hidden<span class="o">=</span><span class="m">10</span><span class="p">,</span> threshold<span class="o">=</span><span class="m">0.01</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;neuralnet&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">print</span><span class="p">(</span>net.sqrt<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in print(net.sqrt): objeto &#39;net.sqrt&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>net.sqrt<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in plot(net.sqrt): objeto &#39;net.sqrt&#39; não encontrado</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">testdata <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>test<span class="o">=</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+net.results <span class="o">&lt;-</span> compute<span class="p">(</span>net.sqrt<span class="p">,</span> testdata<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;compute&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">cleanoutput <span class="o">&lt;-</span> <span class="kt">data_frame</span><span class="p">(</span>value<span class="o">=</span>testdata<span class="o">$</span>test<span class="p">,</span> 
+                          real_resp<span class="o">=</span><span class="kp">sqrt</span><span class="p">(</span>value<span class="p">),</span> 
+                          estimate<span class="o">=</span><span class="kp">as.vector</span><span class="p">(</span>net.results<span class="o">$</span>net.result<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;data_frame&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">print</span><span class="p">(</span>cleanoutput<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in print(cleanoutput): objeto &#39;cleanoutput&#39; não encontrado</code></pre></div>
+
+<h1 id="parte-2-big-data">Parte 2: “Big data”</h1>
+
+<p><a href="http://curso-r.github.io/slides/aula_08_apresentacao.html">nos slides</a></p>
+
+<p><a href="http://curso-r.github.io/criar-instancia-amazon-ec2.html">um tutorial</a> para criar uma instância com RStudio instalado na Amazon AWS.</p>
+
+<h1 id="parte-3-htmlwidgets">Parte 3: htmlwidgets</h1>
+
+<p>Acesse o <a href="http://www.htmlwidgets.org/">site</a></p>
+
+<h1 id="extra-web-crawling">Extra: web crawling</h1>
+
+<p>Ver <a href="https://github.com/jtrecenti/sabesp">este repositório</a> que baixa os dados da sabesp. Estudar pacotes <code>RCurl</code> (Duncan), XML (Duncan), <code>httr</code> (Hadley) e <code>rvest</code> (Hadley).</p>
+
+
+      </article>
+      <hr>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+            <a href="#" class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+            <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+        </div>
+        <script>
+            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    </div>
+	
+    <!-- duoshuo.com javascript include code. -->    
+    
+    <!-- disqus.com javascript include code. -->
+	
+    <div class="post-area post comment">
+        <div id="disqus_thread"></div>
+    </div>
+	<script>
+		var disqus_config = function () {
+			this.page.url = "http://curso-r.github.io/aula08/"; 
+			this.page.identifier = "/aula08"; 
+		};
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = '//curso-r.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+    
+  </div>
+  
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+  
+</div>
+    </div>
+
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:"><span class="glyphicon glyphicon-envelope"></span> </a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/curso-r">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>curso-r</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/curso-r/curso-r.github.io/blob/master/_posts/2016-01-23-aula08.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2015 LiXizhi</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/curso-r/curso-r.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
+  </body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aula 06 - Laboratório II</title>
+	<meta name="description" content="Questões iniciais">
+	
+	<link rel="canonical" href="http://curso-r.github.io/versao2016//aula06/">
+	<link rel="alternate" type="application/rss+xml" title="Curso-R 2016" href="http://curso-r.github.io/versao2016//feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	
+	<!-- <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/railscasts.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai.min.css"> -->
+	<!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/languages/dos.min.js"></script> -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Curso-R 2016</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        
+          <li>
+        
+        <a href="/"><span class="glyphicon glyphicon-th-large"></span> Blog</a></li>
+
+        
+          
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon glyphicon-file"></span> Projects</a></li>
+          
+        
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon glyphicon-heart"></span> About</a></li>
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>Aula 06 - Laboratório II</h1>
+        <p>Jan 30, 2015</p>
+      </header>
+      <hr>
+      <article>
+        <h1 id="questes-iniciais">Questões iniciais</h1>
+
+<h2 id="sobre-dplyr-e-tidyr">Sobre dplyr e tidyr</h2>
+
+<p>Para estas questões usaremos a base de dados flights, ela está inserida no pacote <code>nycflights13</code> por isso é necessário utilizar o comando:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;</code></pre></div>
+
+<p>Se você não tiver o pacote instalado use o comando:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;nycflighs13&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>E em seguida use o <code>library(nycflights13)</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## 
+## Attaching package: &#39;dplyr&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## 
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">flights <span class="o">%&gt;%</span> tbl_df</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): objeto &#39;flights&#39; não encontrado</code></pre></div>
+
+<p>Com o comando <code>?flights</code> você pode ver o que significa cada uma das variáveis do banco de dados.</p>
+
+<h3 id="filter">filter</h3>
+
+<ol>
+  <li>Atribua a uma tabela apenas os voos de janeiro de 2013.</li>
+  <li>Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.</li>
+  <li>Atribua a uma tabela apenas os vôos com distância maior do que 1000 milhas.</li>
+</ol>
+
+<h3 id="select">select</h3>
+
+<ol>
+  <li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>.</li>
+  <li>Atribua a uma tabela apenas as colunas <code>month</code> e <code>dep_delay</code>, os nomes dessas colunas devem ser <code>mes</code>e <code>atraso</code>.</li>
+  <li>Retire da tabela as colunas <code>tailnum</code>, <code>origin</code> e <code>dest</code></li>
+</ol>
+
+<h3 id="mutate">mutate</h3>
+
+<ol>
+  <li>Calcule as colunas <code>ganho_de_tempo</code> que é dado por <code>dep_delay - arr_delay</code> e <code>velocidade</code> dada por <code>distance / air_time * 60</code>.</li>
+  <li>Calcule o horário de chegada considerando as colunas <code>hour</code>, <code>minute</code> e <code>air_time</code>. A tabela deve conter duas colunas novas: <code>hour2</code> com a hora de chegada e <code>minute2</code> com o minuto de chegada.</li>
+</ol>
+
+<h3 id="summarise">summarise</h3>
+
+<ol>
+  <li>Calcule a média da distância de todos os vôos.</li>
+  <li>Calcule a média da distância dos vôos por mês</li>
+  <li>Calcule a média, mediana, primeiro quartil e terceiro quartil do tempo de viagem por mês.</li>
+</ol>
+
+<h3 id="arrange">arrange</h3>
+
+<ol>
+  <li>Ordene a base de dados pelo atraso na partida em ordem crescente.</li>
+  <li>Repita a questão anterior, porém na ordem decrescente.</li>
+</ol>
+
+<h3 id="spread">spread</h3>
+
+<ol>
+  <li>Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.</li>
+</ol>
+
+<p>Resultado esperado:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): objeto &#39;flights&#39; não encontrado</code></pre></div>
+
+<p>Dica: você precisará usar <code>group_by</code>, <code>summarise</code>e <code>spread</code>. Lembre-se também do argumento <code>na.rm</code>.</p>
+
+<ol>
+  <li>Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.</li>
+</ol>
+
+<p>Resultado esperado:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): objeto &#39;flights&#39; não encontrado</code></pre></div>
+
+<h3 id="gather">gather</h3>
+
+<p>Considerando as tabelas criadas nas perguntas sobre o <code>spread</code>:</p>
+
+<ol>
+  <li>Transforme-as em um formato tidy.</li>
+</ol>
+
+<p>Resultado esperado:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): objeto &#39;flights&#39; não encontrado</code></pre></div>
+
+<h3 id="desafios-opcional">desafios (opcional)</h3>
+
+<ol>
+  <li>
+    <p>Sumarise em uma tabela qual foi a média de atraso total (<code>dep_delay + arr_delay</code>) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\frac{var(x)}{n}}$</p>
+  </li>
+  <li>
+    <p>Summarise em uma tabela quais foram os 10 destinos com mais viagens com atraso superior a 60 minutos. Considere o atraso total definido na pergunta anterior.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="sobre-ggplot2">Sobre ggplot2</h2>
+
+<p>Nestes exercícios você utilizará a base de dados <code>diamonds</code>, do pacote <code>ggplot2</code>.</p>
+
+<p>Instalação do pacote <code>ggplot2</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>Para carregar o pacote <code>ggplot2</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Carregando pacotes exigidos: methods</code></pre></div>
+
+<p>Enfim, os dados:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">head</span><span class="p">(</span>diamonds<span class="p">,</span> <span class="m">10</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##    carat       cut color clarity depth table price    x    y    z
+## 1   0.23     Ideal     E     SI2  61.5    55   326 3.95 3.98 2.43
+## 2   0.21   Premium     E     SI1  59.8    61   326 3.89 3.84 2.31
+## 3   0.23      Good     E     VS1  56.9    65   327 4.05 4.07 2.31
+## 4   0.29   Premium     I     VS2  62.4    58   334 4.20 4.23 2.63
+## 5   0.31      Good     J     SI2  63.3    58   335 4.34 4.35 2.75
+## 6   0.24 Very Good     J    VVS2  62.8    57   336 3.94 3.96 2.48
+## 7   0.24 Very Good     I    VVS1  62.3    57   336 3.95 3.98 2.47
+## 8   0.26 Very Good     H     SI1  61.9    55   337 4.07 4.11 2.53
+## 9   0.22      Fair     E     VS2  65.1    61   337 3.87 3.78 2.49
+## 10  0.23 Very Good     H     VS1  59.4    61   338 4.00 4.05 2.39</code></pre></div>
+
+<p>Para ver uma descrição das variáveis deste banco de dados, utilize a função <code>help()</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">help<span class="p">(</span>diamonds<span class="p">)</span></code></pre></div>
+
+<h2 id="geral">Geral</h2>
+
+<p><strong>1.</strong> Segundo a <em>Grammar of Graphics</em>, o que é um gráfico estatístico? Responda de forma sucinta.</p>
+
+<p><strong>2.</strong> Qual operador é usado para acrescentar <em>camadas</em> em um gráfico no ggplot?</p>
+
+<h3 id="geompoint">geom_point</h3>
+
+<p><strong>3.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_point()</code>?</p>
+
+<p>Dica: utilizar a função <code>help()</code>.</p>
+
+<p><strong>4.</strong> Faça um gráfico de dispersão do preço (<em>price</em>) pela variável quilates (<em>carat</em>). Utilize as funções <code>xlab()</code> e <code>ylab()</code> para trocar os <em>labels</em> dos eixos x e y, respectivamente.</p>
+
+<p><strong>5.</strong> Utilize a função <code>facet_grid()</code> ou <code>facet_wrap()</code> para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (<em>clarity</em>).</p>
+
+<h3 id="geomline">geom_line</h3>
+
+<p><strong>6.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_line()</code>?</p>
+
+<p>Dica: visitar a seguinte <a href="http://docs.ggplot2.org/current/">página</a> e consultar o tópico <code>geom_line</code>.</p>
+
+<p><strong>7.</strong> Utilizando o argumento <code>stat = summary</code> e <code>fun.y = mean</code>, calcule a média do preço para cada corte, faça um gráfico desses pontos utilizando a função <code>geom_point()</code>e trace uma reta sobre esses pontos utilizando a função <code>geom_line()</code>.</p>
+
+<p>Dicas: não se esqueça de especificar o <em>aesthetic</em> <code>group =</code> dentro do <code>geom_line()</code>. Veja mais exemplos de como usar o <code>stat = summary</code> <a href="http://docs.ggplot2.org/current/stat_summary.html">aqui</a>.</p>
+
+<h3 id="geomhistogram">geom_histogram</h3>
+
+<p><strong>8.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_histogram()</code>?</p>
+
+<p><strong>9.</strong> Faça um histograma da variável preço.</p>
+
+<p><strong>10.</strong> Utilize a função <code>geom_density()</code> para <strong>adicionar</strong> ao gráfico anterior uma estimativa suavizada da densidade. Por que, neste caso, é preciso especificar o argumento <code>y = </code> como <code>..density..</code>?</p>
+
+<h3 id="geomboxplot">geom_boxplot</h3>
+
+<p><strong>11.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_boxplot()</code>?</p>
+
+<p><strong>12.</strong> Faça boxplots da variável preço pela variável corte (<em>cut</em>).</p>
+
+<h3 id="geombar">geom_bar</h3>
+
+<p><strong>13.</strong> Quais são os aspectos estéticos (<em>aesthetics</em>) exigidos (obrigatórios) da função <code>geom_bar()</code>?</p>
+
+<p><strong>14.</strong> Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (<em>color</em>).</p>
+
+<h3 id="desafio-opcional">Desafio (opcional)</h3>
+
+<p>Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:</p>
+
+<ul>
+  <li>
+    <p>Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por <code>2.61*price*2.2</code>, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.</p>
+  </li>
+  <li>
+    <p>Considere agora que, para importar um diamante diretamente dos EUA, uma transportadora cobre (em reais) <code>(carat*price*0.70)*2.61 + price*2.68</code>, já considerando o preço de compra do diamante. Adicione ao banco de dados uma coluna referente ao preço de cada diamante se importado diretamente.</p>
+  </li>
+  <li>
+    <p>Faça um gráfico de dispersão do preço de venda no Brasil pelo preço de importação. Adicione a esse gráfico uma reta x=y para avaliar quais diamantes compensam ser importados diretamente.</p>
+  </li>
+  <li>
+    <p>Mapeie a variável <em>clarity</em> ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável <em>color</em>.</p>
+  </li>
+</ul>
+
+<p><em>Dica</em>: para fazer a reta x=y, utilize a função <code>geom_abline()</code>.</p>
+
+<h1 id="desafios-com-bases-de-dados-reais">Desafios com bases de dados reais</h1>
+
+<p>Primeiro, instale o pacote <code>abjutils</code>. Para isso, instale primeiro o pacote <code>devtools</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># verifica se o pacote devtools já está instalado e instala se não estiver</span>
+<span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="kn">require</span><span class="p">(</span>devtools<span class="p">))</span> install.packages<span class="p">(</span><span class="s">&#39;devtools&#39;</span><span class="p">)</span>
+
+<span class="c1"># verifica se o pacote abjutils já está instalado e instala se não estiver</span>
+<span class="c1"># Como o pacote não está no CRAN, instalamos via github usando o comando do pacote devtools</span>
+<span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="kn">require</span><span class="p">(</span>abjutils<span class="p">))</span> devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">&#39;abjur/abjutils&#39;</span><span class="p">)</span>
+
+<span class="c1"># OBS: O pacote abjutils já vai carregar as bibliotecas dplyr, stringr e lubridate</span></code></pre></div>
+
+<h2 id="pnud">PNUD</h2>
+
+<p>Vamos começar com a base de dados do PNUD do lab 1, para aquecer :)</p>
+
+<p>Você pode carregar o banco de dados do PNUD rodando</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">data<span class="p">(</span>pnud_muni <span class="p">,</span> package<span class="o">=</span><span class="s">&#39;abjutils&#39;</span><span class="p">)</span></code></pre></div>
+
+<p><strong>1</strong> Refaça todas as análises do laboratório 1 usando <code>dplyr</code> e <code>ggplot2</code>.</p>
+
+<h2 id="coalitions">Coalitions</h2>
+
+<p>Essa base de dados contém informações de países que fazem parte da Organização Mundial do Comércio (OMC, em inglês World Trade Organization - WTO). Para melhorar e facilitar o comércio internacional, muitas vezes os países que fazem parte da OMC realizam acordos, que chamamos de <em>coalizões</em>. Geralmente uma coalizão
+envolve muitos países ao mesmo tempo.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">data<span class="p">(</span>wto_data <span class="p">,</span> package<span class="o">=</span><span class="s">&#39;abjutils&#39;</span><span class="p">)</span>
+data<span class="p">(</span>wto_dyad_sample<span class="p">,</span> package<span class="o">=</span><span class="s">&#39;abjutils&#39;</span><span class="p">)</span></code></pre></div>
+
+<p>A base de dados <code>wto_data</code> contém informações básicas de cada país, como PIB, PIB <em>per capita</em>, latitude, longitude, hemisfério, identificador de regime político, etc. O código do país é dado na variável <code>ccode</code></p>
+
+<p>A base de dados <code>wto_dyad_sample</code> contém, em cada linha, uma coalizão ocorrida ou não na Organização Mundial do Comércio, entre dois países (uma “díade” ou, em inglês, <em>dyad</em>).</p>
+
+<p>Os países estão identificados pelas colunas <code>ccode1</code> e <code>ccode2</code> (analogamente à base <code>wto_data</code>). A coalizão é identificada <code>coalition</code>, que vale <code>1</code> se houve coalizão e <code>0</code> caso contrário. A coluna <code>ccoalition</code> é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).</p>
+
+<p><strong>1</strong> Faça um mapa com as posições geográficas dos países, com um mapa múndi no fundo.</p>
+
+<p>Dica: Leia o script da aula 05.</p>
+
+<p><strong>2</strong>. Qual é a unidade observacional (o que identifica uma observação) na base <code>wto_data</code>?</p>
+
+<p><strong>3</strong>. Quantas coalizões tivemos em cada ano?</p>
+
+<p><strong>4</strong>. Qual é o código do país que entrou mais vezes em alguma coalizão?</p>
+
+<p><strong>5</strong>. Construa uma matriz de adjacências usando <code>dplyr</code> e <code>tidyr</code>. Queremos um <code>data.frame</code> <code>wto_adj</code> com número de linhas igual ao número de colunas, e o conteúdo da célula <code>wto_adj[i, j]</code> é <code>1</code> se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e <code>0</code> caso contrário. Utilize a função <code>row.names()</code> para atribuir os nomes às linhas.</p>
+
+<h2 id="carf">CARF</h2>
+
+<p>A base de dados do Conselho Administrativo de Recursos Fiscais (CARF) é uma das muitas bases que geralmente temos de lidar na área de jurimetria (estatística aplicada ao direito). Trata-se de uma base de dados sobre processos tributários.</p>
+
+<p>Montamos uma base de dados com todas as decisões encontradas no conselho. Nosso banco de dados tem, inicialmente, 264594 linhas e somente 9 colunas. As variáveis estão descritas abaixo:</p>
+
+<ul>
+  <li><code>id</code>: número sequencial único para identificar cada acórdão.</li>
+  <li><code>n_processo</code>: número do processo.</li>
+  <li><code>n_decisao</code>: número da decisão.</li>
+  <li><code>ano</code>: ano em que o acórdão foi proferido (de acordo com o site do CARF).</li>
+  <li><code>tipo_recurso</code>: identifica se a decisão é sobre um recurso voluntário, recurso de ofício, recurso especial, etc.</li>
+  <li><code>contribuinte</code>: identifica o nome do contribuinte, em texto livre.</li>
+  <li><code>relator</code>: identifica o nome do relator, em texto livre.</li>
+  <li><code>txt_ementa</code>: texto completo da ementa, em texto livre. Geralmente esse texto contém informações do tributo discutido, fundamentação da decisão e decisão.</li>
+  <li><code>txt_decisao</code>: texto completo da decisão, em texto livre. Geralmente é uma parte da ementa, contendo apenas a parte relacionada à decisão, mas não é uma regra.</li>
+</ul>
+
+<p><strong>1</strong> Quantos processos temos na base de dados?</p>
+
+<p><strong>2</strong> Construa um gráfico contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?</p>
+
+<p><strong>3</strong> Agora retire da base os acórdãos que contêm texto da decisão e texto da ementa vazios. Refaça o gráfico e interprete.</p>
+
+<p><strong>4</strong> Utilizando a função <code>str_detect()</code>, crie colunas (que valem <code>TRUE</code> ou <code>FALSE</code>) na base de dados de acordo com as expressões regulares abaixo.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">negar_provimento <span class="o">&lt;-</span> <span class="s">&#39;negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido&#39;</span>
+dar_provimento <span class="o">&lt;-</span> <span class="s">&#39;dar?(do)? (o )?provimento|deu se (o )?provimento|recurso provido&#39;</span>
+em_parte <span class="o">&lt;-</span> <span class="s">&#39;em parte|parcial&#39;</span>
+diligencia <span class="o">&lt;-</span> <span class="s">&#39;diligencia&#39;</span>
+nao_conhecer <span class="o">&lt;-</span> <span class="s">&#39;conhec&#39;</span>
+anular <span class="o">&lt;-</span> <span class="s">&#39;nul(a|o|i)&#39;</span></code></pre></div>
+
+<p><strong>5</strong> Faça um gráfico de barras mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que <code>tipo_recurso</code> é recurso voluntário.</p>
+
+<h2 id="sabesp">SABESP</h2>
+
+<p>Usando um <em>web crawler</em> desenvolvido em R, fizemos o download da base de dados da SABESP. Quem tiver interesse nesses dados, acesse <a href="https://github.com/jtrecenti/sabesp">aqui</a>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">data<span class="p">(</span>sabesp<span class="p">,</span> package<span class="o">=</span><span class="s">&#39;abjutils&#39;</span><span class="p">)</span></code></pre></div>
+
+<p><strong>1</strong> Descreva a base de dados.</p>
+
+<p><strong>2</strong> Crie um boxplot por mês, mostrando os lugares separadamente.</p>
+
+<p><strong>3</strong> Tente montar um gráfico parecido com esse (inclusive as cores e as labels inclinadas do eixo x). Não vale olhar o código do repositório no github!</p>
+
+<p><img src="https://raw.githubusercontent.com/jtrecenti/sabesp/master/sabesp_files/figure-html/unnamed-chunk-2-2.png" /> &lt;/img&gt;</p>
+
+<p><strong>4</strong> Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.</p>
+
+<p><strong>5</strong> Comente sobre a crise hídrica em São Paulo com base em conhecimentos próprios e usando os dados da sabesp.</p>
+
+      </article>
+      <hr>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+            <a href="#" class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+            <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+        </div>
+        <script>
+            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    </div>
+	
+    <!-- duoshuo.com javascript include code. -->    
+    
+    <!-- disqus.com javascript include code. -->
+	
+    <div class="post-area post comment">
+        <div id="disqus_thread"></div>
+    </div>
+	<script>
+		var disqus_config = function () {
+			this.page.url = "http://curso-r.github.io/aula06/"; 
+			this.page.identifier = "/aula06"; 
+		};
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = '//curso-r.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+    
+  </div>
+  
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+  
+</div>
+    </div>
+
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:"><span class="glyphicon glyphicon-envelope"></span> </a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/curso-r">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>curso-r</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/curso-r/curso-r.github.io/blob/master/_posts/2016-01-25-aula06.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2015 LiXizhi</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/curso-r/curso-r.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
+  </body>
+</html>

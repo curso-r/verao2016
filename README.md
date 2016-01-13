@@ -1,2 +1,1 @@
-# verao2016
-Site do curso-r de verão de 2016
+SITE DO CURSO-R DE VERÃO DE JANEIRO DE 2016

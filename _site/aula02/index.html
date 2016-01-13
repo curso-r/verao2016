@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aula 02 - Estruturas de Dados e Vocabulário</title>
+	<meta name="description" content="Slides dessa aula">
+	
+	<link rel="canonical" href="http://curso-r.github.io/versao2016//aula02/">
+	<link rel="alternate" type="application/rss+xml" title="Curso-R 2016" href="http://curso-r.github.io/versao2016//feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	
+	<!-- <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/railscasts.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai.min.css"> -->
+	<!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/languages/dos.min.js"></script> -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Curso-R 2016</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        
+          <li>
+        
+        <a href="/"><span class="glyphicon glyphicon-th-large"></span> Blog</a></li>
+
+        
+          
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon glyphicon-file"></span> Projects</a></li>
+          
+        
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon glyphicon-heart"></span> About</a></li>
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>Aula 02 - Estruturas de Dados e Vocabulário</h1>
+        <p>Jan 21, 2015</p>
+      </header>
+      <hr>
+      <article>
+        <p><a href="http://curso-r.github.io/slides/aula_02_apresentacao.html" target="_blank">Slides dessa aula</a></p>
+
+<p><a href="http://curso-r.github.io/script/aula_02.R" target="_blank">Script dessa aula</a></p>
+
+<h1 id="estruturas-de-dados-no-r">Estruturas de dados no R</h1>
+
+<p>Tipos básicos de estrutura no R:</p>
+
+<ul>
+  <li><strong>Atomic vector</strong>: homogêneo e unidimensional</li>
+  <li><strong>Matriz</strong>: homogêneo e bidimensional</li>
+  <li><strong>Array</strong>: homogêneo e multidimensional</li>
+  <li><strong>Lista</strong>: heterogêneo</li>
+  <li><strong>Data frame</strong>: heterogêneo</li>
+</ul>
+
+<p><strong>Nota</strong>: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.</p>
+
+<h2 id="atomic-vectors">Atomic Vectors</h2>
+
+<p>Atomic vectors são a estrutura de objetos mais simples do R, caracterizados por “não terem dimensão”.</p>
+
+<p>Tipos de atomic vectos:</p>
+
+<ul>
+  <li>lógico</li>
+  <li>integer</li>
+  <li>double</li>
+  <li>complexo</li>
+  <li>character</li>
+</ul>
+
+<p>Exemplos:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">dbl_var <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2.5</span><span class="p">,</span> <span class="m">4.5</span><span class="p">)</span> <span class="c1">#DOUBLE</span>
+<span class="c1"># Com o sufixo L temos números inteiros em vez de double</span>
+int_var <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1L</span><span class="p">,</span> <span class="m">6L</span><span class="p">,</span> <span class="m">10L</span><span class="p">)</span>
+<span class="c1"># Use TRUE ou FALSE (T ou F) para vetores lógicos</span>
+log_var <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="bp">T</span><span class="p">,</span> <span class="bp">F</span><span class="p">)</span>
+chr_var <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;essas são&quot;</span><span class="p">,</span> <span class="s">&quot;algumas strings&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><strong>Curiosidade</strong>: na função <code>c()</code>, o <em>c</em> é de <em>concatenate</em>.</p>
+
+<p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">typeof</span><span class="p">(</span>dbl_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;double&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">typeof</span><span class="p">(</span>int_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;integer&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">typeof</span><span class="p">(</span>log_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;logical&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">typeof</span><span class="p">(</span>chr_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;character&quot;</code></pre></div>
+
+<p>As funções <code>is.integer()</code>, <code>is.double()</code>, <code>is.logical()</code>, <code>is.character()</code> são usadas para testar se um objeto é de um determinado tipo.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">is.integer</span><span class="p">(</span>dbl_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] FALSE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">is.double</span><span class="p">(</span>dbl_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] TRUE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">is.numeric</span><span class="p">(</span>dbl_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] TRUE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">is.logical</span><span class="p">(</span>log_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] TRUE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">is.character</span><span class="p">(</span>chr_var<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] TRUE</code></pre></div>
+
+<p>Note que a função <code>is.numeric()</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
+
+<h3 id="coero">Coerção</h3>
+
+<p>Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:</p>
+
+<ul>
+  <li>logical</li>
+  <li>integer</li>
+  <li>double</li>
+  <li>character</li>
+</ul>
+
+<p>Na lista acima, character é o tipo mais flexível.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;a&quot; &quot;1&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">c</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 1 1</code></pre></div>
+
+<p>Isso pode ser útil, por exemplo, para contar o número de TRUEs em um vetor lógico:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">sum</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span> <span class="bp">F</span><span class="p">,</span> <span class="bp">T</span><span class="p">,</span> <span class="bp">F</span><span class="p">,</span> <span class="bp">T</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3</code></pre></div>
+
+<h3 id="factors">Factors</h3>
+
+<p><em>Factors</em> são utilizados para armazernar dados categorizados e são caracterizados por:</p>
+
+<ul>
+  <li>conterem apenas valores pré-definidos, chamados <em>levels</em>; e</li>
+  <li>se basearem num vetor de inteiros.</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">f <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;aventura&quot;</span><span class="p">,</span> <span class="s">&quot;terror&quot;</span><span class="p">,</span> <span class="s">&quot;comédia&quot;</span><span class="p">,</span> <span class="s">&quot;drama&quot;</span><span class="p">))</span>
+f</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] aventura terror   comédia  drama   
+## Levels: aventura comédia drama terror</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">levels</span><span class="p">(</span>f<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;</code></pre></div>
+
+<p>Observe que, dentro do objeto, os <em>levels</em> são organizados em ordem alfabética.</p>
+
+<p>Sempre tome cuidado ao converter factors em objetos numéricos:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">f <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;3&quot;</span><span class="p">,</span> <span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;10&quot;</span><span class="p">))</span>
+<span class="kp">as.numeric</span><span class="p">(</span>f<span class="p">)</span> <span class="c1"># não funciona</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3 4 1 2</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">as.numeric</span><span class="p">(</span><span class="kp">as.character</span><span class="p">(</span>f<span class="p">))</span> <span class="c1"># funciona</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  2  3  1 10</code></pre></div>
+
+<h2 id="matrizes-e-arrays">Matrizes e Arrays</h2>
+
+<p>Matrizes e arrays são definidos usando as funções <code>matrix()</code> e <code>array()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Um vetor para descrever todas as dimensões</span>
+arr <span class="o">&lt;-</span> <span class="kt">array</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+
+<span class="c1"># Dois argumentos para determinar o número de linahs e colunas</span>
+mat <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> ncol <span class="o">=</span> <span class="m">3</span><span class="p">,</span> nrow <span class="o">=</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+
+<p>Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito <em>dimensão</em>.</p>
+
+<p><strong>Nota</strong>: observe que uma matriz é um array com duas dimensões.</p>
+
+<p>As funções <code>length()</code>, <code>dim()</code>, <code>nrow()</code>, <code>ncol()</code> são usadas para determinar o comprimento de cada dimensão de um objeto.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">dim</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## NULL</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">nrow</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## NULL</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">ncol</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## NULL</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">length</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">dim</span><span class="p">(</span>arr<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3 2 2</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">length</span><span class="p">(</span>arr<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 12</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">nrow</span><span class="p">(</span>arr<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">ncol</span><span class="p">(</span>arr<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 2</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">dim</span><span class="p">(</span>mat<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 2 3</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">length</span><span class="p">(</span>mat<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 6</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">nrow</span><span class="p">(</span>mat<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 2</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">ncol</span><span class="p">(</span>mat<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3</code></pre></div>
+
+<h2 id="listas-e-data-frames">Listas e Data frames</h2>
+
+<p>Listas são definidas usando a função <code>list()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">list</span><span class="p">(</span>
+  <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">),</span>
+  <span class="kt">c</span><span class="p">(</span><span class="s">&quot;homem&quot;</span><span class="p">,</span> <span class="s">&quot;mulher&quot;</span><span class="p">),</span>
+  <span class="kt">c</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span> <span class="bp">F</span><span class="p">,</span> <span class="bp">T</span><span class="p">),</span>
+  <span class="kt">list</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+## [1] 1 2 3 4 5
+## 
+## [[2]]
+## [1] &quot;homem&quot;  &quot;mulher&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE  TRUE
+## 
+## [[4]]
+## [[4]][[1]]
+## [1] 1 2 3
+## 
+## [[4]][[2]]
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre></div>
+
+<p>Data frames são listas em que todos os elementos têm o mesmo comprimento. São definidos usando a função <code>data.frame()</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">),</span> z <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+df</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   x  y    z
+## 1 1 oi TRUE
+## 2 2 oi TRUE
+## 3 3 oi TRUE
+## 4 4 oi TRUE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">str<span class="p">(</span>df<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	4 obs. of  3 variables:
+##  $ x: int  1 2 3 4
+##  $ y: Factor w/ 1 level &quot;oi&quot;: 1 1 1 1
+##  $ z: logi  TRUE TRUE TRUE TRUE</code></pre></div>
+
+<p>Em um data frame, os caracteres são convertidos em factors. Se essa conversão é indesejável, use o argumento <code>stringAsFactors = F</code></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">,</span> <span class="s">&quot;oi&quot;</span><span class="p">),</span> z <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> stringsAsFactors <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+str<span class="p">(</span>df<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	4 obs. of  3 variables:
+##  $ x: int  1 2 3 4
+##  $ y: chr  &quot;oi&quot; &quot;oi&quot; &quot;oi&quot; &quot;oi&quot;
+##  $ z: logi  TRUE TRUE TRUE TRUE</code></pre></div>
+
+<p>Se usarmos a função <code>names()</code> obtemos o nome das colunas do data frame. Também é possível mudar o nome das colunas:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">names</span><span class="p">(</span>df<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">names</span><span class="p">(</span>df<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>df<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre></div>
+
+<h3 id="combinando-data-frames">Combinando data frames</h3>
+
+<p>É possível combinar data frames usando as funções <code>rbind()</code> e <code>cbind()</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">df1 <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">),</span> z <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+df2 <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">),</span> z <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+
+<span class="kp">rbind</span><span class="p">(</span>df1<span class="p">,</span> df2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   x y     z
+## 1 1 s  TRUE
+## 2 2 s  TRUE
+## 3 3 s  TRUE
+## 4 4 s  TRUE
+## 5 1 n FALSE
+## 6 2 n FALSE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">cbind</span><span class="p">(</span>df1<span class="p">,</span> df2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   x y    z x y     z
+## 1 1 s TRUE 1 n FALSE
+## 2 2 s TRUE 2 n FALSE
+## 3 3 s TRUE 1 n FALSE
+## 4 4 s TRUE 2 n FALSE</code></pre></div>
+
+<h1 id="subsetting-no-r">Subsetting no R</h1>
+
+<p>Chamamos de <em>subsetting</em> a seleção de um subconjunto de um objeto. No R, existem três tipos principais de operação de subsetting:</p>
+
+<p>a) Números inteiros positivos:</p>
+
+<p>Retorna os elementos do vetor associados aos índices especificados.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> 
+x<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span> <span class="c1"># seleciona os três primeiros elementos do vetor</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 13  8  5</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">order</span><span class="p">(</span>x<span class="p">)</span> <span class="c1"># devolve a ordem dos elementos do vetor</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 6 7 5 4 3 2 1</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[</span><span class="kp">order</span><span class="p">(</span>x<span class="p">)]</span> <span class="c1"># seleciona os elementos do vetor em ordem crescente</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  1  1  2  3  5  8 13</code></pre></div>
+
+<p>b) Números inteiros negativos.</p>
+
+<p>Exclui o elemento do vetor pelo índice selecionado.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[</span><span class="o">-</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)]</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 13  5  3  1</code></pre></div>
+
+<p>c) Vetores lógicos.</p>
+
+<p>TRUE seleciona, FALSE não seleciona.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">==</span> <span class="m">1</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[</span>x<span class="o">==</span><span class="m">1</span><span class="p">]</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 1 1</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&gt;</span> <span class="m">5</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[</span>x<span class="o">&gt;</span><span class="m">5</span><span class="p">]</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 13  8</code></pre></div>
+
+<p>Existem outros tipos de subsetting pouco (ou nada) utilizados:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[]</span> <span class="c1"># retorna o próprio objeto</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 13  8  5  3  2  1  1</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x<span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="c1"># retorna um objeto de tamanho 0</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## numeric(0)</code></pre></div>
+
+<p>Quando o objeto tem mais de uma dimensão, utilizamos a “,” para selecionar valores dentro de cada dimensão.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">11</span><span class="o">:</span><span class="m">15</span><span class="p">),</span> nrow<span class="o">=</span><span class="m">5</span><span class="p">,</span> ncol<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+m</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##      [,1] [,2]
+## [1,]    1   11
+## [2,]    2   12
+## [3,]    3   13
+## [4,]    4   14
+## [5,]    5   15</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m<span class="p">[</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="c1"># Retorna o elemento especificado pelos índices.</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 15</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m<span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="c1"># Retorna todos os elementos da coluna 1.</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 1 2 3 4 5</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m<span class="p">[</span><span class="m">3</span><span class="p">,]</span> <span class="c1"># Retorna todos os elementos da linha 3.</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  3 13</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">m<span class="p">[</span>m<span class="o">%%</span><span class="m">2</span> <span class="o">==</span> <span class="m">0</span><span class="p">]</span> <span class="c1"># Retorna os elementos pares.</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  2  4 12 14</code></pre></div>
+
+<p>Um ponto importante é que é possível alterar valores usando subsetting, por exemplo:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> 
+x<span class="p">[</span>x<span class="o">&gt;</span><span class="m">5</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+x</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 0 0 5 3 2 1 1</code></pre></div>
+
+<h2 id="um-pouco-mais-de-funes-funcionais">Um pouco mais de funções: funcionais</h2>
+
+<p>Funcionais são funções que têm outras funções como parâmetro. Elas são úteis para que possamos,
+por exemplo, aplicar funções a pedaços dos dados que estamos trabalhando. No R elas são especialmente
+úteis por conta da vetorização.</p>
+
+<p>Se temos, por exemplo, uma função complexa a ser aplicada a cada elemento de uma lista, por exemplo</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">lista <span class="o">&lt;-</span> <span class="kp">as.list</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+
+f_complexa <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+  <span class="kr">return</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span>x<span class="p">,</span> x<span class="o">^</span><span class="m">2</span><span class="p">))</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Uma maneira enxuta de fazer isso é utilizando a função <code>lapply</code>, que <em>aplica</em> a função <code>f_complexa</code>
+em cada elemento de <code>lista</code>, assim</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">lapply</span><span class="p">(</span>lista<span class="p">,</span> f_complexa<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+## [1] 1 1
+## 
+## [[2]]
+## [1] 2 4
+## 
+## [[3]]
+## [1] 3 9
+## 
+## [[4]]
+## [1]  4 16
+## 
+## [[5]]
+## [1]  5 25
+## 
+## [[6]]
+## [1]  6 36
+## 
+## [[7]]
+## [1]  7 49
+## 
+## [[8]]
+## [1]  8 64
+## 
+## [[9]]
+## [1]  9 81
+## 
+## [[10]]
+## [1]  10 100</code></pre></div>
+
+<p>Digite <code>?lapply</code> para mais detalhes. Note que são vários os tipos de funcionais no pacote <code>base</code> do R.
+Esse assunto será retomado quando falarmos de <code>plyr</code> e <code>dplyr</code>, que são pacotes que simplificam e generalizam
+a sintaxe dessas funções.</p>
+
+<h1 id="leitura-de-dados">Leitura de dados</h1>
+
+<p>Para ler um banco de dados no R usamos a função <code>read.table()</code>. A seguir estão os principais argumentos dessa função e sua descrição:</p>
+
+<ul>
+  <li>
+    <p><code>file =</code> é uma string contendo o caminho do arquivo quem contem os dados, por exemplo: <em>“C://users/daniel/Desktop/text.txt”</em>.</p>
+  </li>
+  <li>
+    <p><code>header =</code> recebe um valor lógico (<code>TRUE</code> ou <code>FALSE</code>) e indica para o programa se o seu arquivo inclui o nome das variáveis no topo.</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><code>sep =</code> é a <em>string</em> utilizada para separar o valor de cada coluna dentro do arquivo de entrada. Se o arquivo tiver extensão .csv, o argumento <code>sep=</code> assume “,” ou “;”. Outros separadores geralmente utilizados são os espaços (“ “), o caracter “</td>
+          <td>” e a tabulação “\t”.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p><code>quote =</code> indica qual o caractere que identifica strings no seu arquivo. Na maioria  das vezes, não é necessário alterar, pois é padrão utilizar aspas ‘””’.</p>
+  </li>
+  <li>
+    <p><code>dec =</code> é uma string indicando qual o separador de casa decimais no seu arquivo. IMPORTANTE: quando o arquivo é lido, o R troca o separador de decimais para “.” mesmo que você tenha indicado “,”. A melhor maneira de verificar se o arquivo foi lido corretamente é fazer <code>str(dados)</code> e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE 2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.</p>
+  </li>
+  <li><code>stringsAsFactors =</code> recebe um valor lógico e indica ao R se as colunas com <em>strings</em> devem ser transformadas em fatores, que, como vimos anteriormente, não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como <code>FALSE</code>.</li>
+</ul>
+
+<p>Dito tudo isso, vamos ler o arquivo <em>arq.txt</em> que se encontra na pasta <em>assets/dados/</em>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">#dados &lt;- read.table(file = &quot;assets/dados/arq.txt&quot;) # li errado</span></code></pre></div>
+
+<p>Observe que a função retornou um erro e não leu o arquivo. Isso aconteceu porque o arquivo <em>arq.txt</em> tem os seus valores separados por “;” e o <em>default</em> do argumento <code>sep =</code> é o espaço.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">dados <span class="o">&lt;-</span> read.table<span class="p">(</span>file <span class="o">=</span> <span class="s">&quot;assets/dados/arq.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">)</span> 
+str<span class="p">(</span>dados<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	101 obs. of  3 variables:
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
+##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...</code></pre></div>
+
+<p>Dessa vez o arquivo foi lido e os dados foram salvos no objeto <code>dados</code>. No entanto, com o auxílio da função <code>str()</code> verificamos que as duas primeiras colunas, que deveriam ser numéricas, foram lidas como fatores. Isso aconteceu porque o separador de casa decimais no arquivo é a “,” e, por <em>default</em> o R utiliza o “.”. Dessa forma, ao encontrar uma vírgula entre os números, o R entende essa sequência de caracteres como uma <em>string</em>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">dados <span class="o">&lt;-</span> read.table<span class="p">(</span>file <span class="o">=</span> <span class="s">&quot;assets/dados/arq.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> dec <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">)</span> 
+str<span class="p">(</span>dados<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	101 obs. of  3 variables:
+##  $ V1: Factor w/ 11 levels &quot;-0,0907448251260999&quot;,..: 11 3 10 6 2 1 4 5 9 8 ...
+##  $ V2: Factor w/ 101 levels &quot;0,00994513742625713&quot;,..: 101 27 84 32 76 37 3 2 79 40 ...
+##  $ V3: Factor w/ 4 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 3 2 4 1 2 1 1 1 1 1 ...</code></pre></div>
+
+<p>Mesmo especificando o argumento <code>dec =</code> como “,”, os dados não estão sendo lidos da maneira correta. Observe que o nome das colunas estão sendo lidos como se fossem um valor de cada variável. Para corrigir isso, devemos utilizar <code>header = T</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">dados <span class="o">&lt;-</span> read.table<span class="p">(</span>file <span class="o">=</span> <span class="s">&quot;assets/dados/arq.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> dec <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> header <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+str<span class="p">(</span>dados<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : Factor w/ 3 levels &quot;amarelo&quot;,&quot;azul&quot;,..: 2 3 1 2 1 1 1 1 1 3 ...</code></pre></div>
+
+<p>Agora os dados foram lidos corretamente. No entanto, se você não deseja que a variável <em>cor</em> seja um fator, utilize <code>stringsAsFactors = F</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">dados <span class="o">&lt;-</span> read.table<span class="p">(</span>file <span class="o">=</span> <span class="s">&quot;assets/dados/arq.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">,</span> dec <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> header <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> stringsAsFactors <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+str<span class="p">(</span>dados<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	100 obs. of  3 variables:
+##  $ Aleatorio : num  -0.7158 1.9053 0.8586 -0.7131 -0.0907 ...
+##  $ aleatorio2: num  0.297 0.876 0.324 0.824 0.379 ...
+##  $ cor       : chr  &quot;azul&quot; &quot;vermelho&quot; &quot;amarelo&quot; &quot;azul&quot; ...</code></pre></div>
+
+<h1 id="estatsticas-bsicas">Estatísticas básicas</h1>
+
+<p>A função summary quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">summary</span><span class="p">(</span>dados<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##    Aleatorio         aleatorio2           cor           
+##  Min.   :-1.5865   Min.   :0.009945   Length:100        
+##  1st Qu.:-0.7131   1st Qu.:0.292952   Class :character  
+##  Median : 0.5795   Median :0.577933   Mode  :character  
+##  Mean   : 0.3675   Mean   :0.540947                     
+##  3rd Qu.: 1.1027   3rd Qu.:0.823797                     
+##  Max.   : 1.9053   Max.   :0.990911</code></pre></div>
+
+<p>Também pode ser aplicada em apenas uma variável da base:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">summary</span><span class="p">(</span>dados<span class="o">$</span>aleatorio2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009945 0.293000 0.577900 0.540900 0.823800 0.990900</code></pre></div>
+
+<p>A função <code>summary</code> calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: <code>mean</code>, <code>median</code>, <code>quantile</code> e <code>sd</code>. A seguir alguns exemplos de uso:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">mean</span><span class="p">(</span>dados<span class="o">$</span>aleatorio2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 0.5409474</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">median<span class="p">(</span>dados<span class="o">$</span>aleatorio2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 0.5779335</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">sd<span class="p">(</span>dados<span class="o">$</span>aleatorio2<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 0.2999107</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">quantile<span class="p">(</span>dados<span class="o">$</span>aleatorio2<span class="p">,</span> probs <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="m">0.75</span><span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##       25%       75% 
+## 0.2929519 0.8237975</code></pre></div>
+
+<p>Essas funções só podem ser aplciadas em vetores, diferente da <code>summary</code>que pode ser aplciada à um vetor.</p>
+
+<p>A função <code>table</code> calcula tabela de frequências.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">table</span><span class="p">(</span>dados<span class="o">$</span>cor<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## 
+##  amarelo     azul vermelho 
+##       38       37       25</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">table</span><span class="p">(</span>dados<span class="o">$</span>cor<span class="p">,</span> dados<span class="o">$</span>cor<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##           
+##            amarelo azul vermelho
+##   amarelo       38    0        0
+##   azul           0   37        0
+##   vermelho       0    0       25</code></pre></div>
+
+<h1 id="o-operador-pipe---">O operador <em>pipe</em> - %&gt;%</h1>
+
+<p>O operador <em>pipe</em> foi uma das grandes revoluções recentes do R, tornando a leitura de códigos muito mais lógica, fácil e compreensível. Este operador foi introduzido por Stefan Milton Bache no pacote <code>magrittr</code> e já existem diversos pacotes construidos para facilitar a sua utilização, entre eles o <code>dplyr</code> (assunto da próxima aula).</p>
+
+<p>Basicamente, o operador <code>%&gt;%</code> usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. “Só” isso!</p>
+
+<p>Para usar o operador <code>%&gt;%</code>, primeiramente devemos instalar o pacote <code>magrittr</code> com a função <code>install.packages()</code></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;magrittr&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>e carregá-lo com a função <code>library()</code></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>magrittr<span class="p">)</span></code></pre></div>
+
+<p>Feito isso, vamos testar o operador calculando a raiz quadrada da soma de alguns números.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+x <span class="o">%&gt;%</span> sum <span class="o">%&gt;%</span> <span class="kp">sqrt</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3.162278</code></pre></div>
+
+<p>O caminho que o código acima seguiu foi enviar o objeto <code>x</code> como argumento da função <code>sum()</code> e, em seguida, enviar a saida da expressão <code>sum(x)</code> como argumento da função <code>sqrt()</code>. Observe que não é necessario colocar os parênteses após o nome das funções.</p>
+
+<p>Se escrevermos esse cálculo na forma usual, temos o seguinte código:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">sqrt</span><span class="p">(</span><span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 3.162278</code></pre></div>
+
+<p>A princípio, a utilização do <code>%&gt;%</code> não parece trazer grandes vantagens, pois a expressão <code>sqrt(sum(x))</code> facilmente compreendida. No entanto, se tivermos um grande número de funções aninhadas uma dentro das outras, a utilização do <code>pipe</code> transforma um código confuso e difícil de ser lido em algo simples e intuitivo. Como exemplo, imagine que você precise escrever a receita de um bolo usando o R, e cada passo da receita é uma função:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">esfrie<span class="p">(</span>asse<span class="p">(</span>coloque<span class="p">(</span>bata<span class="p">(</span>acrescente<span class="p">(</span>recipiente<span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="s">&quot;farinha&quot;</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="s">&quot;água&quot;</span><span class="p">,</span> <span class="s">&quot;fermento&quot;</span><span class="p">,</span> <span class="s">&quot;leite&quot;</span><span class="p">,</span> <span class="s">&quot;óleo&quot;</span><span class="p">),</span> <span class="s">&quot;farinha&quot;</span><span class="p">,</span> até <span class="o">=</span> <span class="s">&quot;macio&quot;</span><span class="p">),</span> duração <span class="o">=</span> <span class="s">&quot;3min&quot;</span><span class="p">),</span> lugar <span class="o">=</span> <span class="s">&quot;forma&quot;</span><span class="p">,</span> tipo <span class="o">=</span> <span class="s">&quot;grande&quot;</span><span class="p">,</span> untada <span class="o">=</span> <span class="bp">T</span><span class="p">),</span> duração <span class="o">=</span> <span class="s">&quot;50min&quot;</span><span class="p">),</span> <span class="s">&quot;geladeira&quot;</span><span class="p">,</span> <span class="s">&quot;20min&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>Tente entender o que é preciso fazer… Não é muito fácil, né? E escrevendo usando o operador <code>%&gt;%</code>?</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">recipiente<span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="s">&quot;farinha&quot;</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="s">&quot;água&quot;</span><span class="p">,</span> <span class="s">&quot;fermento&quot;</span><span class="p">,</span> <span class="s">&quot;leite&quot;</span><span class="p">,</span> <span class="s">&quot;óleo&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  acrescente<span class="p">(</span><span class="s">&quot;farinha&quot;</span><span class="p">,</span> até <span class="o">=</span> <span class="s">&quot;macio&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  bata<span class="p">(</span>duração <span class="o">=</span> <span class="s">&quot;3min&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  coloque<span class="p">(</span>lugar <span class="o">=</span> <span class="s">&quot;forma&quot;</span><span class="p">,</span> tipo <span class="o">=</span> <span class="s">&quot;grande&quot;</span><span class="p">,</span> untada <span class="o">=</span> <span class="bp">T</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  asse<span class="p">(</span>duração <span class="o">=</span> <span class="s">&quot;50min&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  esfrie<span class="p">(</span><span class="s">&quot;geladeira&quot;</span><span class="p">,</span> <span class="s">&quot;20min&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>A compreensão é muito mais fácil. Agora o código realmente se parece com uma receita de bolo.</p>
+
+<p>O operador <code>%&gt;%</code> envia o valor à esquerda apenas para o primerio argumento da função à direita. Se você não quiser substituir o primeiro argumento, mas algum outro, utilize o “.”:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="bp">T</span> <span class="o">%&gt;%</span> <span class="kp">mean</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">)),</span> na.rm <span class="o">=</span> <span class="m">.</span><span class="p">)</span> <span class="c1"># o ponto é substituido pelo lado esquerdo</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 0.008058736</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="bp">F</span> <span class="o">%&gt;%</span> <span class="kp">mean</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">)),</span> na.rm <span class="o">=</span> <span class="m">.</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] NA</code></pre></div>
+
+<p>Para mais informações sobre o <code>pipe</code> e exemplos da sua utilização, visite a página <a href="http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">Ceci n’est pas un pipe</a>.</p>
+
+<h1 id="grficos-com-o-pacote-graphics">Gráficos com o pacote <em>graphics</em></h1>
+
+<p>Dentre os pacotes base do R, o pacote <code>graphics</code> fornece algumas opções para a construção de gráficos simples, como gráficos de dispersão, histogras e boxplots.</p>
+
+<p>Vamos começar com a construção de gráficos x-y: a função <code>plot</code>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">0.1</span><span class="p">)</span>
+y <span class="o">&lt;-</span> <span class="kp">exp</span><span class="p">(</span><span class="o">-</span>x<span class="p">)</span>
+
+plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38" /></p>
+
+<p>Observe que o gráfico gerado mapeia cada valor (x,y) como um ponto no plano cartesiano. Para mudar a forma de visualização, utilizamos o argumento <code>type=</code>. Aqui estão os principais tipos de visualização disponíveis:</p>
+
+<ul>
+  <li>“p” para pontos (default)</li>
+  <li>“l” para retas</li>
+  <li>“b” para ambos (pontos e retas)</li>
+  <li>“h” para retas verticais</li>
+  <li>”s” para escadas</li>
+  <li>“n” para não plotar</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;l&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-39-1.png" alt="plot of chunk unnamed-chunk-39" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;b&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-39-2.png" alt="plot of chunk unnamed-chunk-39" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-39-3.png" alt="plot of chunk unnamed-chunk-39" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;s&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-39-4.png" alt="plot of chunk unnamed-chunk-39" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-39-5.png" alt="plot of chunk unnamed-chunk-39" /></p>
+
+<p>Para alterar a espessura das visualizações, utilizamos o argumento <code>lwd=</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;p&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-40-1.png" alt="plot of chunk unnamed-chunk-40" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">3</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-40-2.png" alt="plot of chunk unnamed-chunk-40" /></p>
+
+<p>Observe que esse argumento altera apenas a espessura da circunferência do ponto. Para alterar o tamanho do ponto, utilizamos o argumento <code>cex=</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;p&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">,</span> cex <span class="o">=</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-41-1.png" alt="plot of chunk unnamed-chunk-41" /></p>
+
+<p>Para alterar a cor do gráfico, utilizamos o argumento <code>col=</code>:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">3</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-42-1.png" alt="plot of chunk unnamed-chunk-42" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">plot<span class="p">(</span>x<span class="p">,</span> y<span class="p">,</span> type <span class="o">=</span> <span class="s">&quot;h&quot;</span><span class="p">,</span> lwd <span class="o">=</span> <span class="m">3</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&quot;#9ff115&quot;</span><span class="p">)</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-42-2.png" alt="plot of chunk unnamed-chunk-42" /></p>
+
+<p>Segue abaixo outras funções comumente utilizadas do pacote <code>graphics</code>:</p>
+
+<ul>
+  <li><code>boxplot()</code> - para boxplots</li>
+  <li><code>pie()</code> - para gráficos de pizza</li>
+  <li><code>hist()</code> - para histogramas</li>
+</ul>
+
+<p>Seguem alguns exemplos:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">boxplot<span class="p">(</span>rnorm<span class="p">(</span><span class="m">10000</span><span class="p">))</span></code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-43-1.png" alt="plot of chunk unnamed-chunk-43" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Corinthians&quot;</span><span class="p">,</span> <span class="s">&quot;Palmeiras&quot;</span><span class="p">,</span> <span class="s">&quot;Santos&quot;</span><span class="p">,</span> <span class="s">&quot;São Paulo&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="kp">sample</span><span class="p">(</span><span class="m">1000</span><span class="p">,</span> replace<span class="o">=</span><span class="bp">T</span><span class="p">,</span> prob <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span> <span class="m">0.2</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.3</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  table <span class="o">%&gt;%</span>
+  pie</code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-43-2.png" alt="plot of chunk unnamed-chunk-43" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">rnorm<span class="p">(</span><span class="m">10000</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  abs <span class="o">%&gt;%</span>
+  log <span class="o">%&gt;%</span>
+  hist</code></pre></div>
+
+<p><img src="/images/2016-01-29-aula02/unnamed-chunk-43-3.png" alt="plot of chunk unnamed-chunk-43" /></p>
+
+      </article>
+      <hr>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+            <a href="#" class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+            <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+        </div>
+        <script>
+            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    </div>
+	
+    <!-- duoshuo.com javascript include code. -->    
+    
+    <!-- disqus.com javascript include code. -->
+	
+    <div class="post-area post comment">
+        <div id="disqus_thread"></div>
+    </div>
+	<script>
+		var disqus_config = function () {
+			this.page.url = "http://curso-r.github.io/aula02/"; 
+			this.page.identifier = "/aula02"; 
+		};
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = '//curso-r.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+    
+  </div>
+  
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+  
+</div>
+    </div>
+
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:"><span class="glyphicon glyphicon-envelope"></span> </a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/curso-r">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>curso-r</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/curso-r/curso-r.github.io/blob/master/_posts/2016-01-29-aula02.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2015 LiXizhi</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/curso-r/curso-r.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
+  </body>
+</html>

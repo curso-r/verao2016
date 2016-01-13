@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aula 09 - Laboratório III</title>
+	<meta name="description" content="## Error in library(pander): there is no package called &#39;pander&#39;">
+	
+	<link rel="canonical" href="http://curso-r.github.io/versao2016//aula09/">
+	<link rel="alternate" type="application/rss+xml" title="Curso-R 2016" href="http://curso-r.github.io/versao2016//feed.xml" />
+	
+	<!-- <link rel="stylesheet" href="/css/main.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+	
+
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	
+	<!-- <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script> -->
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="/static/js/index.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/railscasts.min.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai.min.css"> -->
+	<!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/languages/dos.min.js"></script> -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+ <!--  <body data-spy="scroll" data-target="#myAffix"> -->
+  <body>
+
+    <header>
+
+<!-- navbar -->
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Curso-R 2016</a>
+      <p class="navbar-text"></p>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        
+          <li>
+        
+        <a href="/"><span class="glyphicon glyphicon-th-large"></span> Blog</a></li>
+
+        
+          
+            
+              <li>
+            
+            <a href="/projects/"><span class="glyphicon glyphicon-file"></span> Projects</a></li>
+          
+        
+          
+            
+              <li>
+            
+            <a href="/about/"><span class="glyphicon glyphicon-heart"></span> About</a></li>
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</header>
+
+    <div id="main" class="container main">
+      <div class="row">
+  <div id="myArticle" class="col-sm-9">
+    <div class="post-area post">
+      <header>
+        <h1>Aula 09 - Laboratório III</h1>
+        <p>Feb 6, 2015</p>
+      </header>
+      <hr>
+      <article>
+        
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in library(pander): there is no package called &#39;pander&#39;</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): não foi possível encontrar a função &quot;panderOptions&quot;</code></pre></div>
+
+<p>Pacotes necessários para o Lab. III</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>magrittr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>jpeg<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>tree<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Error in library(tree): there is no package called &#39;tree&#39;</code></pre></div>
+
+<h1 id="laboratrio-iii---recuperao-de-imagem">Laboratório III - Recuperação de imagem</h1>
+
+<p>Neste laboratório iremos comparar visualmente o desempenho de modelos de <strong>regressão linear</strong> e de <strong>árvores de decisão</strong> em duas diferentes situações.</p>
+
+<p>Para isso, iremos mexer com imagens <strong>.jpg</strong>.</p>
+
+<h2 id="imagens-jpg">Imagens <strong>.jpg</strong></h2>
+
+<p>Antes de iniciarmos a brincadeira, vale uma breve introdução às imagens <strong>.jpg</strong>, pois elas formarão os <code>data.frame</code>’s do laboratório.</p>
+
+<p>Arquivos com extenção <em>.jpg</em> guardam 5 coordenadas que são suficientes para serem entendidas e desenhadas pelo computador:</p>
+
+<ul>
+  <li><code>x</code> e <code>y</code> são as coordenadas cartesianas da imagem; e</li>
+  <li><code>r</code>, <code>g</code> e <code>b</code> <em>red</em>, <em>green</em> e <em>blue</em>, respectivamente, que juntas formam cores.</li>
+</ul>
+
+<p>Todas as cores que conhecemos podem ser compostas pela combinação dessas três cores. A intensidade de cada cor varia de 0 a 1.</p>
+
+<p>Para cada ponto no plano (x,y) existe uma cor associada. Assim, uma imagem pode ser representada por um banco de dados com 5 colunas: <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code> e <code>b</code>.</p>
+
+<h2 id="objetivo">Objetivo</h2>
+
+<ul>
+  <li>
+    <p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>purple_wave.jpg</strong>.</p>
+  </li>
+  <li>
+    <p>Verificar qual modelo entre <strong>regressão linear</strong> e <strong>árvores de decisão</strong> é o mais adequado para recuperar a o componente azul da imagem <strong>xadrez_colorido.jpg</strong>.</p>
+  </li>
+</ul>
+
+<h2 id="preparao-do-banco-de-dados">Preparação do Banco de dados</h2>
+
+<ol>
+  <li>Para construir nossos bancos de dados, carregue as duas imagens abaixo (clique para download e salve na pasta do seu projeto):
+    <ul>
+      <li><a href="http://curso-r.github.io/posts/assets/fig/purple_wave.jpg">purple_wave.jpg</a></li>
+      <li><a href="http://curso-r.github.io/posts/assets/fig/xadrez_colorido.jpg">xadrez_colorido.jpg</a></li>
+    </ul>
+  </li>
+  <li>Com auxílio da função <code>readJPEG()</code> do pacote <code>jpeg</code>, carregue uma das imagens no R e transforme para <code>data.frame</code> (primeiro a <em>purple_wave.jpg</em>).</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># a) carrega uma imagem jpeg no R </span>
+img <span class="o">&lt;-</span> readJPEG<span class="p">(</span><span class="s">&quot;assets/fig/purple_wave.jpg&quot;</span><span class="p">)</span>
+
+<span class="c1"># b) transforma o array da imagem em data.frame com infos de posicao (x,y) e cor (r,g,b)</span>
+<span class="c1"># dimensões da imagem</span>
+img_dim <span class="o">&lt;-</span> <span class="kp">dim</span><span class="p">(</span>img<span class="p">)</span>
+
+<span class="c1"># RGB para data.frame</span>
+img_df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>
+  x <span class="o">=</span> <span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>img_dim<span class="p">[</span><span class="m">2</span><span class="p">],</span> each <span class="o">=</span> img_dim<span class="p">[</span><span class="m">1</span><span class="p">]),</span>
+  y <span class="o">=</span> <span class="kp">rep</span><span class="p">(</span>img_dim<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> img_dim<span class="p">[</span><span class="m">2</span><span class="p">]),</span>
+  r <span class="o">=</span> <span class="kp">as.vector</span><span class="p">(</span>img<span class="p">[,,</span><span class="m">1</span><span class="p">]),</span>
+  g <span class="o">=</span> <span class="kp">as.vector</span><span class="p">(</span>img<span class="p">[,,</span><span class="m">2</span><span class="p">]),</span>
+  b <span class="o">=</span> <span class="kp">as.vector</span><span class="p">(</span>img<span class="p">[,,</span><span class="m">3</span><span class="p">])</span>
+<span class="p">)</span> <span class="o">%&gt;%</span>
+  mutate<span class="p">(</span>cor <span class="o">=</span> rgb<span class="p">(</span>r<span class="p">,</span> g<span class="p">,</span> b<span class="p">),</span>
+         id <span class="o">=</span> <span class="m">1</span><span class="o">:</span>n<span class="p">())</span></code></pre></div>
+
+<ol>
+  <li>Divida o data.frame em duas partes: uma com o azul (coluna <code>b</code>) e outra sem.</li>
+</ol>
+
+<ul>
+  <li>Parte 1) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code></li>
+  <li>Parte 2) <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># para reprodução</span>
+<span class="kp">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> 
+
+<span class="c1"># Parte 1) x, y, r, g</span>
+img_df_parte1 <span class="o">&lt;-</span> img_df <span class="o">%&gt;%</span> 
+  sample_frac<span class="p">(</span><span class="m">3</span><span class="o">/</span><span class="m">5</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1"># separando 3/5 do banco</span>
+  mutate<span class="p">(</span>b_backup <span class="o">=</span> b<span class="p">,</span> <span class="c1"># backup do azul original</span>
+         b <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="c1"># retirando o azul da imagem</span>
+         cor <span class="o">=</span> rgb<span class="p">(</span>r<span class="p">,</span> g<span class="p">,</span> b<span class="p">))</span> <span class="c1"># cor da imagem sem o azul</span>
+
+<span class="c1"># Parte 2) x, y, r, g, b</span>
+img_df_parte2 <span class="o">&lt;-</span> img_df <span class="o">%&gt;%</span> filter<span class="p">(</span><span class="o">!</span>id<span class="o">%in%</span>img_df_parte1<span class="o">$</span>id<span class="p">)</span> <span class="c1"># filtra as linhas que estão na Parte 1</span></code></pre></div>
+
+<ol>
+  <li>Visualize.</li>
+</ol>
+
+<p>Veja como fica a <strong>imagem original sem o azul</strong> e como é o <strong>azul original isolado</strong>.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Imagem sem o azul</span>
+ggplot<span class="p">(</span>data <span class="o">=</span> img_df_parte1<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> y <span class="o">=</span> y<span class="p">))</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>colour <span class="o">=</span> img_df_parte1<span class="o">$</span>cor<span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x <span class="o">=</span> <span class="s">&quot;x&quot;</span><span class="p">,</span> y <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">,</span> title <span class="o">=</span> <span class="s">&quot;Imagem sem B (azul)&quot;</span><span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  theme_bw<span class="p">()</span></code></pre></div>
+
+<p><img src="/images/2016-01-22-aula09/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" /></p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Apenas o azul da imagem</span>
+ggplot<span class="p">(</span>data <span class="o">=</span> img_df_parte2<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> x<span class="p">,</span> y <span class="o">=</span> y<span class="p">))</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>colour <span class="o">=</span> img_df_parte2<span class="o">$</span>cor<span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>x <span class="o">=</span> <span class="s">&quot;x&quot;</span><span class="p">,</span> y <span class="o">=</span> <span class="s">&quot;y&quot;</span><span class="p">,</span> title <span class="o">=</span> <span class="s">&quot;Imagem sem B (azul)&quot;</span><span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  theme_bw<span class="p">()</span></code></pre></div>
+
+<p><img src="/images/2016-01-22-aula09/unnamed-chunk-5-2.png" alt="plot of chunk unnamed-chunk-5" /></p>
+
+<p>A sua tarefa é recuperar o azul (<code>b</code>) da <strong>Parte 1</strong> que apagamos utilizando modelos preditivos construídos com a <strong>Parte 2</strong> (que ainda tem o azul!). Vamos aos exercícios.</p>
+
+<h2 id="exerccios">Exercícios</h2>
+
+<h3 id="exerccio-1-descritiva">Exercício 1: Descritiva</h3>
+
+<p>Construa para <code>x</code>, <code>y</code>, <code>r</code>, <code>g</code>, <code>b</code>:</p>
+
+<ul>
+  <li>A matriz de correlação linar e arredonde os resultados para duas casas decimais (utilize a função <code>cor()</code>);</li>
+  <li>A matriz de gráficos de dispersão (use a função <code>pairs()</code>).</li>
+</ul>
+
+<p><strong>DICA:</strong> faça esse exercício com uma amostra de 500 linhas do <code>img_df</code>, pois é muito pesado com o banco inteiro.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># uma amostra de 500 pontos para a análise descritiva (usar o banco inteiro é desnecessário e demorado)</span>
+img_df_amostra <span class="o">&lt;-</span> img_df <span class="o">%&gt;%</span> 
+  sample_n<span class="p">(</span><span class="m">500</span><span class="p">,</span>replace <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span></code></pre></div>
+
+<h3 id="exerccio-2-modelo-de-regresso-linear">Exercício 2: Modelo de Regressão Linear</h3>
+
+<ul>
+  <li>Com base na análise descritiva do exercício anterior, proponha um preditor para <code>b</code> e traduza para o R como uma fórmula;</li>
+  <li>Ajuste uma <strong>regressão linear</strong> utilizando a fórmula proposta e a função <code>lm()</code>;</li>
+</ul>
+
+<p><strong>LEMBRETE:</strong> fórmulas de modelos deixam a resposta à esquerda do <code>~</code> e as preditivas/explicativas à direita.</p>
+
+<h3 id="exerccio-3-modelo-de-rvore-de-deciso">Exercício 3: Modelo de Árvore de Decisão</h3>
+
+<ul>
+  <li>
+    <p>Com base na análise descritiva do exercício anterior, escolha as variáveis para predizer <code>b</code> e passe como uma fórmula à função.</p>
+  </li>
+  <li>
+    <p>Ajuste uma <strong>árvore de decisão</strong> por meio da função <code>tree()</code> do pacote <code>tree</code>, passando a fórmula com as variáveis escolhidas.</p>
+  </li>
+</ul>
+
+<h3 id="exerccio-4-comparao">Exercício 4: Comparação</h3>
+
+<ul>
+  <li>Calcule o erro de predição.</li>
+  <li>Desenhe o original e o predito.</li>
+  <li>Qual ficou melhor?</li>
+  <li>Você acha que o padrão da imagem (transições suaves de cor) influenciou neste resultado? Por quê?</li>
+</ul>
+
+<h3 id="exerccio-5-outra-imagem">Exercício 5: Outra Imagem</h3>
+
+<ul>
+  <li>Repita os exercícios de 1 a 4, mas agora para a imagem <em>xadrez_colorido.jpg</em>.</li>
+  <li>Quanto ao desempenho para recuperar o azul de imagens, teve uma técnica melhor?</li>
+</ul>
+
+<h2 id="exerccio-extra-opcional-imagens-da-internet">Exercício Extra (opcional): Imagens da Internet</h2>
+
+<p>Crie duas <em>strings</em> no R, <code>link_lm</code> e <code>link_tree</code>, cada uma contendo, respectivamente:</p>
+
+<ul>
+  <li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>regressão linear</strong>.</li>
+  <li>Um link para uma imagem que seria bem recuperada pelo modelo de <strong>árvore de decisão</strong>.</li>
+</ul>
+
+
+      </article>
+      <hr>
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+            <a href="#" class="bds_fbook" data-cmd="fbook" title="Share to Facebook"></a>
+            <a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+        </div>
+        <script>
+            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    </div>
+	
+    <!-- duoshuo.com javascript include code. -->    
+    
+    <!-- disqus.com javascript include code. -->
+	
+    <div class="post-area post comment">
+        <div id="disqus_thread"></div>
+    </div>
+	<script>
+		var disqus_config = function () {
+			this.page.url = "http://curso-r.github.io/aula09/"; 
+			this.page.identifier = "/aula09"; 
+		};
+		(function() {
+			var d = document, s = d.createElement('script');
+			s.src = '//curso-r.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	
+    
+  </div>
+  
+  <div id="content" class="col-sm-3">
+    <!-- <div id="myAffix" class="shadow-bottom-center hidden-xs" data-spy="affix" data-offset-top="0" data-offset-bottom="-20"> -->
+    <div id="myAffix" class="shadow-bottom-center hidden-xs" >
+      <div class="categories-list-header">
+        Content
+      </div>
+      <div class="content-text"></div>
+    </div>
+  </div>
+  
+</div>
+    </div>
+
+    
+    <div id="top" data-toggle="tooltip" data-placement="left" title="back to top">
+      <a href="javascript:;">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+      </a>
+    </div>
+
+    <footer class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="mailto:"><span class="glyphicon glyphicon-envelope"></span> </a>
+        <span class="point"> · </span>
+        
+          <a href="https://github.com/curso-r">
+            <span class="icon">
+              <svg viewBox="0 0 16 16">
+                <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            Github
+            <!-- <span>curso-r</span> -->
+          </a>
+          
+          <span class="point"> · </span>
+          <span><a href="https://github.com/curso-r/curso-r.github.io/blob/master/_posts/2016-01-22-aula09.md">View source</a></span>
+          <span class="point"> · </span>
+          <span><a class="newpost" href="javascript:;">New post</a></span>
+		  <span class="point"> · </span>
+          <span><a href="/feed.xml">RSS</a></span>
+          <span class="point"> · </span>
+          <span>&copy; 2015 LiXizhi</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script type="text/javascript">
+    function OnClickNewPost()
+    {
+        var title = prompt("Please enter title of your post");
+        if (title!=null){
+            title = title.replace(" ", "-");
+            var currentdate = new Date();
+            var urlNewPage = "https://github.com/curso-r/curso-r.github.io/new/master?filename=_posts/" 
+                + currentdate.getFullYear() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getDate() + "-" + title + ".md";
+                
+            var defaultText =  [
+                '---',
+                'layout: post',
+                'comments: true',
+                'categories: diary',
+                '---',
+                '## Title',
+                'text'
+                ].join('\n');
+            urlNewPage += "&value=" + encodeURIComponent(defaultText);
+            window.open(urlNewPage);
+        }
+    }
+    
+    $(function() {
+      // CreateNewPostLinks
+      $('.newpost').each(function(){
+          $(this).click(OnClickNewPost);
+      });
+    });
+</script>
+  
+  </body>
+</html>
