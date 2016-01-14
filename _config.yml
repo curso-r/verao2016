@@ -7,8 +7,8 @@ description: Material das aulas do curso de R
 #   line in _config.yml. It will appear in your document head meta (for
 #   Google search results) and in your feed.xml site description.
 
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://curso-r.github.io/verao2016/" # the base hostname & protocol for your site
+baseurl: "/verao2016" # the subpath of your site, e.g. /blog/
+url: "http://curso-r.github.io" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
 github_username: curso-r
 permalink: /:title/
