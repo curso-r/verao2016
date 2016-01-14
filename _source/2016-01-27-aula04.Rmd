@@ -4,7 +4,7 @@ date : 2015-01-26
 layout: post
 comments: true
 ---
-
+ 
 <a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a>
 
 <a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a>
@@ -39,7 +39,7 @@ pnud_muni
 
 ### Filosofia do Hadley para análise de dados
 
-<img src="assets/fig/hadley_view.png" style="width: 800px;"/>
+<img src="http://curso-r.github.io/verao2016/images/hadley_view.png" style="width: 800px;"/>
 
 ### As cinco funções principais do dplyr
 
