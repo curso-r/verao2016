@@ -19,7 +19,7 @@ layout: default
 	  </div>
       <div class="post-list-body">
         <div class="all-posts" post-cate="All">
-          {% for post in site.posts %}
+          {% for post in site.posts reversed %}
             <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
               <h2>
               {{ post.title }}
