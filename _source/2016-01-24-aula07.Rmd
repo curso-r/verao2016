@@ -651,7 +651,7 @@ Para realizar a análise, vamos utilizar a função `MCA` do pacote `FactoMineR`
 Como base de dados, utilizaremos `tea` do pacote `FactoMiner`, que é basicamente um questionário aplicado a 300 pessoas sobre como elas tomam chá.
 
 ```{r}
-library(FactoMiner)
+library(FactoMineR)
 data(tea)
 
 # Vamos trabalhas só com essas colunas
