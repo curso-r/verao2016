@@ -10,7 +10,7 @@ comments: true
 
 ## Sobre dplyr e tidyr
 
-Para estas questões usaremos a base de dados flights, ela está inserida no pacote `nycflights13` por isso é necessário utilizar o comando:
+Para estas questões usaremos a base de dados flights, ela está inserida no pacote `nycflights13` por isso é necessário utilizar o comando: 
 
 ```{r}
 library(nycflights13)
