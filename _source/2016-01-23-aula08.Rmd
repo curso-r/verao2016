@@ -402,7 +402,7 @@ Exemplo retirado [deste site](http://gekkoquant.com/2012/05/26/neural-networks-w
 
 ```{r}
 library(neuralnet)
-  
+library(dplyr)  
 trainningdata <- data_frame(Input=runif(50, min=0, max=100), Output=sqrt(Input))
  
 # Train the neural network
