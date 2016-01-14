@@ -1,11 +1,17 @@
 ---
 layout: default
+title: Exercícios
+comments: true
+permalink: /exercicios/
+icon: glyphicon-file
 ---
+
 <div class="row">
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <article>
-        {{content}}
+        <h2>Exercícios</h2>
+        <p>Esta página contém uma série de exercícios relativos a cada aula do curso.</p>
       </article>
     </div>
   </div>
@@ -14,20 +20,17 @@ layout: default
 <div id="index" class="row">
   <div class="col-sm-9">
     <div class="post-area ">
-	  <div class="post-list-header">
-	  Posts
-	  </div>
       <div class="post-list-body">
         <div class="all-posts" post-cate="All">
           {% for post in site.posts reversed %}
-          {% unless post.tags contains "exercicio" %}
-            <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
-              <h2>
-              {{ post.title }}
-              </h2>
-              <span class="">{{ post.date | date: "%b %-d, %Y" }}</span>
-            </a>
-          {% endunless %}
+            {% if post.tags contains "exercicio" %}
+              <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
+                <h2>
+                {{ post.title }}
+                </h2>
+                <span class="">{{ post.date | date: "%b %-d, %Y" }}</span>
+              </a>
+            {% endif %}  
           {% endfor %}
         </div>
         <!-- <div class="posts-in-categories"> -->
@@ -68,3 +71,4 @@ layout: default
     </div>
   </div>
 </div>
+
