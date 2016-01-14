@@ -21,7 +21,7 @@ local({
   knitr::opts_chunk$set(fig.path = sprintf('%s/', gsub('^.+/', '', d)))
   knitr::opts_knit$set(
     base.dir = 'images/' ,
-    base.url = '/images/'
+    base.url = 'verao2016/images/'
   )
   knitr::opts_knit$set(width = 70)
   knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv)
