@@ -20,8 +20,8 @@ local({
   # you may want to adapt them to your own website
   knitr::opts_chunk$set(fig.path = sprintf('%s/', gsub('^.+/', '', d)))
   knitr::opts_knit$set(
-    base.dir = 'images/' ,
-    base.url = 'verao2016/images/'
+    base.dir = './images/' ,
+    base.url = 'http://curso-r.github.io/verao2016/images/'
   )
   knitr::opts_knit$set(width = 70)
   knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv)
