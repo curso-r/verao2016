@@ -7,6 +7,7 @@ comments: true
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(survival)
+library(dplyr)
 library(ggplot2)
 ```
 
@@ -260,6 +261,7 @@ Queremos ajustar no gráfico um modelo linear de ponto de mudança, que vai ajus
 No LD, dados não são especificados em um `data.frame`. Ao invés disso, temos de criar uma lista contendo, além dos dados, algumas informações iniciais, como
 
 ```{r}
+library(LaplacesDemon)
 mon.names <- "LP" # variáveis para monitoramento. No caso, Log Posterior
 parm.names <- as.parm.names(list(alpha=0, beta=rep(0,2), sigma=0, theta=0)) # nomes dos parâmetros
 
