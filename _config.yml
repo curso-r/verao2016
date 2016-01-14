@@ -1,11 +1,15 @@
 # Site settings
-title: Curso-R 2016
-email: 
+title: <span><img src="images/logo.jpg" width="33"/>&nbsp;&nbsp;Curso-R verão 2016 IME-USP</span>
+email: athos.damiani@gmail.com
 description: Material das aulas do curso de R
 # > # this means to ignore newlines until "baseurl:"
-#   Write an awesome description for your new site here. You can edit this
-#   line in _config.yml. It will appear in your document head meta (for
-#   Google search results) and in your feed.xml site description.
+# Material das aulas do Curso R, do casual ao avançado, 
+# ministrado no Verão IME-USP 2016. O curso trata de 
+# ferramentas contemporâneas para produção de análises 
+# estatísticas, ajuste de modelos e elaboração de relatórios 
+# estáticos e dinâmicos."
+
+
 
 baseurl: "/verao2016" # the subpath of your site, e.g. /blog/
 url: "http://curso-r.github.io" # the base hostname & protocol for your site
