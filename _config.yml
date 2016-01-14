@@ -8,7 +8,7 @@ description: Material das aulas do curso de R
 #   Google search results) and in your feed.xml site description.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://curso-r.github.io/versao2016/" # the base hostname & protocol for your site
+url: "http://curso-r.github.io/verao2016/" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
 github_username: curso-r
 permalink: /:title/
