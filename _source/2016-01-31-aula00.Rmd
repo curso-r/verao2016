@@ -20,10 +20,6 @@ comments: true
 * Aula 06 - Laboratório II
 * Aula 07 - Modelando
 * Aula 08 - Aula dos alunos
-* Aula 09 - Laboratório III
-* Aula 10 - Shiny
-* Aula 11 - Pacotes e tópicos extras
-* Aula 12 - Laboratório IV
 
 ## Por que R?
 
