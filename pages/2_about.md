@@ -9,6 +9,21 @@ icon: glyphicon-heart
 * content
 {:toc}
 
+### Horário e local
+
+#### Período: 
+
+- De 18/01/2016 à 05/02/2016
+- Segundas, quartas e sextas das 18:00 às 21:15
+- Não haverá aula no dia 25/01/2016
+
+#### Local:
+
+- Av. Prof. Luciano Gualberto, 380 - Butantã, São Paulo - SP, 05508-010.
+- Entrando no prédio, é o primeiro laboratório de informática à frente.
+
+<img src="/images/local.gif"/>
+
 ### Objetivos
 
 Fornecer informações básicas do software estatístico R e expor as principais ferramentas disponíveis atualmente para realização de análises estatísticas de forma produtiva e reproduzível, baseando-se na filosofia `tidy data` e nos pacotes de Hadley Wickham. O curso é considerado de nível intermediário, pois apresenta apenas a forma de utilização de ferramentas úteis, e não abrange tópicos mais profundos como orientação à objetos, o pacote `Rcpp`, entre outros.
@@ -53,11 +68,8 @@ O curso não exige nenhum pré-requisito, porém, conhecimento básico de estat�
 
 **Método:**
 
-Aulas (14h), exercícios para casa e resultados do laboratório (10h).
+Aulas (12h), exercícios para casa e resultados do laboratório (12h).
 
 **Critérios:**
 
-Média ponderada de exercícios e laboratório.
-
-
-
+Média ponderada dos laboratórios.
