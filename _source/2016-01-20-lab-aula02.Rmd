@@ -1,5 +1,5 @@
 ---
-title: "Laboratório 02"
+title: "Aula 02 - Laboratório"
 author: "Curso R"
 date: 2016-01-20
 output: html_document

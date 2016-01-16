@@ -9,6 +9,7 @@ tags: aula
 <a href="http://curso-r.github.io/verao2016/aula_02_apresentacao" target="_blank">Slides dessa aula</a>
 
 <a href="https://github.com/curso-r/verao2016/blob/gh-pages/script/aula_02.R" target="_blank">Script dessa aula</a>
+
 # Estruturas de dados no R
 
 Tipos básicos de estrutura no R:
@@ -255,16 +256,16 @@ x
 
 # Estatísticas básicas
 
-A função summary quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.
+A função `summary()` quando aplicada a um banco de dados retorna medidas resumo de cada variável do banco de dados.
 
 ```{r}
-summary(dados)
+summary(mtcars)
 ```
 
 Também pode ser aplicada em apenas uma variável da base:
 
 ```{r}
-summary(dados$aleatorio2)
+summary(mtcars$mpg)
 ```
 
 A função `summary` calcula diversas estatísticas básicas, podemos calculá-las separadamente usando as funções: `mean`, `median`, `quantile` e `sd`. A seguir alguns exemplos de uso:
