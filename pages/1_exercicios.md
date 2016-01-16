@@ -30,7 +30,15 @@ icon: glyphicon-file
                 </h2>
                 <span class="">{{ post.date | date: "%b %-d, %Y" }}</span>
               </a>
-            {% endif %}  
+            {% endif %}
+            {% if post.tags contains "lab" %}
+              <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
+                <h2>
+                {{ post.title }}
+                </h2>
+                <span class="">{{ post.date | date: "%b %-d, %Y" }}</span>
+              </a>
+            {% endif %}
           {% endfor %}
         </div>
         <!-- <div class="posts-in-categories"> -->
