@@ -1,0 +1,21 @@
+---
+title: "Aula 07 - Modelando"
+author: "Curso de R"
+layout: post
+tags: slides
+category: slides
+output: 
+  ioslides_presentation:
+    keep_md: false
+    self_contained: true
+---
+
+
+## Regressão Linear e ANOVA
+
+- A função que ajusta modelo linear normal no R é `lm()`. 
+
+- Você especifica o:
+    - banco de dados; e 
+    - a fórmula com as variáveis que deseja associar.
+    
