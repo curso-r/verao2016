@@ -18,6 +18,7 @@ layout: default
         <div class="all-posts" post-cate="All">
           {% for post in site.posts reversed %}
           {% unless post.tags contains "exercicio" %}
+          {% unless post.tags contains "lab" %}
             <a class="post-list-item" href="{{ post.url | prepend: site.baseurl }}">
               <h2>
               {{ post.title }}
@@ -25,10 +26,12 @@ layout: default
               <span class="">{{ post.date | date: "%b %-d, %Y" }}</span>
             </a>
           {% endunless %}
+          {% endunless %}
           {% endfor %}
         </div>
         <!-- <div class="posts-in-categories"> -->
         {% for category in site.categories %}
+          
           <div post-cate="{{category | first}}">
             {% for posts in category  %}
               {% for post in posts %}
@@ -58,9 +61,13 @@ layout: default
         All<span class="my-badge"> {{site.categories | size}}</span>
       </a>
       {% for category in site.categories %}
+        {% unless category contains "exercicio" %}
+        {% unless category contains "lab" %}
         <a href="javascript:;" class="categories-list-item" cate="{{ category | first }}">
           {{ category | first }} <span class="my-badge">{{ category | last | size }}</span>
         </a>
+        {% endunless %}
+        {% endunless %}
       {% endfor %}
     </div>
   </div>
