@@ -1,6 +1,6 @@
 ---
 title: "Aula 01 - Noções básicas"
-date: 2015-01-15
+date: 2016-01-18
 layout: post
 comments: true
 ---
@@ -16,6 +16,16 @@ panderOptions("table.style", "rmarkdown")
 
 # R como calculadora
 
+## Sumário
+
+- Calculadora
+- Valores especiais
+- Operadores aritméticos
+- Operadores lógicos
+- Números complexos
+
+## Calculadora
+
 A linguagem do R é um tanto quanto intuitiva, muita coisa sai do jeito certo no chute! Para ver um exemplo disso, é interessante começar fazendo do R uma grande calculadora. Tente jogar no console `2*2 - (4 + 4)/2`. Pronto. Com essa simples expressão você já é capaz de imaginar (e certeiramente) como pedir ao R para fazer qualquer tipo de operação aritmética. Lição aprendida!
 
 Além do mais, as operações e suas precedências são mantidas como na matemática, ou seja, divisão e multiplicação são calculadas antes da adição e subtração. E os parênteses nunca são demais!
@@ -29,9 +39,9 @@ sin(pi/2) + 2*3
 (sin(pi/2) + 2)*3
 ```
 
-Veja que apareceu a função `sin()`, o famoso seno. Tente outras funções trigonométricas para ver se acerta de prima!
+Veja que apareceu a função `sin()`, o famoso seno. Tente outras funções trigonométricas para ver se acerta de primeira!
 
-Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar! No R, um erro não é nenhuma dor de cabeça, é rápido consertar e testar (**debugar**, para os mais íntimos).
+Mas a ideia é essa. Ser intuitivo. A dica aqui é tentar. No R, um erro não é nenhuma dor de cabeça, é rápido de consertar e testar (**debugar**, para os mais íntimos).
 
 ## Valores especiais
 
@@ -173,12 +183,11 @@ As condições devem ser expressões lógicas, ou seja, testes que retornem `TRU
 ```{r}
 x <- 4
 
-# teste: x NÃO é um número?
-!is.numeric(x)
-# teste: x é menor que zero?
-x < 0
-# teste: x é maior que zero?
-x > 0
+!is.numeric(x) # teste: x NÃO é um número?
+
+x < 0 # teste: x é menor que zero?
+
+x > 0 # teste: x é maior que zero?
 
 if(!is.numeric(x)) {
   "x não é um número"
@@ -198,37 +207,6 @@ O que acontece no exemplo acima, passo a passo:
 2. No primeiro `else if`, o teste lógico `x > 0` retorna `TRUE`, fazendo com que a expressão `{"x é positivo"}` seja executada e todo o restante dos testes, ignorado.
 
 **OBS:** a condições `x < 0` nunca chegou a ser testada. Uma vez encontrada uma condição verdadeira, o programa executa o respectivo bloco de códigos entre `{}` e descarta as demais instruções.
-
-### Considerações:
-
-- O `else` e o `else if` têm que estar na mesma linha do `}` da expressão anterior, senão não rodará!
-
-```{r, eval=FALSE}
-# Certo
-if(1 == 2) {
-  "Um resultado muito interessante!"
-} else { # <----- Mesma linha que o "}"
-  "1 é diferente de 2"
-}
-
-# ERRADO!!! Não rodará
-if(1 == 2) {
-  "Um resultado muito interessante!"
-}
-else { # <----- Na linha abaixo do "}"
-  "1 é diferente de 2"
-}
-```
-
-- Além de `TRUE` e `FALSE`, o R aceita `1` e `0`, respectivamente. Na verdade, não precisa ser `1` exatamente, a regra é: 
-    - número diferente de zero é `TRUE`; e 
-    - número igual a zero é `FALSE`.
-    
-- Objetos `character`, `NA`, `NaN` e `list` não são interpretáveis como lógicos. Será retornado um erro caso tente passá-los como condições.
-
-- Caso seja passado um `array`, `vector` ou `matrix`, será utilizado apenas o primeiro elemento (é melhor evitar usar arrays como condições!). Será enviado um aviso de que isso ocorreu.
-
-- `else` e `else if` são opcionais.
 
 ## for
 
@@ -340,9 +318,9 @@ while(runif(1) > p) {
 lances
 ```
 
-A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda e lançada novamente e o contador de lançamentos é incrementado em uma unidade e esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
+A função `runif(1)` gera um número aleatório no intervalo unitário toda vez que a condição é avaliada. Se este número for maior que `p`, então a moeda é lançada novamente e o contador de lançamentos é incrementado em uma unidade. Esse ciclo se repete até que, por acaso, o número sorteado seja menor que `p`. No fim, teremos nossa desejada variável aleatória simulada de lances até "cara".
 
-Repare que enquanto a condição retornava `TRUE`, a expressão sera reexecutada. O laço só parou quando a condição retornou `FALSE`. Essa é a regra do `while`.
+Repare que enquanto a condição retornava `TRUE`, a expressão será reexecutada. O laço só parou quando a condição retornou `FALSE`. Essa é a regra do `while`.
 
 # Vetorização
 
@@ -350,18 +328,18 @@ Vetores no R são cadeias ordenadas de elementos (geralmente números ou palavra
 
 Se você é novo no mundo da programação, não vai sentir muito a vantagem desse conceito. Aos que já estão acostumados a programar em outras lingaguens de programação, se verão tentados a usar *loops* para tudo. Isso terá de mudar (e irá, naturalmente). Como frisado anteriormente, *loops* no R são sofrivelmente ineficientes.
 
-## Tecnicalidades
+## Comentário
 
 Tecnicamente, vetorização nada mais é do que a cultura de se criar e usar funções vetorizadas. Essas funções recebem vetor(es) [x1, ..., xn] e devolvem vetor(es) [f(x1), ..., f(xn)]. Mas por quê é importante, afinal?
 
 Implementar funções vetorizadas seria uma tarefa simples, não fosse a lentidão dos *loops*. No R, funções vetorizadas realmente úteis são implementadas nas linguagens de baixo nível, que são muito mais rápidas. Por isso, a não ser que domine C, FORTRAN ou C++, você ficará dependente das funções vetorizadas disponíveis pelo R ou por terceiros.
 
-## Eficiência
+## Eficiência da vetorização
 
 Abaixo está um exemplo que mostra a diferença de tempo que leva para calcular a raiz quadrada de cada elemento de um vetor de números. 
 
-- Uma das funções está implementada inteiramente em R utilizando um *for* para calcular a raiz quadrada em cada elemento do vetor por meio da função `sqrt()`;
-- Uma segunda maneira de efetuar a mesma operação tira proveito da implementação vetorizada em C da função `sqrt()`.
+- Maneira 1) Uma das funções está implementada inteiramente em R utilizando um *for* para calcular a raiz quadrada em cada elemento do vetor por meio da função `sqrt()`;
+- Maneira 2) Efetuar a mesma operação tirando proveito da implementação vetorizada em C da função `sqrt()`.
 
 ```{r}
 x <- 1:1000000 # sequência de inteiros de 1 a 1000000
@@ -378,9 +356,6 @@ meu_sqrt <- function(numeros) {
 # Comparação de eficiência entre função vetorizada e função "vetorizada no R"
 system.time(x2a <- meu_sqrt(x))
 system.time(x2b <- sqrt(x))
-
-# Verifica que os dois vetores são iguais
-identical(x2a, x2b)
 ```
 
 Um ganho de 100-200 vezes na eficiência! E as vantagens não param por aí:
@@ -398,20 +373,25 @@ y <- c(1,10,100,1000)
 x + y
 ```
 
-Neste exemplo estamos somando dois vetores de tamanhos diferentes. Na matemática isso não faz sentido, mas no R faz! E qual convenção se usa para que essa operação seja bem definida? A resposta é Reciclagem. O operador `+` é uma função vetorizada e que está programado para lidar com quase qualquer tipo de soma que o usuário queira desafiá-lo a fazer. Ao ser incumbido da árdua missão de somar dois vetores de tamanhos diferentes, o `+` "recicla" os valores do menor vetor, no caso o vetor `x`, reutilizando seus valores até preencher o vetor maior. 
+Neste exemplo estamos somando dois vetores de tamanhos diferentes. Na matemática isso não faz sentido, mas no R faz! 
+
+E qual convenção se usa para que essa operação seja bem definida? A resposta é Reciclagem. 
+
+O operador `+` é uma função vetorizada e que está programado para lidar com quase qualquer tipo de soma que o usuário queira desafiá-lo a fazer. Ao ser incumbido da árdua missão de somar dois vetores de tamanhos diferentes, o `+` "recicla" os valores do menor vetor, no caso o vetor `x`, reutilizando seus valores até preencher o vetor maior. 
 
 Esta convenção aparece sempre que possível no R e vale tomar cuidado: há vezes em que o R não avisa que reciclou valores.
 
 # Funções
 
-Funções são grandes trunfos das linguagens de programação. Função no R tem a mesma finalidade das funções das demais linguagens: evitar repetir códigos e construir abstrações. Funções deixam o código mais legível, elegante e menos repetitivo. Além disso, funções abstraem uma rotina para casos mais gerais por meio de parâmetros, fazendo-a útil para casos além daquela configuração específica que motivou sua implementação.
+Função no R tem a mesma finalidade das funções das demais linguagens: evitar repetir códigos e construir abstrações. 
+
+Funções deixam o código mais legível, elegante e menos repetitivo. 
 
 ## Estrutura
 
 ```{r, eval=FALSE}
 nome_da_funcao <- function(<parâmetros>) {
   # faz coisas com os parâmetros
-  resultado
 }
 
 # uso da função
@@ -420,7 +400,7 @@ nome_da_funcao(param1, param2, ...)
 
 Pontos relevantes:
 
-- Funções também são objetos! Aliás, tudo que você atribui com `<-` vira um objeto no R. Assim, é natural pensar que funções podem receber outras funções como argumento e isso é bem comum.
+- Funções também são objetos! Aliás, tudo que você atribui com `<-` vira um objeto no R. Assim, é natural pensar que funções podem receber outras funções como argumento.
 
 - Assim que uma função for atribuída a um objeto, use esta função como se ela tivesse vinda com o R: `nome_da_funcao(...)`.
 
@@ -456,11 +436,11 @@ histograma(altura, "altura", "Eu escolho o título que eu quiser")
 O parâmetro `xlab` define o título do eixo x enquanto `titulo` escreve o título principal do gráfico. Este último irá utilizar o nome passado para o eixo x para criar o seu valor padrão.
 
 ### Ordem ou nome
-Podemos passar valores aos parâmetros explicitamente ou implicitamente. Passar valor explicitamente significa associar o valor desejado ao nome do parâmetro. Por exemplo, no código `rnorm(n = 1000, mean = 1.80, sd = 0.1)` está claro qual valor será passado para cada parâmetro. Se quisermos omitir os nomes dos parâmetros, as funções terão a boa vontade de deduzir a qual parâmetro você deseja atribuir certo valor e isso é feito utilizando a ORDEM dos parâmetros definidos na criação da função. No comando `histograma(altura, "altura")` nenhum parâmetro foi diretamente definido, mas pela ordem, o vetor `altura` foi atribuído ao parâmetro `numeros` e a *string* `"altura"` foi atribuída ao parâmetro `xlab` da função `histograma()`. A versão "explícita" desse comando seria `histograma(numeros = altura, xlab = "altura")`.
+Podemos passar valores aos parâmetros explicitamente ou implicitamente. Passar valor explicitamente significa associar o valor desejado ao nome do parâmetro. Por exemplo, no código `rnorm(n = 1000, mean = 1.80, sd = 0.1)` está claro qual valor será passado para cada parâmetro. Se quisermos omitir os nomes dos parâmetros, as funções terão a boa vontade de deduzir a qual parâmetro você deseja atribuir certo valor e isso é feito utilizando a ORDEM dos parâmetros definidos na criação da função. No comando `histograma(altura, "altura")` nenhum parâmetro foi diretamente definido, mas pela ordem, o vetor `altura` foi atribuído ao parâmetro `numeros` e a *string* `"altura"` foi atribuída ao parâmetro `xlab` da função `histograma()`. 
 
-**OBS:** Misturar as formas, explícitas e implícitas, também funciona e versões explícitas aceitam que os parâmetros sejam passados fora de ordem. A expressão `histograma(xlab = "altura", altura)` daria certo também!
+A versão "explícita" desse comando seria `histograma(numeros = altura, xlab = "altura")`.
 
-**OBS 2:** Se não for ambíguo, o R aceita que apenas parte do nome do parâmetro seja passado. No nosso exemplo, `histograma(altura, t = "Eu escolho o título que eu quiser", x = "altura")` levaria ao mesmo resultado que todos os citados até aqui.
+**OBS:** Misturar as formas, explícitas e implícitas, também funciona. Versões explícitas aceitam que os parâmetros sejam passados fora de ordem. A expressão `histograma(xlab = "altura", altura)` daria certo também!
 
 ### Parâmetro "..."
 
@@ -493,37 +473,46 @@ As funções anônimas são frequentemente utilizadas e têm essa denominação 
 ```{r}
 nums <- 1:10
 
-eh_par <- sapply(nums, function(numero) {numero %% 2 == 0})
+eh_par <- sapply(nums, function(numero) { numero %% 2 == 0 })
 
 cbind(nums, eh_par) 
 ```
 
-Não se preocupe em entender tudo o que o código acima está fazendo, você aprenderá adiante tudo sobre a função `sapply()` e `cbind()`. O ponto deste exemplo está na parte `function(numero) {numero %% 2 == 0}`. Este pedaço de código define uma função, mas essa função não tem nome! Apesar disso, ela continua sendo um objeto e pode ser passada como parâmetro de função, assim como faríamos com números, textos e vetores. Caso a função fosse útil em outros contextos ou tivesse que ser repetida em outra parte do código, poderíamos guardá-la no ambiente de trabalho, como mostra o exemplo que segue:
+Não se preocupe em entender tudo o que o código acima está fazendo, você aprenderá adiante tudo sobre a função `sapply()` e `cbind()`. 
+
+O ponto deste exemplo está na parte `function(numero) {numero %% 2 == 0}`. 
+
+Este pedaço de código define uma função, mas essa função não tem nome! Apesar disso, ela continua sendo um objeto e pode ser passada como parâmetro de função,assim como faríamos com números, textos e vetores. 
+
+Caso a função fosse útil em outros contextos ou tivesse que ser repetida em outra parte do código, poderíamos guardá-la no ambiente de trabalho, fazendo-a deixar de ser anônima. Exemplo:
 
 ```{r}
-testa_se_eh_par <- function(numero) {
-  numero %% 2 == 0
-}
+testa_se_eh_par <- function(numero) { numero %% 2 == 0 }
 
 eh_par <- sapply(nums, testa_se_eh_par)
 ```
 
-O resultado é idêntico como deveria ser, mas agora a função tem nome e pode ser utilizada conforme a conveniência.
+O resultado é idêntico como deveria ser, mas agora a função tem nome (`testa_se_eh_par`) e pode ser utilizada conforme a conveniência.
 
 ## Escopo
 
-Objetos moram em **ambientes** (*environments*) e as funções as procuram os objetos que precisam usar nesses *environments*.
+Objetos moram em **ambientes** (*environments*) e as funções as procuram os objetos nesses *environments*.
 
-A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`) e se nada for encontrado, retorna um erro informando que não existe tal objeto.
+Esses *enviroenments* são como se fossem caixas dentro de outras caixas. A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`, a caixa de fora) e se nada for encontrado, retorna um erro informando que não existe tal objeto.
 
-Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (o primeiro que for encontrado).
+Se houver dois objetos com o mesmo nome, prevalece aquele mais específico (dentro da menor caixa).
 
 ```{r}
-(x <- exp(1))
-f <- function(x) print(x)
+(x <- exp(1)) # criamos um objeto x que vai morar no `.GlobalEnv`.
+
+f <- function(x) { 
+  print(x) # esse x mora dentro da caixa da função 'f'.
+}
 f(2)
 
-g <- function(y) print(x)
+g <- function(y) {
+  print(x) # não existe x dentro da caixa da função 'g', só existe y.
+}
 g(2)
 ```
 
@@ -531,7 +520,7 @@ No exemplo acima, o objeto `x` existe tanto fora, quanto dentro da função `f()
 
 O `x` que vale `exp(1)` está morando no *global envirnment* (`.GlobalEnv`) e seria utilizado apenas no caso em que nenhum outro `x` estivesse no caminho.
 
-Na função `g()`, não existe mais o objeto `x` dentro dela (trocamos por `y`). O único objeto que está dentro de lá é o `y`. Como ainda chamamos pelo `x` dentro da função, o R irá buscar por ele, onde quer que ele esteja.
+Na função `g()` não existe mais o objeto `x` dentro dela (trocamos por `y`). O único objeto que está dentro de lá é o `y`. Como ainda chamamos pelo `x` dentro da função, o R irá buscar por ele, onde quer que ele esteja.
 
 # Variáveis Aleatórias
 
@@ -646,6 +635,6 @@ pander(diversos)
 
 # Referências
 
-http://adv-r.had.co.nz/Functions.html
+[http://adv-r.had.co.nz/Functions.html]()
 
-http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
+[http://www.burns-stat.com/pages/Tutor/R_inferno.pdf]()

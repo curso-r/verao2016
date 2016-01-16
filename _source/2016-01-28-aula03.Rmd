@@ -1,6 +1,6 @@
 ---
 title: Aula 03 - Laboratório I
-date : 2015-01-23
+date : 2016-01-18
 layout: post
 comments: true
 tags: lab

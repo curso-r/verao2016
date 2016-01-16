@@ -1,7 +1,7 @@
 ---
 title: "Aula 00 - Sobre o curso e porque usar R"
 layout: post
-date: 2015-01-13
+date: 2016-01-18
 comments: true
 ---
 
@@ -14,12 +14,22 @@ comments: true
 * Aula 00 - Sobre o curso e porque usar R
 * Aula 01 - Noções básicas
 * Aula 02 - Estruturas de Dados e Vocabulário
-* Aula 03 - Laboratório I
 * Aula 04 - Manipulação de dados
 * Aula 05 - Gráficos com estilo - ggplot2
 * Aula 06 - Laboratório II
 * Aula 07 - Modelando
 * Aula 08 - Aula dos alunos
+
+## Divisão das aulas 
+
+As aulas terão duração de 3 horas com 15 minutos de intervalo. Elas estao divididas em
+
+* Teoria - 1h30min
+* Intervalo - 15min
+* Laboratório - 1h30min
+
+Nos laboratórios serão dados os exercícios práticos. Os alunos serão avaliados por eles.
+No total serão 8 laboratórios, em que apenas os 6 laboratórios com melhor nota irão compor a média final.
 
 ## Por que R?
 
@@ -28,7 +38,7 @@ comments: true
 * R é escrito por estatísticos, para estatísticos
 * É uma linguagem de programação, o que faz dele um ambiente flexível e versátil
 * Atualizado e com grande gama de funções analíticas
-* Comunidade ativa e crescente
+* Comunidade ativa e crescente (muito crescente! Até a Microsoft entrou na onda, [leia mais](http://blog.revolutionanalytics.com/2016/01/microsoft-r-open.html))
 
 ## Prós e contras do R vs outros pacotes estatísticos
 
@@ -49,7 +59,7 @@ comments: true
 
 ## Pedindo ajuda
 
-- Help / documentação
+- Help / documentação do R (funções `help(foo)` ou `?foo`)
 - [Google it](http://bit.ly/1u7tlv1)
 - [Stack Overflow](http://stackoverflow.com/).
 - [Stack Overflow em Português](http://pt.stackoverflow.com/)
