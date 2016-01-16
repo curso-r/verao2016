@@ -1,0 +1,73 @@
+---
+title: "Laboratório 02"
+author: "Curso R"
+date: 2016-01-20
+output: html_document
+tags: lab
+category: lab
+---
+
+
+# Leitura de dados
+
+## Resumo das maneiras de leitura de dados no R
+```{r,  echo=FALSE, results='asis'}
+leitura_de_dados <- data.frame("Origem" = c("Arquivo (.txt, .csv, ...)"
+                                            ,"Excel"),
+                               "Pacotes e funções" = c("read.table(), read.csv(), read.fwf()"
+                                                       ,"read.xlsx do pacote")) 
+
+pander(leitura_de_dados)
+```
+
+
+Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
+
+- `file =` é uma string contendo o caminho do arquivo quem contem os dados, por exemplo: *"C://users/daniel/Desktop/text.txt"*.
+
+- `header =` recebe um valor lógico (`TRUE` ou `FALSE`) e indica para o programa se o seu arquivo inclui o nome das variáveis no topo.
+
+- `sep =` é a *string* utilizada para separar o valor de cada coluna dentro do arquivo de entrada. Se o arquivo tiver extensão .csv, o argumento `sep=` assume "," ou ";". Outros separadores geralmente utilizados são os espaços (" "), o caracter "|" e a tabulação "\t".
+
+- `quote =` indica qual o caractere que identifica strings no seu arquivo. Na maioria  das vezes, não é necessário alterar, pois é padrão utilizar aspas '""'.
+
+- `dec =` é uma string indicando qual o separador de casa decimais no seu arquivo. IMPORTANTE: quando o arquivo é lido, o R troca o separador de decimais para "." mesmo que você tenha indicado ",". A melhor maneira de verificar se o arquivo foi lido corretamente é fazer `str(dados)` e ver se as variáveis numéricas estão marcadas como numéricas. IMPORTANTE 2: o R não entende separadores de milhares. O ideal é substituí-los antes da importação.
+
+- `stringsAsFactors =` recebe um valor lógico e indica ao R se as colunas com *strings* devem ser transformadas em fatores, que, como vimos anteriormente, não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
+
+
+Dito tudo isso, vamos ler o arquivo *arq.txt* que se encontra na pasta *assets/dados/*.
+
+```{r}
+#dados <- read.table(file = "assets/dados/arq.txt") # li errado
+```
+
+Observe que a função retornou um erro e não leu o arquivo. Isso aconteceu porque o arquivo *arq.txt* tem os seus valores separados por ";" e o *default* do argumento `sep =` é o espaço.
+
+```{r}
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
+str(dados)
+```
+
+Dessa vez o arquivo foi lido e os dados foram salvos no objeto `dados`. No entanto, com o auxílio da função `str()` verificamos que as duas primeiras colunas, que deveriam ser numéricas, foram lidas como fatores. Isso aconteceu porque o separador de casa decimais no arquivo é a "," e, por *default* o R utiliza o ".". Dessa forma, ao encontrar uma vírgula entre os números, o R entende essa sequência de caracteres como uma *string*.
+
+
+```{r}
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
+str(dados) 
+```
+
+Mesmo especificando o argumento `dec =` como ",", os dados não estão sendo lidos da maneira correta. Observe que o nome das colunas estão sendo lidos como se fossem um valor de cada variável. Para corrigir isso, devemos utilizar `header = T`.
+
+
+```{r}
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
+str(dados)
+```
+
+Agora os dados foram lidos corretamente. No entanto, se você não deseja que a variável *cor* seja um fator, utilize `stringsAsFactors = F`.
+
+```{r}
+dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
+str(dados)
+```
