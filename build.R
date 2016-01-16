@@ -23,6 +23,14 @@ local({
     base.dir = './images/' ,
     base.url = 'http://curso-r.github.io/verao2016/images/'
   )
-  knitr::opts_knit$set(width = 70)
-  knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv)
+  
+  if (stringr::str_detect(a[1], "apresentacao")) {
+    rmarkdown::render(a[1], output_dir = "_posts/", output_file = a[2])
+  } else {
+    knitr::opts_knit$set(width = 70)
+    knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv) 
+  }
+  
+  # knitr::opts_knit$set(width = 70)
+  # knitr::knit(a[1], a[2], quiet = TRUE, encoding = 'UTF-8', envir = .GlobalEnv)
 })
