@@ -4,6 +4,7 @@ title: About
 comments: true
 permalink: /about/
 icon: glyphicon-heart
+toc: false
 ---
 
 ### Horário e local
