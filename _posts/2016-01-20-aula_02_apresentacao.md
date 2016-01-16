@@ -92,287 +92,7 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes">
-
-<ul>
-<li>Funções também são objetos! (tudo à esquerda de <code>&lt;-</code> vira objeto no R)</li>
-<li>Funções podem ser passadas como argumentos de outras funções</li>
-<li>Use suas funções como se tivessem vindas com o R: <code>nome_da_funcao(...)</code></li>
-<li>Crie uma função sempre que for repetir o código e for mudar poucas coisas entre essas repetições</li>
-<li>Crie funções se esta puder ser generalizada para a tarefa específica em que sua implementação foi motivada</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-1">
-
-<p><strong>Parâmetros</strong></p>
-
-<pre class = 'prettyprint lang-r'><b>nome_da_funcao &lt;- function(&lt;parâmetros&gt;) {
-</b>  # faz coisas com os parâmetros
-  resultado
-}</pre>
-
-<ul>
-<li>Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário</li>
-<li>Funções aceitam quantos parâmetros precisar, e de qualquer tipo, inclusive nada (<code>NULL</code>)</li>
-<li>Os nomes dos parâmetros se tornarão objetos que só poderão ser usados dentro da função</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-2">
-
-<p><strong>Parâmetros opcionais</strong></p>
-
-<p>Podemos definir parâmetros que possuem valores &quot;padrão&quot;.</p>
-
-<pre class = 'prettyprint lang-r'># função que ecoa uma palavra
-ecoar &lt;- function(palavra, n_ecos = 3) {
-    paste(c(rep(palavra, n_ecos), &quot;!&quot;), collapse = &quot; &quot;)
-}
-
-ecoar(&quot;eco&quot;)</pre>
-
-<pre >## [1] &quot;eco eco eco !&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>ecoar(&quot;eco&quot;, 5)</pre>
-
-<pre >## [1] &quot;eco eco eco eco eco !&quot;</pre>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-3">
-
-<p><strong>Parâmetros relativos</strong></p>
-
-<p>Um parâmetro pode usar outro parâmetro como valor padrão.</p>
-
-<pre class = 'prettyprint lang-r'># Função que desenha um histograma
-<b>histograma &lt;- function(numeros, xlab = &quot;x&quot;, 
-                       titulo = paste(&quot;Histograma de&quot;, xlab)) {
-</b>  hist(numeros, xlab = xlab, main = titulo)
-}</pre>
-
-<p>O parâmetro <code>titulo</code> usa o parâmetro <code>xlab</code> para compor seu valor padrão.</p>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-4">
-
-<p><strong>Ordem ou nome dos parâmetros</strong></p>
-
-<p>Funções entenderão os parâmetros passados&#8230;</p>
-
-<ul>
-<li>se forem passados com o nome, mesmo que fora da ordem</li>
-<li>se forem passados na ordem, mesmo que sem o nome</li>
-<li>se não houver ambiguidade, o R aceita parte do nome do parâmetro</li>
-</ul>
-
-<pre class = 'prettyprint lang-r'># As quatro linhas abaixo resultam no mesmo gráfico
-histograma(altura, &quot;altura&quot;)                  # na ordem
-histograma(numeros = altura, xlab = &quot;altura&quot;) # pelo nome
-histograma(xlab = &quot;altura&quot;, altura)           # pelo nome e depois na ordem
-histograma(altura, xl = &quot;altura&quot;)             # parte do nome</pre>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-5">
-
-<p><strong>Parâmetro &#39;&#8230;&#39;</strong></p>
-
-<p>Utilidade 2: os parâmetros extras serão passados a uma terceira função que tem muitos parâmetros</p>
-
-<pre class = 'prettyprint lang-r'>histograma &lt;- function(numeros, xlab = &quot;x&quot;, 
-                       titulo = paste(&quot;Histograma de&quot;, xlab), ...) {
-  hist(numeros, xlab = xlab, main = titulo, ...)
-}
-
-# parâmetros extras para hist()
-histograma(altura, breaks = 100, col = 2)</pre>
-
-<p>Passamos <code>breaks</code> e <code>col</code> à função <code>histograma()</code> que repassou à função <code>hist()</code>.</p>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-6">
-
-<p><strong>Escopo</strong></p>
-
-<pre class = 'prettyprint lang-r'>(x &lt;- exp(1))</pre>
-
-<pre >## [1] 2.718282</pre>
-
-<pre class = 'prettyprint lang-r'>f &lt;- function(x) print(x)
-f(2)</pre>
-
-<pre >## [1] 2</pre>
-
-<pre class = 'prettyprint lang-r'>g &lt;- function(y) print(x)
-g(2)</pre>
-
-<pre >## [1] 2.718282</pre>
-
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-7">
-
-<p><strong>Escopo</strong></p>
-
-<ul>
-<li>Objetos moram em <strong>ambientes</strong> (<em>environments</em>)</li>
-<li>As funções as procuram os objetos que precisam usar nesses <em>environments</em></li>
-<li>A ordem de procura segue a regra do mais específico até o ambiente global (<code>.GlobalEnv</code>)</li>
-<li>Se nada for encontrado, retorna um erro</li>
-<li>Se houver dois objetos com o mesmo nome, prevalece o mais específico (o primeiro que for encontrado)</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias" class="build">
-
-<pre class = 'prettyprint lang-r'>dnorm(x, mean = 0, sd = 1, log = FALSE)
-pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
-qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
-rnorm(n, mean = 0, sd = 1)</pre>
-
-</article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias-1">
-
-<ul>
-<li><strong>d</strong> (&quot;density&quot;) Densidade da Normal, ou f.d.p da Normal</li>
-<li><strong>p</strong> (&quot;probability&quot;) Função de distribuição acumulada (f.d.a) da Normal</li>
-<li><strong>q</strong> (&quot;quantile&quot;) Quantil da Normal</li>
-<li><strong>r</strong> (&quot;random&quot;) Gera um número vindo de uma Normal</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias-2" class="smaller">
-
-<p>No lugar de <code>norm</code>, você pode trocar por outra distribuição de probabilidade.</p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Distribuição</th>
-<th align="center">Apelido</th>
-</tr>
-<tr class="odd">
-<td align="center">Normal</td>
-<td align="center">norm</td>
-</tr>
-<tr class="even">
-<td align="center">Uniforme</td>
-<td align="center">unif</td>
-</tr>
-<tr class="odd">
-<td align="center">Beta</td>
-<td align="center">beta</td>
-</tr>
-<tr class="even">
-<td align="center">Chi Quadrado</td>
-<td align="center">chisq</td>
-</tr>
-<tr class="odd">
-<td align="center">Exponencial</td>
-<td align="center">exp</td>
-</tr>
-<tr class="even">
-<td align="center">F de Snedecor</td>
-<td align="center">f</td>
-</tr>
-<tr class="odd">
-<td align="center">Gama</td>
-<td align="center">gamma</td>
-</tr>
-<tr class="even">
-<td align="center">Poisson</td>
-<td align="center">pois</td>
-</tr>
-</table>
-
-</article></slide><slide class=''><hgroup><h2>Vocabulário</h2></hgroup><article  id="vocabulario">
-
-</article></slide><slide class=''><hgroup><h2>Vocabulário</h2></hgroup><article  id="vocabulario-1" class="smaller">
-
-<p><strong>Matemática</strong></p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
-</tr>
-<tr class="odd">
-<td align="center">log(x)</td>
-<td align="center">Logaritmo natural de x</td>
-</tr>
-<tr class="even">
-<td align="center">exp(x)</td>
-<td align="center">e elevado a x</td>
-</tr>
-<tr class="odd">
-<td align="center">abs(x)</td>
-<td align="center">valor absoluto de x</td>
-</tr>
-<tr class="even">
-<td align="center">sign(x)</td>
-<td align="center">sinal de x (1 ou -1)</td>
-</tr>
-<tr class="odd">
-<td align="center">sqrt(x)</td>
-<td align="center">raiz quadrada de x</td>
-</tr>
-<tr class="even">
-<td align="center">choose(n, k)</td>
-<td align="center">combinações de n, k a k</td>
-</tr>
-<tr class="odd">
-<td align="center">factorial(x)</td>
-<td align="center">fatorial de x</td>
-</tr>
-</table>
-
-</article></slide><slide class=''><hgroup><h2>Vocabulário</h2></hgroup><article  id="vocabulario-2">
-
-<p><strong>Estatística</strong></p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
-</tr>
-<tr class="odd">
-<td align="center">mean(x)</td>
-<td align="center">Média de x</td>
-</tr>
-<tr class="even">
-<td align="center">var(x) / sd(x)</td>
-<td align="center">Variância / Desvio Padrão amostral de x</td>
-</tr>
-<tr class="odd">
-<td align="center">quantile(x)</td>
-<td align="center">Quantis de x</td>
-</tr>
-<tr class="even">
-<td align="center">cov(x, y) / cor(x, y)</td>
-<td align="center">Covariância / Correlação linear entre x e y</td>
-</tr>
-</table>
-
-</article></slide><slide class=''><hgroup><h2>Vocabulário</h2></hgroup><article  id="vocabulario-3">
-
-<p><strong>Diversos</strong></p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
-</tr>
-<tr class="odd">
-<td align="center">x:y</td>
-<td align="center">Sequencia de x até y</td>
-</tr>
-<tr class="even">
-<td align="center">x=y</td>
-<td align="center">x recebe y (atribuição)</td>
-</tr>
-<tr class="odd">
-<td align="center">?x</td>
-<td align="center">documentação de x</td>
-</tr>
-<tr class="even">
-<td align="center">x$y</td>
-<td align="center">extração de y do objeto x</td>
-</tr>
-<tr class="odd">
-<td align="center">x%*%y</td>
-<td align="center">Multiplicação matricial das matrizes x e y</td>
-</tr>
-</table>
-
-</article></slide><slide class=''><hgroup><h2>Estruturas de dados no R</h2></hgroup><article  id="estruturas-de-dados-no-r" class="build">
+<slide class=''><hgroup><h2>Estruturas de dados no R</h2></hgroup><article  id="estruturas-de-dados-no-r" class="build">
 
 <p>Tipos básicos de estrutura no R:</p>
 
@@ -384,7 +104,7 @@ rnorm(n, mean = 0, sd = 1)</pre>
 <li><strong>Data frame</strong>: heterogêneo</li>
 </ul>
 
-<p><strong>Nota</strong>: em sua implementação, atomic vectors e matrizes são também arrays e data frames são listas.</p>
+<p><strong>Note que</strong>: atomic vectors e matrizes são também arrays e data frames são listas.</p>
 
 </article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors">
 
@@ -433,7 +153,7 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-3" class="build">
 
-<p>As funções <code>is.integer()</code>, <code>is.double()</code>, <code>is.logical()</code>, <code>is.character()</code> são usadas para testar se um objeto é de um determinado tipo.</p>
+<p>Funções <code>is.xxx()</code>.</p>
 
 <pre class = 'prettyprint lang-r'>is.integer(var1)</pre>
 
@@ -457,11 +177,11 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <pre >## [1] TRUE</pre>
 
-<p>Note que a função <code>is.numeric()</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
+<p><strong>Nota:</strong> <code>is.numeric()</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
 
 </article></slide><slide class=''><hgroup><h2>Coerção</h2></hgroup><article  id="coercao">
 
-<p>Quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converte converterá o objeto para o tipo mais flexível, na ordem:</p>
+<p>O R converterá o objeto para o tipo mais flexível, na ordem:</p>
 
 <ul>
 <li>logical</li>
@@ -469,8 +189,6 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 <li>double</li>
 <li>character</li>
 </ul>
-
-<p>Na lista acima, character é o tipo mais flexível.</p>
 
 </article></slide><slide class=''><hgroup><h2>Coerção</h2></hgroup><article  id="coercao-1" class="build">
 
@@ -482,7 +200,7 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <pre >## [1] 1 1 0</pre>
 
-<p>Isso pode ser útil, por exemplo, para contar o número de TRUEs em um vetor lógico:</p>
+<p>Utilidade:</p>
 
 <pre class = 'prettyprint lang-r'>sum(c(T, F, T, F, T))</pre>
 
@@ -490,11 +208,11 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors">
 
-<p><em>Factors</em> são utilizados para armazernar dados categorizados e são caracterizados por:</p>
+<p><em>Factors</em>: dados categorizados.</p>
 
 <ul>
-<li>conterem apenas valores pré-definidos, chamados <em>levels</em>; e</li>
-<li>se basearem num vetor de inteiros.</li>
+<li>contêm apenas valores pré-definidos, chamados <em>levels</em>; e</li>
+<li>são internamente vetores de inteiros.</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>f &lt;- factor(c(&quot;aventura&quot;, &quot;terror&quot;, &quot;comédia&quot;, &quot;drama&quot;))
@@ -507,11 +225,11 @@ f</pre>
 
 <pre >## [1] &quot;aventura&quot; &quot;comédia&quot;  &quot;drama&quot;    &quot;terror&quot;</pre>
 
-<p>Observe que, dentro do objeto, os <em>levels</em> são organizados em ordem alfabética.</p>
+<p>Dentro do objeto, os <em>levels</em>: ordem alfabética.</p>
 
 </article></slide><slide class=''><hgroup><h2>Factors</h2></hgroup><article  id="factors-1" class="build">
 
-<p>Sempre tome cuidado ao converter factors em objetos numéricos:</p>
+<p>Cuidado ao converter factors em objetos numéricos:</p>
 
 <pre class = 'prettyprint lang-r'>f &lt;- factor(c(&quot;2&quot;, &quot;3&quot;, &quot;1&quot;, &quot;10&quot;))
 as.numeric(f)</pre>
@@ -524,7 +242,7 @@ as.numeric(f)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Matrizes e Arrays</h2></hgroup><article  id="matrizes-e-arrays">
 
-<p>Matrizes e arrays são definidos usando as funções <code>matrix()</code> e <code>array()</code>.</p>
+<p>Funções <code>matrix()</code> e <code>array()</code>.</p>
 
 <pre class = 'prettyprint lang-r'># Um vetor para descrever todas as dimensões
 arr &lt;- array(1:12, c(3,2,2))
@@ -532,7 +250,7 @@ arr &lt;- array(1:12, c(3,2,2))
 # Dois argumentos para determinar o número de linahs e colunas
 mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
-<p>Diferentemente dos atomic vectors, essas estruturas apresentam o atribuito <em>dimensão</em>.</p>
+<p>Essas estruturas apresentam o atribuito <em>dimensão</em>.</p>
 
 <p><strong>Nota</strong>: observe que uma matriz é um array com duas dimensões.</p>
 
@@ -542,19 +260,19 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos-1" class="build">
 
-<pre class = 'prettyprint lang-r'>dim(c(1,2,3))</pre>
+<pre class = 'prettyprint lang-r'>dim(c(1, 2, 3))</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>nrow(c(1,2,3))</pre>
+<pre class = 'prettyprint lang-r'>nrow(c(1, 2, 3))</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>ncol(c(1,2,3))</pre>
+<pre class = 'prettyprint lang-r'>ncol(c(1, 2, 3))</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>length(c(1,2,3))</pre>
+<pre class = 'prettyprint lang-r'>length(c(1, 2, 3))</pre>
 
 <pre >## [1] 3</pre>
 
@@ -596,22 +314,25 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Listas e Data frames</h2></hgroup><article  id="listas-e-data-frames">
 
-<p>Listas são definidas usando a função <code>list()</code>.</p>
+<p>Função <code>list()</code>.</p>
 
 <pre class = 'prettyprint lang-r'>lista &lt;- list(
   c(1:5),
   c(&quot;homem&quot;, &quot;mulher&quot;),
   c(T, F, T),
   list(c(1,2,3), c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
-  )</pre>
+)</pre>
 
-<p>Data frames são listas em que todos os elementos têm o mesmo comprimento. São definidos usando a função <code>data.frame()</code>.</p>
+<ul>
+<li>Data frames: listas com todos os elementos de mesmo comprimento.</li>
+<li>Definidos usando a função <code>data.frame()</code>.</li>
+</ul>
 
 <pre class = 'prettyprint lang-r'>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Diferença entre data.frame e matrix</h2></hgroup><article  id="diferenca-entre-data.frame-e-matrix">
 
-<p>Com o que foi dito até agora, qual é a diferença entre <code>data.frame</code> e <code>matrix</code>?</p>
+<p>Qual é a diferença entre <code>data.frame</code> e <code>matrix</code>?</p>
 
 <p>No <code>data.frame</code> do slide anterior, a variável <code>z</code> só foi definida para a primeira linha?</p>
 
@@ -636,7 +357,7 @@ str(df)</pre>
 
 </article></slide><slide class=''><hgroup><h2>data.frames</h2></hgroup><article  id="data.frames" class="build">
 
-<p>Se usarmos a função <code>names()</code> obtemos o nome das colunas do data frame.</p>
+<p><code>names()</code>: nome das colunas do data frame (ou dos elementos da lista).</p>
 
 <pre class = 'prettyprint lang-r'>names(df)</pre>
 
@@ -649,7 +370,7 @@ names(df)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Combinando data.frames</h2></hgroup><article  id="combinando-data.frames">
 
-<p>É possível combinar data frames usando as funções <code>rbind()</code> e <code>cbind()</code>:</p>
+<p>Funções <code>rbind()</code> e <code>cbind()</code>:</p>
 
 <pre class = 'prettyprint lang-r'>df1 &lt;- data.frame(x = 3:4, y = c(&quot;s&quot;, &quot;s&quot;), z = T)
 df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)</pre>
@@ -670,7 +391,7 @@ df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)</pre>
 ## 1 3 s TRUE 1 n FALSE
 ## 2 4 s TRUE 2 n FALSE</pre>
 
-<p><strong>Nota</strong>: essas funções tammbém funcionam com matrizes</p>
+<p><strong>Nota</strong>: Também funcionam com matrizes.</p>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting</h2></hgroup><article  id="subsetting" class="build">
 
@@ -815,7 +536,7 @@ x %&gt;% sum %&gt;% sqrt</pre>
 
 <pre class = 'prettyprint lang-r'>T %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
-<pre >## [1] 0.005753538</pre>
+<pre >## [1] 0.005266111</pre>
 
 <pre class = 'prettyprint lang-r'>F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
@@ -828,7 +549,7 @@ y &lt;- exp(-x)
 
 plot(x, y)</pre>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-20-aula_02_apresentacao_files/figure-html/unnamed-chunk-45-1.png" title="" alt="" width="720" /></p>
+<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-20-aula_02_apresentacao_files/figure-html/unnamed-chunk-33-1.png" title="" alt="" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr">
 
@@ -853,12 +574,12 @@ for (i in 1:ncol(mat)){
 }
 m</pre>
 
-<pre >## [1] -1.239162e-02  3.592901e-03 -2.555331e-05</pre>
+<pre >## [1]  0.02276846 -0.09944701  0.01373704</pre>
 
 <pre class = 'prettyprint lang-r'>aaply(mat, 2, mean)</pre>
 
-<pre >##             1             2             3 
-## -1.239162e-02  3.592901e-03 -2.555331e-05</pre>
+<pre >##           1           2           3 
+##  0.02276846 -0.09944701  0.01373704</pre>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr-2">
 
@@ -870,12 +591,12 @@ for(i in unique(df$x)){
 }
 m</pre>
 
-<pre >## [1] -0.18469497  0.16087358  0.33350390  0.02420155</pre>
+<pre >## [1]  0.04639145 -0.05073899 -0.01455668  0.23720644</pre>
 
 <pre class = 'prettyprint lang-r'>library(magrittr)
 daply(df, .(x), colwise(mean)) %&gt;% as.numeric()</pre>
 
-<pre >## [1] -0.18469497  0.16087358  0.33350390  0.02420155</pre>
+<pre >## [1]  0.04639145 -0.05073899 -0.01455668  0.23720644</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 

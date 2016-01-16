@@ -4,10 +4,23 @@ title: About
 comments: true
 permalink: /about/
 icon: glyphicon-heart
+toc: false
 ---
 
-* content
-{:toc}
+### Horário e local
+
+#### Período: 
+
+- De 18/01/2016 à 05/02/2016
+- Segundas, quartas e sextas das 18:00 às 21:15
+- Não haverá aula no dia 25/01/2016
+
+#### Local:
+
+- Av. Prof. Luciano Gualberto, 380 - Butantã, São Paulo - SP, 05508-010.
+- Entrando no prédio, é o primeiro laboratório de informática à frente.
+
+<img src="http://curso-r.github.io/verao2016/images/local.gif" />
 
 ### Objetivos
 
@@ -53,11 +66,8 @@ O curso não exige nenhum pré-requisito, porém, conhecimento básico de estat�
 
 **Método:**
 
-Aulas (14h), exercícios para casa e resultados do laboratório (10h).
+Aulas (12h), exercícios para casa e resultados do laboratório (12h).
 
 **Critérios:**
 
-Média ponderada de exercícios e laboratório.
-
-
-
+Média ponderada dos laboratórios.
