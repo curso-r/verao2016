@@ -1,0 +1,13 @@
+---
+title: "Aula 07 - Modelando"
+author: "Curso de R"
+layout: post
+tags: slides
+category: slides
+output: 
+  ioslides_presentation:
+    keep_md: false
+    self_contained: true
+---
+
+## Regressão Linear e ANOVA
