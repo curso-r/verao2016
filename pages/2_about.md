@@ -6,9 +6,6 @@ permalink: /about/
 icon: glyphicon-heart
 ---
 
-* content
-{:toc}
-
 ### Horário e local
 
 #### Período: 
@@ -22,7 +19,7 @@ icon: glyphicon-heart
 - Av. Prof. Luciano Gualberto, 380 - Butantã, São Paulo - SP, 05508-010.
 - Entrando no prédio, é o primeiro laboratório de informática à frente.
 
-<img src="/images/local.gif"/>
+<img src="http://curso-r.github.io/verao2016/images/local.gif"/>
 
 ### Objetivos
 
