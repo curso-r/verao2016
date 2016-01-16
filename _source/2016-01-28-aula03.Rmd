@@ -3,6 +3,8 @@ title: Aula 03 - Laboratório I
 date : 2015-01-23
 layout: post
 comments: true
+tags: lab
+category: lab
 --- 
 
 ## Relatórios dinâmicos com RMarkdown
