@@ -17,28 +17,41 @@ panderOptions("table.style", "rmarkdown")
 
 ```
 
-## Agenda do curso {.smaller}
+## Estrutura do curso
+
+* Antes do intervalo: aula.
+* Depois do intervalo: laboratório.
+* Nota final: média de 6 laboratórios.
+
+## Agenda do curso
 
 <div class="red2">
 * Aula 00 - Sobre o curso e porque usar R
 * Aula 01 - Noções básicas
+* Laboratório 01 - Caixa de ferramentas para brincar no R
 * Aula 02 - Estruturas de Dados e Vocabulário
-* Aula 03 - Laboratório I
+* Laboratório 02 - Colocando dados no R
 </div>
-<div class="yellow3">
-* Aula 04 - Manipulação de dados
-* Aula 05 - Gráficos com estilo - ggplot2
-* Aula 06 - Laboratório II
+<div class="yellow1">
+* Aula 03 - Manipulação de dados
+* Laboratório 03 - Manipulação de dados
+* Aula 04 - Gráficos com estilo - ggplot2
+* Laboratório 03 - Visualização de dados
 </div>
+
+## Agenda do curso
+
 <div class="blue2">
-* Aula 07 - Modelando
-* Aula 08 - Aula dos alunos
-* Aula 09 - Laboratório III
+* Aula 05 - Modelando
+* Laboratório 05: Predizendo cores
+* Aula 06 - Aula dos alunos
+* Laboratório 06 - Projeto pessoal
 </div>
 <div class="green2">
-* Aula 10 - Shiny
-* Aula 11 - Pacotes e tópicos extras
-* Aula 12 - Laboratório IV
+* Aula 07 - Criação de pacotes em R
+* Laboratório 07 - Criando um pacote
+* Aula 08 - R e a web
+* Laboratório 08 - Criando um aplicativo com shiny
 </div>
 
 ## Por que R? {.build}
@@ -55,83 +68,35 @@ panderOptions("table.style", "rmarkdown")
 <strong>Por que SAS/SPSS é preferido pelas empresas?</strong>
 </div>
 
-- SAS é mais preparado para grandes bases de dados. o R guarda tudo na memória
-- SAS/SPSS tem suporte dedicado e garantia das suas rotinas e ferramentas. O R não tem suporte oficial e não trás garantias.
-- SAS/SPSS está na praça há muito mais tempo do que o R
-- No SAS/SPSS não há necessidade de grandes investimentos em treinamento de pessoal para operar
-- SAS é um "canivete suíço". Ele é ferramenta analítica, governança corporativa, gestão e serviços de TI e etc.
+- Armazenamento de dados.
+- Suporte.
+- Cultura das empresas.
+- SAS é um "canivete suíço". 
 
-## Prós e contras do R vs. outros pacotes estatísticos
-
-<div class="red2">
-<strong>Para análise estatística, o R...</strong>
-</div>
-
-- permite analisar, manusear e limpar dados com mais facilidade e agilidade
-- possui sistema e pacotes de visualização de dados que é referência
-- tem, potencialmente, capacidade de interagir com qualquer software e linguagem de programação, inclusive com o SAS e Excel
-- facilita a análise de dados colaborativa
-
-## Prós e contras do R vs. outras linguagens
-
-- Das linguagens de programação, as mais populares para análise de dados são Python, Matlab/Octave e Java.
-- Python é o mais parecido com o R e também o com maior aderência entre os estatísticos
-- Métodos estatísticos básicos e consagrados podem ser feitos em todas essas linguagens. No Python, há mais opções
-
-## Prós e contras do R vs. Python
-
-<div class="green2">
-<strong>Vantagens do R</strong>
-</div>
-
-- O R é a única linguagem cujo foco de desenvolvimento é análise de dados
-- De um tempo para cá, TODOS os novos métodos estatísticos são escritos primeiro em R
-- Menor curva de aprendizado
-- Fácil assimilação entre a matemática e a implementação
+## R vs. outros pacotes estatísticos
 
 <div class="red2">
-<strong>Desvantagens do R</strong>
+<strong>O R é excelente em</strong>
 </div>
 
-- Velocidade
-- Eficiência (uso da memória)
+- Manipulação de dados.
+- Visualização de dados.
+- Integração com outros softwares.
+- Análise colaborativa.
 
-## Prós e contras do R vs. Python
+## R vs. outras linguagens
 
-<div class="green2">
-<strong>Vantagens do Python</strong>
-</div>
-
-- Mais desenvolvido na área de processamento de texto
-- Linguagem de programação completa de uso geral, própria para produção
-- Eficiente (não aloca dados na memória)
-
-<div class="red2">
-<strong>Desvantagens do Python</strong>
-</div>
-
-- Velocidade
-- Maior curva de aprendizado. Exige mais programação
-- O foco de desenvolvimento não é análise de dados
-
-## Prós e contras do R vs. Python
-
-<div>
-<strong>Considerações</strong>
-</div>
-
-- Via de regra, se você já tem destreza em alguma dessas linguagens de programação, continue nela... até bater em uma barreira.
-- Principal barreira do <span class="red2">R</span> é 
-eficiência
-- Principal barreira do <span class="blue2">Python</span> é disponibilidade de funções
-- Geralmente, bate-se na barreira do <span class="blue2">Python</span> antes da barreira do <span class="red2">R</span>
+- Python, Matlab/Octave e Java.
+- Python é o mais parecido com o R e também o com maior aderência depois do R
 
 ## Motivação
 
-- R está no Google, Facebook, Bank of America, Pfizer, [New York Times](http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?ref=baseball). Está no IBOPE, Itaú, IBGE, DIEESE
+- R está no Google, Microsoft, Facebook, Bank of America, Pfizer, [New York Times](http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?ref=baseball). Está no IBOPE, Itaú, IBGE, DIEESE, ...
+- Revolution Analytics foi comprado pela Microsoft (Microsoft R)
 - Relatórios estatísticos profissionais e em vários formatos
 - Aplicativos interativos ([TJSP](http://23.21.159.27:3838/shinyABJ/tjsp))
-- Modelagem e técnicas estatísticas básicas e avançadas
+- Modelagem e técnicas estatísticas avançadas
+- R consortium
 
 ## Instalação do R e do RStudio
 
@@ -157,7 +122,7 @@ eficiência
 - [Google it](http://bit.ly/1u7tlv1)
 - [Stack Overflow](http://stackoverflow.com/).
 - [Melhores práticas para postar no Stack Overflow](http://stackoverflow.com/help/how-to-ask).
-- Vamos utilizar o Stack Overflow para dúvidas durante o curso.
+- Vamos utilizar o Stack Overflow e o grupo do Telegram para dúvidas durante o curso.
 
 ## R como calculadora
 
@@ -167,8 +132,8 @@ eficiência
 
 ```{r}
 pi
-sin(pi/2) + 2*3 - 4^2
-(sin(pi/2) + 2)*3 + (-4)^2
+sin(pi / 2) + 2 * 3 - 4 ^ 2
+(sin(pi / 2) + 2) * 3 + (-4) ^ 2
 ```
 
 ## R como calculadora
@@ -181,7 +146,6 @@ sin(pi/2) + 2*3 - 4^2
 tab_valores_especiais <- data.frame("Valor" = c("Inf/-Inf", "NaN"),
                                     "Quando ocorre" = c("Divisões por zero, valores da ordem de 10^308",
                                                         "Indeterminações matemáticas, como 0/0 e log(-1)"))
-
 pander(tab_valores_especiais)
 ```
 
@@ -204,43 +168,11 @@ pander(op_aritmetico)
 <strong>Operadores lógicos</strong>
 </div>
 ```{r, echo=FALSE}
-op_logico <- data.frame(operador = c("x < y", "x <= y", "x > y", "x >= y", "x == y", "x != y", "!x", "x \\| y ", "x & y", "xor(x, y)"),
-                        descricao = c("x menor que y?", "x menor ou igual a y?", "x maior que y?", "x maior ou igual a y?", "x igual a y?", "x diferente de y?", "Negativa de x", "x ou y são verdadeiros?", "x e y são verdadeiros?", "x ou y são verdadeiros (apenas um deles)?"))
+op_logico <- data.frame(
+  operador = c("x < y", "x <= y", "x > y", "x >= y", "x == y", "x != y", "!x", "x | y ", "x & y"),
+                        
+  descricao = c("x menor que y?", "x menor ou igual a y?", "x maior que y?", "x maior ou igual a y?", "x igual a y?", "x diferente de y?", "Negativa de x", "x ou y são verdadeiros?", "x e y são verdadeiros?"))
 pander(op_logico)
-```
-
-## R como calculadora
-
-<div>
-<strong>Números complexos</strong>
-</div>
-```{r}
-z <- -8 + 0i
-
-# verifica se z é um número commplexo
-class(z)
-is.complex(z)
-```
-
-## R como calculadora {.smaller}
-
-<div>
-<strong>Números complexos</strong>
-</div>
-
-```{r, echo=FALSE, results='asis'}
-complexo <- data.frame("Função" = c("Re(z)",
-                                    "Im(z)",
-                                    "Mod(z)",
-                                    "Arg(z)",
-                                    "Conj(z)"),
-                       "Descrição" = c("Parte real de z", 
-                                       "Parte imaginária de z", 
-                                       "Módulo de z", 
-                                       "Argumento de z", 
-                                       "Complexo conjugado de z"))
-
-pander(complexo)
 ```
 
 ## if, else e else if {.build}
@@ -297,7 +229,7 @@ O `for` é um tipo "laço" (*loop*, em inglês) que aplica um bloco de código p
 **Estrutura**
 
 ```{r, eval=FALSE}
-for(iterador in <sequencia>) {
+for (iterador in <sequencia>) {
   # Fazer algo para cada item da <sequencia>
   # pode ter outros for's aqui dentro!
 }
@@ -306,7 +238,7 @@ for(iterador in <sequencia>) {
 ## for
 Exemplo simples: iterar numa sequência de inteiros
 ```{r}
-for(i in 1:5) {
+for (i in 1:5) {
   print(i)
 }
 ```
@@ -317,7 +249,7 @@ Exemplo simples: iterar num vetor de palavras
 frutas <- c("banana", "uva", "abacaxi")
 
 # Brincadeira da <fruta> + "guei"
-for(fruta in frutas) {
+for (fruta in frutas) {
   print(paste(fruta, "guei", sep = ""))
 }
 ```
@@ -326,8 +258,7 @@ for(fruta in frutas) {
 
 **Considerações**
 
-- Frequentemente é vantagem iterar sobre índices do vetor em vez dos valores propriamente ditos
-- O **for** é especialmente ineficiente no R. O seu uso, ao contrário das outras linguagens de programação, se tornará cada vez menos frequente conforme você for se aprimorando no R
+- O **for** é especialmente ineficiente no R.
 
 ## *ifelse()*: *for* com *if else* {.build}
 
@@ -340,47 +271,12 @@ frutas1 <- ifelse(frutas1 == frutas2, "manga", frutas1)
 data.frame(pessoas, frutas1, frutas2)
 ```
 
-OBS: esse é um exemplo de aplicação do conceito de **vetorização** (que veremos mais adiante)
-
-## while {.build}
-
-O laço `while` é especialmente útil quando não sabemos quando iremos parar (a condição para o laço deixar de rodar pode envolver o **acaso** ou **convergência**, por exemplo). 
-
-### Estrutura:
-
-Similar ao `if`.
-
-```{r, eval=FALSE}
-while(<condições>) {
-  # coisas para fazzer enquanto as <condições> forem TRUE
-}
-```
-
-## while
-
-Exemplo: Variável aleatória Geométrica. 
-
-```{r}
-set.seed(123) # para reprodução
-p <- 0.2 # probabilidade de cair "cara"
-lances <- 0 # contador de lançamentos
-### <b>
-while(runif(1) > p) {
-### </b>
-  lances <- lances + 1
-}
-
-lances
-```
-
-OBS: Condição depende do **acaso**
+OBS: conceito de **vetorização**
 
 ## Vetorização {.build}
 
-- Vetores no R são cadeias ordenadas de elementos, geralmente números ou palavras
-- Vetores são objetos que guardam dados
+- Vetores no R são cadeias ordenadas de elementos
 - R aceita vetores em quase todas as suas funções
-- Para lembrar: *loops* no R são sofrivelmente ineficientes
 
 ## Vetorização
 
@@ -392,16 +288,14 @@ Exemplo:
 ```{r}
 nums <- 1:5
 log10(nums)
-2^nums
+2 ^ nums
 ```
 
 ## Vetorização
 
 Funções vetorizadas...
 
-- são (muito) mais velozes
-- estão implementadas em lingaguens de baixo nível (FORTRAN, C ou C++)
-- são algoritmos testados e feitos por especialistas
+- (muito) mais velozes
 - funcionam para diferentes tipos de objetos passados à elas
 
 ## Reciclagem {.build}
@@ -409,8 +303,8 @@ Funções vetorizadas...
 Exemplo: soma de vetores de tamanhos diferentes.
 
 ```{r}
-x <- c(1,5)
-y <- c(1,10,100,1000)
+x <- c(1, 5)
+y <- c(1, 10, 100, 1000)
 x + y
 ```
 
@@ -430,11 +324,10 @@ nome_da_funcao(param1, param2, ...)
 
 ## Funções
 
-- Funções também são objetos! (tudo à esquerda de `<-` vira objeto no R)
+- Funções também são objetos!
 - Funções podem ser passadas como argumentos de outras funções
-- Use suas funções como se tivessem vindas com o R: `nome_da_funcao(...)`
-- Crie uma função sempre que for repetir o código e for mudar poucas coisas entre essas repetições
-- Crie funções se esta puder ser generalizada para a tarefa específica em que sua implementação foi motivada
+- Use suas funções assim: `nome_da_funcao(...)`
+- Crie uma função sempre que repetir o código
 
 ## Funções
 
@@ -448,10 +341,6 @@ nome_da_funcao <- function(<parâmetros>) {
   resultado
 }
 ```
-
-- Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário
-- Funções aceitam quantos parâmetros precisar, e de qualquer tipo, inclusive nada (`NULL`)
-- Os nomes dos parâmetros se tornarão objetos que só poderão ser usados dentro da função
 
 ## Funções
 
@@ -473,8 +362,6 @@ ecoar("eco", 5)
 
 **Parâmetros relativos**
 
-Um parâmetro pode usar outro parâmetro como valor padrão.
-
 ```{r, eval=FALSE}
 # Função que desenha um histograma
 ### <b>
@@ -484,18 +371,9 @@ histograma <- function(numeros, xlab = "x", titulo = paste("Histograma de", xlab
 }
 ```
 
-O parâmetro `titulo` usa o parâmetro `xlab` para compor seu valor padrão.
-
-
 ## Funções
 
 **Ordem ou nome dos parâmetros**
-
-Funções entenderão os parâmetros passados...
-
-- se forem passados com o nome, mesmo que fora da ordem
-- se forem passados na ordem, mesmo que sem o nome
-- se não houver ambiguidade, o R aceita parte do nome do parâmetro
 
 ```{r, eval=FALSE}
 # As quatro linhas abaixo resultam no mesmo gráfico
@@ -509,8 +387,6 @@ histograma(altura, xl = "altura")             # parte do nome
 
 **Parâmetro '...'**
 
-- Utilidade 1: o número de argumentos é indefinido
-
 ```{r}
 args(paste)
 # poderíamos passar qualquer quantidade de palavras
@@ -520,8 +396,6 @@ paste("Eu", "sou", "o", "capitão", "planeta")
 ## Funções
 
 **Parâmetro '...'**
-
-- Utilidade 2: os parâmetros extras serão passados a uma terceira função que tem muitos parâmetros
 
 ```{r, eval=FALSE}
 histograma <- function(numeros, xlab = "x", 
@@ -565,16 +439,6 @@ g(2)
 
 ```
 
-## Funções
-
-**Escopo**
-
-- Objetos moram em **ambientes** (*environments*)
-- As funções as procuram os objetos que precisam usar nesses *environments*
-- A ordem de procura segue a regra do mais específico até o ambiente global (`.GlobalEnv`)
-- Se nada for encontrado, retorna um erro
-- Se houver dois objetos com o mesmo nome, prevalece o mais específico (o primeiro que for encontrado)
-
 ## Variáveis aleatórias {.build}
 
 ```{r, eval=FALSE}
@@ -583,38 +447,6 @@ pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 rnorm(n, mean = 0, sd = 1)
 ```
-
-## Variáveis aleatórias
-
-- **d** ("density") Densidade da Normal, ou f.d.p da Normal
-- **p** ("probability") Função de distribuição acumulada (f.d.a) da Normal
-- **q** ("quantile") Quantil da Normal
-- **r** ("random") Gera um número vindo de uma Normal
-
-## Variáveis aleatórias {.smaller}
-
-No lugar de `norm`, você pode trocar por outra distribuição de probabilidade.
-
-```{r, echo=FALSE, results='asis'}
-dist <- data.frame("Distribuição" = c("Normal",
-                                      "Uniforme",
-                                      "Beta",
-                                      "Chi Quadrado",
-                                      "Exponencial",
-                                      "F de Snedecor",
-                                      "Gama",
-                                      "Poisson"),
-                   "Apelido" = c("norm",
-                                 "unif",
-                                 "beta",
-                                 "chisq",
-                                 "exp",
-                                 "f",
-                                 "gamma",
-                                 "pois"))
-pander(dist)
-```
-
 
 ## Vocabulário
 

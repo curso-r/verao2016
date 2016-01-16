@@ -93,35 +93,49 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Agenda do curso</h2></hgroup><article  id="agenda-do-curso" class="smaller">
+<slide class=''><hgroup><h2>Estrutura do curso</h2></hgroup><article  id="estrutura-do-curso">
+
+<ul>
+<li>Antes do intervalo: aula.</li>
+<li>Depois do intervalo: laboratório.</li>
+<li>Nota final: média de 6 laboratórios.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Agenda do curso</h2></hgroup><article  id="agenda-do-curso">
 
 <div class="red2">
 <ul>
 <li>Aula 00 - Sobre o curso e porque usar R</li>
 <li>Aula 01 - Noções básicas</li>
+<li>Laboratório 01 - Caixa de ferramentas para brincar no R</li>
 <li>Aula 02 - Estruturas de Dados e Vocabulário</li>
-<li>Aula 03 - Laboratório I</li>
+<li>Laboratório 02 - Colocando dados no R</li>
 </ul></div>
 
-<div class="yellow3">
+<div class="yellow1">
 <ul>
-<li>Aula 04 - Manipulação de dados</li>
-<li>Aula 05 - Gráficos com estilo - ggplot2</li>
-<li>Aula 06 - Laboratório II</li>
+<li>Aula 03 - Manipulação de dados</li>
+<li>Laboratório 03 - Manipulação de dados</li>
+<li>Aula 04 - Gráficos com estilo - ggplot2</li>
+<li>Laboratório 03 - Visualização de dados</li>
 </ul></div>
+
+</article></slide><slide class=''><hgroup><h2>Agenda do curso</h2></hgroup><article  id="agenda-do-curso-1">
 
 <div class="blue2">
 <ul>
-<li>Aula 07 - Modelando</li>
-<li>Aula 08 - Aula dos alunos</li>
-<li>Aula 09 - Laboratório III</li>
+<li>Aula 05 - Modelando</li>
+<li>Laboratório 05: Predizendo cores</li>
+<li>Aula 06 - Aula dos alunos</li>
+<li>Laboratório 06 - Projeto pessoal</li>
 </ul></div>
 
 <div class="green2">
 <ul>
-<li>Aula 10 - Shiny</li>
-<li>Aula 11 - Pacotes e tópicos extras</li>
-<li>Aula 12 - Laboratório IV</li>
+<li>Aula 07 - Criação de pacotes em R</li>
+<li>Laboratório 07 - Criando um pacote</li>
+<li>Aula 08 - R e a web</li>
+<li>Laboratório 08 - Criando um aplicativo com shiny</li>
 </ul></div>
 
 </article></slide><slide class=''><hgroup><h2>Por que R?</h2></hgroup><article  id="por-que-r" class="build">
@@ -140,96 +154,40 @@
 <p><strong>Por que SAS/SPSS é preferido pelas empresas?</strong></p></div>
 
 <ul>
-<li>SAS é mais preparado para grandes bases de dados. o R guarda tudo na memória</li>
-<li>SAS/SPSS tem suporte dedicado e garantia das suas rotinas e ferramentas. O R não tem suporte oficial e não trás garantias.</li>
-<li>SAS/SPSS está na praça há muito mais tempo do que o R</li>
-<li>No SAS/SPSS não há necessidade de grandes investimentos em treinamento de pessoal para operar</li>
-<li>SAS é um &quot;canivete suíço&quot;. Ele é ferramenta analítica, governança corporativa, gestão e serviços de TI e etc.</li>
+<li>Armazenamento de dados.</li>
+<li>Suporte.</li>
+<li>Cultura das empresas.</li>
+<li>SAS é um &quot;canivete suíço&quot;.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. outros pacotes estatísticos</h2></hgroup><article  id="pros-e-contras-do-r-vs.-outros-pacotes-estatisticos-1">
+</article></slide><slide class=''><hgroup><h2>R vs. outros pacotes estatísticos</h2></hgroup><article  id="r-vs.-outros-pacotes-estatisticos">
 
 <div class="red2">
-<p><strong>Para análise estatística, o R&#8230;</strong></p></div>
+<p><strong>O R é excelente em</strong></p></div>
 
 <ul>
-<li>permite analisar, manusear e limpar dados com mais facilidade e agilidade</li>
-<li>possui sistema e pacotes de visualização de dados que é referência</li>
-<li>tem, potencialmente, capacidade de interagir com qualquer software e linguagem de programação, inclusive com o SAS e Excel</li>
-<li>facilita a análise de dados colaborativa</li>
+<li>Manipulação de dados.</li>
+<li>Visualização de dados.</li>
+<li>Integração com outros softwares.</li>
+<li>Análise colaborativa.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. outras linguagens</h2></hgroup><article  id="pros-e-contras-do-r-vs.-outras-linguagens">
+</article></slide><slide class=''><hgroup><h2>R vs. outras linguagens</h2></hgroup><article  id="r-vs.-outras-linguagens">
 
 <ul>
-<li>Das linguagens de programação, as mais populares para análise de dados são Python, Matlab/Octave e Java.</li>
-<li>Python é o mais parecido com o R e também o com maior aderência entre os estatísticos</li>
-<li>Métodos estatísticos básicos e consagrados podem ser feitos em todas essas linguagens. No Python, há mais opções</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. Python</h2></hgroup><article  id="pros-e-contras-do-r-vs.-python">
-
-<div class="green2">
-<p><strong>Vantagens do R</strong></p></div>
-
-<ul>
-<li>O R é a única linguagem cujo foco de desenvolvimento é análise de dados</li>
-<li>De um tempo para cá, TODOS os novos métodos estatísticos são escritos primeiro em R</li>
-<li>Menor curva de aprendizado</li>
-<li>Fácil assimilação entre a matemática e a implementação</li>
-</ul>
-
-<div class="red2">
-<p><strong>Desvantagens do R</strong></p></div>
-
-<ul>
-<li>Velocidade</li>
-<li>Eficiência (uso da memória)</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. Python</h2></hgroup><article  id="pros-e-contras-do-r-vs.-python-1">
-
-<div class="green2">
-<p><strong>Vantagens do Python</strong></p></div>
-
-<ul>
-<li>Mais desenvolvido na área de processamento de texto</li>
-<li>Linguagem de programação completa de uso geral, própria para produção</li>
-<li>Eficiente (não aloca dados na memória)</li>
-</ul>
-
-<div class="red2">
-<p><strong>Desvantagens do Python</strong></p></div>
-
-<ul>
-<li>Velocidade</li>
-<li>Maior curva de aprendizado. Exige mais programação</li>
-<li>O foco de desenvolvimento não é análise de dados</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. Python</h2></hgroup><article  id="pros-e-contras-do-r-vs.-python-2">
-
-<div>
-<p><strong>Considerações</strong></p></div>
-
-<ul>
-<li>Via de regra, se você já tem destreza em alguma dessas linguagens de programação, continue nela&#8230; até bater em uma barreira.</li>
-<li>Principal barreira do <span class="red2">
-R</span> é eficiência</li>
-<li>Principal barreira do <span class="blue2">
-Python</span> é disponibilidade de funções</li>
-<li>Geralmente, bate-se na barreira do <span class="blue2">
-Python</span> antes da barreira do <span class="red2">
-R</span></li>
+<li>Python, Matlab/Octave e Java.</li>
+<li>Python é o mais parecido com o R e também o com maior aderência depois do R</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Motivação</h2></hgroup><article  id="motivacao">
 
 <ul>
-<li>R está no Google, Facebook, Bank of America, Pfizer, <a href='http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?ref=baseball' title=''>New York Times</a>. Está no IBOPE, Itaú, IBGE, DIEESE</li>
+<li>R está no Google, Microsoft, Facebook, Bank of America, Pfizer, <a href='http://www.nytimes.com/interactive/2013/03/29/sports/baseball/Strikeouts-Are-Still-Soaring.html?ref=baseball' title=''>New York Times</a>. Está no IBOPE, Itaú, IBGE, DIEESE, &#8230;</li>
+<li>Revolution Analytics foi comprado pela Microsoft (Microsoft R)</li>
 <li>Relatórios estatísticos profissionais e em vários formatos</li>
 <li>Aplicativos interativos (<a href='http://23.21.159.27:3838/shinyABJ/tjsp' title=''>TJSP</a>)</li>
-<li>Modelagem e técnicas estatísticas básicas e avançadas</li>
+<li>Modelagem e técnicas estatísticas avançadas</li>
+<li>R consortium</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Instalação do R e do RStudio</h2></hgroup><article  id="instalacao-do-r-e-do-rstudio">
@@ -261,7 +219,7 @@ R</span></li>
 <li><a href='http://bit.ly/1u7tlv1' title=''>Google it</a></li>
 <li><a href='http://stackoverflow.com/' title=''>Stack Overflow</a>.</li>
 <li><a href='http://stackoverflow.com/help/how-to-ask' title=''>Melhores práticas para postar no Stack Overflow</a>.</li>
-<li>Vamos utilizar o Stack Overflow para dúvidas durante o curso.</li>
+<li>Vamos utilizar o Stack Overflow e o grupo do Telegram para dúvidas durante o curso.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>R como calculadora</h2></hgroup><article  id="r-como-calculadora">
@@ -273,11 +231,11 @@ R</span></li>
 
 <pre >## [1] 3.141593</pre>
 
-<pre class = 'prettyprint lang-r'>sin(pi/2) + 2*3 - 4^2</pre>
+<pre class = 'prettyprint lang-r'>sin(pi / 2) + 2 * 3 - 4 ^ 2</pre>
 
 <pre >## [1] -9</pre>
 
-<pre class = 'prettyprint lang-r'>(sin(pi/2) + 2)*3 + (-4)^2</pre>
+<pre class = 'prettyprint lang-r'>(sin(pi / 2) + 2) * 3 + (-4) ^ 2</pre>
 
 <pre >## [1] 25</pre>
 
@@ -384,65 +342,12 @@ R</span></li>
 <td align="center">Negativa de x</td>
 </tr>
 <tr class="even">
-<td align="center">x \</td>
-<td align="center">y</td>
-<td align="left">x ou y são verdadeiros?</td>
+<td align="center">x | y</td>
+<td align="center">x ou y são verdadeiros?</td>
 </tr>
 <tr class="odd">
 <td align="center">x &amp; y</td>
 <td align="center">x e y são verdadeiros?</td>
-</tr>
-<tr class="even">
-<td align="center">xor(x, y)</td>
-<td align="center">x ou y são verdadeiros (apenas um deles)?</td>
-</tr>
-</table>
-
-</article></slide><slide class=''><hgroup><h2>R como calculadora</h2></hgroup><article  id="r-como-calculadora-4">
-
-<div>
-<p><strong>Números complexos</strong></p></div>
-
-<pre class = 'prettyprint lang-r'>z &lt;- -8 + 0i
-
-# verifica se z é um número commplexo
-class(z)</pre>
-
-<pre >## [1] &quot;complex&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>is.complex(z)</pre>
-
-<pre >## [1] TRUE</pre>
-
-</article></slide><slide class=''><hgroup><h2>R como calculadora</h2></hgroup><article  id="r-como-calculadora-5" class="smaller">
-
-<div>
-<p><strong>Números complexos</strong></p></div>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Função</th>
-<th align="center">Descrição</th>
-</tr>
-<tr class="odd">
-<td align="center">Re(z)</td>
-<td align="center">Parte real de z</td>
-</tr>
-<tr class="even">
-<td align="center">Im(z)</td>
-<td align="center">Parte imaginária de z</td>
-</tr>
-<tr class="odd">
-<td align="center">Mod(z)</td>
-<td align="center">Módulo de z</td>
-</tr>
-<tr class="even">
-<td align="center">Arg(z)</td>
-<td align="center">Argumento de z</td>
-</tr>
-<tr class="odd">
-<td align="center">Conj(z)</td>
-<td align="center">Complexo conjugado de z</td>
 </tr>
 </table>
 
@@ -495,7 +400,7 @@ else { # &lt;----- Na linha abaixo do &quot;}&quot;
 
 <p><strong>Estrutura</strong></p>
 
-<pre class = 'prettyprint lang-r'>for(iterador in &lt;sequencia&gt;) {
+<pre class = 'prettyprint lang-r'>for (iterador in &lt;sequencia&gt;) {
   # Fazer algo para cada item da &lt;sequencia&gt;
   # pode ter outros for&#39;s aqui dentro!
 }</pre>
@@ -504,7 +409,7 @@ else { # &lt;----- Na linha abaixo do &quot;}&quot;
 
 <p>Exemplo simples: iterar numa sequência de inteiros</p>
 
-<pre class = 'prettyprint lang-r'>for(i in 1:5) {
+<pre class = 'prettyprint lang-r'>for (i in 1:5) {
   print(i)
 }</pre>
 
@@ -521,7 +426,7 @@ else { # &lt;----- Na linha abaixo do &quot;}&quot;
 <pre class = 'prettyprint lang-r'>frutas &lt;- c(&quot;banana&quot;, &quot;uva&quot;, &quot;abacaxi&quot;)
 
 # Brincadeira da &lt;fruta&gt; + &quot;guei&quot;
-for(fruta in frutas) {
+for (fruta in frutas) {
   print(paste(fruta, &quot;guei&quot;, sep = &quot;&quot;))
 }</pre>
 
@@ -534,8 +439,7 @@ for(fruta in frutas) {
 <p><strong>Considerações</strong></p>
 
 <ul>
-<li>Frequentemente é vantagem iterar sobre índices do vetor em vez dos valores propriamente ditos</li>
-<li>O <strong>for</strong> é especialmente ineficiente no R. O seu uso, ao contrário das outras linguagens de programação, se tornará cada vez menos frequente conforme você for se aprimorando no R</li>
+<li>O <strong>for</strong> é especialmente ineficiente no R.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2><em>ifelse()</em>: <em>for</em> com <em>if else</em></h2></hgroup><article  id="ifelse-for-com-if-else" class="build">
@@ -552,44 +456,13 @@ data.frame(pessoas, frutas1, frutas2)</pre>
 ## 2   Bruno   manga     uva
 ## 3    Caio abacaxi laranja</pre>
 
-<p>OBS: esse é um exemplo de aplicação do conceito de <strong>vetorização</strong> (que veremos mais adiante)</p>
-
-</article></slide><slide class=''><hgroup><h2>while</h2></hgroup><article  id="while" class="build">
-
-<p>O laço <code>while</code> é especialmente útil quando não sabemos quando iremos parar (a condição para o laço deixar de rodar pode envolver o <strong>acaso</strong> ou <strong>convergência</strong>, por exemplo).</p>
-
-<h3>Estrutura:</h3>
-
-<p>Similar ao <code>if</code>.</p>
-
-<pre class = 'prettyprint lang-r'>while(&lt;condições&gt;) {
-  # coisas para fazzer enquanto as &lt;condições&gt; forem TRUE
-}</pre>
-
-</article></slide><slide class=''><hgroup><h2>while</h2></hgroup><article  id="while-1">
-
-<p>Exemplo: Variável aleatória Geométrica.</p>
-
-<pre class = 'prettyprint lang-r'>set.seed(123) # para reprodução
-p &lt;- 0.2 # probabilidade de cair &quot;cara&quot;
-lances &lt;- 0 # contador de lançamentos
-<b>while(runif(1) &gt; p) {
-</b>  lances &lt;- lances + 1
-}
-
-lances</pre>
-
-<pre >## [1] 5</pre>
-
-<p>OBS: Condição depende do <strong>acaso</strong></p>
+<p>OBS: conceito de <strong>vetorização</strong></p>
 
 </article></slide><slide class=''><hgroup><h2>Vetorização</h2></hgroup><article  id="vetorizacao" class="build">
 
 <ul>
-<li>Vetores no R são cadeias ordenadas de elementos, geralmente números ou palavras</li>
-<li>Vetores são objetos que guardam dados</li>
+<li>Vetores no R são cadeias ordenadas de elementos</li>
 <li>R aceita vetores em quase todas as suas funções</li>
-<li>Para lembrar: <em>loops</em> no R são sofrivelmente ineficientes</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Vetorização</h2></hgroup><article  id="vetorizacao-1">
@@ -605,7 +478,7 @@ log10(nums)</pre>
 
 <pre >## [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700</pre>
 
-<pre class = 'prettyprint lang-r'>2^nums</pre>
+<pre class = 'prettyprint lang-r'>2 ^ nums</pre>
 
 <pre >## [1]  2  4  8 16 32</pre>
 
@@ -614,9 +487,7 @@ log10(nums)</pre>
 <p>Funções vetorizadas&#8230;</p>
 
 <ul>
-<li>são (muito) mais velozes</li>
-<li>estão implementadas em lingaguens de baixo nível (FORTRAN, C ou C++)</li>
-<li>são algoritmos testados e feitos por especialistas</li>
+<li>(muito) mais velozes</li>
 <li>funcionam para diferentes tipos de objetos passados à elas</li>
 </ul>
 
@@ -624,8 +495,8 @@ log10(nums)</pre>
 
 <p>Exemplo: soma de vetores de tamanhos diferentes.</p>
 
-<pre class = 'prettyprint lang-r'>x &lt;- c(1,5)
-y &lt;- c(1,10,100,1000)
+<pre class = 'prettyprint lang-r'>x &lt;- c(1, 5)
+y &lt;- c(1, 10, 100, 1000)
 x + y</pre>
 
 <pre >## [1]    2   15  101 1005</pre>
@@ -645,11 +516,10 @@ nome_da_funcao(param1, param2, ...)</pre>
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-1">
 
 <ul>
-<li>Funções também são objetos! (tudo à esquerda de <code>&lt;-</code> vira objeto no R)</li>
+<li>Funções também são objetos!</li>
 <li>Funções podem ser passadas como argumentos de outras funções</li>
-<li>Use suas funções como se tivessem vindas com o R: <code>nome_da_funcao(...)</code></li>
-<li>Crie uma função sempre que for repetir o código e for mudar poucas coisas entre essas repetições</li>
-<li>Crie funções se esta puder ser generalizada para a tarefa específica em que sua implementação foi motivada</li>
+<li>Use suas funções assim: <code>nome_da_funcao(...)</code></li>
+<li>Crie uma função sempre que repetir o código</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-2">
@@ -660,12 +530,6 @@ nome_da_funcao(param1, param2, ...)</pre>
 </b>  # faz coisas com os parâmetros
   resultado
 }</pre>
-
-<ul>
-<li>Parâmetros são objetos cujos valores devem ser atribuídos pelo usuário</li>
-<li>Funções aceitam quantos parâmetros precisar, e de qualquer tipo, inclusive nada (<code>NULL</code>)</li>
-<li>Os nomes dos parâmetros se tornarão objetos que só poderão ser usados dentro da função</li>
-</ul>
 
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-3">
 
@@ -690,26 +554,14 @@ ecoar(&quot;eco&quot;)</pre>
 
 <p><strong>Parâmetros relativos</strong></p>
 
-<p>Um parâmetro pode usar outro parâmetro como valor padrão.</p>
-
 <pre class = 'prettyprint lang-r'># Função que desenha um histograma
 <b>histograma &lt;- function(numeros, xlab = &quot;x&quot;, titulo = paste(&quot;Histograma de&quot;, xlab)) {
 </b>  hist(numeros, xlab = xlab, main = titulo)
 }</pre>
 
-<p>O parâmetro <code>titulo</code> usa o parâmetro <code>xlab</code> para compor seu valor padrão.</p>
-
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-5">
 
 <p><strong>Ordem ou nome dos parâmetros</strong></p>
-
-<p>Funções entenderão os parâmetros passados&#8230;</p>
-
-<ul>
-<li>se forem passados com o nome, mesmo que fora da ordem</li>
-<li>se forem passados na ordem, mesmo que sem o nome</li>
-<li>se não houver ambiguidade, o R aceita parte do nome do parâmetro</li>
-</ul>
 
 <pre class = 'prettyprint lang-r'># As quatro linhas abaixo resultam no mesmo gráfico
 histograma(altura, &quot;altura&quot;)                  # na ordem
@@ -720,10 +572,6 @@ histograma(altura, xl = &quot;altura&quot;)             # parte do nome</pre>
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-6">
 
 <p><strong>Parâmetro &#39;&#8230;&#39;</strong></p>
-
-<ul>
-<li>Utilidade 1: o número de argumentos é indefinido</li>
-</ul>
 
 <pre class = 'prettyprint lang-r'>args(paste)</pre>
 
@@ -738,10 +586,6 @@ paste(&quot;Eu&quot;, &quot;sou&quot;, &quot;o&quot;, &quot;capitão&quot;, &quo
 </article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-7">
 
 <p><strong>Parâmetro &#39;&#8230;&#39;</strong></p>
-
-<ul>
-<li>Utilidade 2: os parâmetros extras serão passados a uma terceira função que tem muitos parâmetros</li>
-</ul>
 
 <pre class = 'prettyprint lang-r'>histograma &lt;- function(numeros, xlab = &quot;x&quot;, 
                        titulo = paste(&quot;Histograma de&quot;, xlab), ...) {
@@ -789,76 +633,12 @@ g(2)</pre>
 
 <pre >## [1] 2.718282</pre>
 
-</article></slide><slide class=''><hgroup><h2>Funções</h2></hgroup><article  id="funcoes-10">
-
-<p><strong>Escopo</strong></p>
-
-<ul>
-<li>Objetos moram em <strong>ambientes</strong> (<em>environments</em>)</li>
-<li>As funções as procuram os objetos que precisam usar nesses <em>environments</em></li>
-<li>A ordem de procura segue a regra do mais específico até o ambiente global (<code>.GlobalEnv</code>)</li>
-<li>Se nada for encontrado, retorna um erro</li>
-<li>Se houver dois objetos com o mesmo nome, prevalece o mais específico (o primeiro que for encontrado)</li>
-</ul>
-
 </article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias" class="build">
 
 <pre class = 'prettyprint lang-r'>dnorm(x, mean = 0, sd = 1, log = FALSE)
 pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 rnorm(n, mean = 0, sd = 1)</pre>
-
-</article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias-1">
-
-<ul>
-<li><strong>d</strong> (&quot;density&quot;) Densidade da Normal, ou f.d.p da Normal</li>
-<li><strong>p</strong> (&quot;probability&quot;) Função de distribuição acumulada (f.d.a) da Normal</li>
-<li><strong>q</strong> (&quot;quantile&quot;) Quantil da Normal</li>
-<li><strong>r</strong> (&quot;random&quot;) Gera um número vindo de uma Normal</li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>Variáveis aleatórias</h2></hgroup><article  id="variaveis-aleatorias-2" class="smaller">
-
-<p>No lugar de <code>norm</code>, você pode trocar por outra distribuição de probabilidade.</p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="center">Distribuição</th>
-<th align="center">Apelido</th>
-</tr>
-<tr class="odd">
-<td align="center">Normal</td>
-<td align="center">norm</td>
-</tr>
-<tr class="even">
-<td align="center">Uniforme</td>
-<td align="center">unif</td>
-</tr>
-<tr class="odd">
-<td align="center">Beta</td>
-<td align="center">beta</td>
-</tr>
-<tr class="even">
-<td align="center">Chi Quadrado</td>
-<td align="center">chisq</td>
-</tr>
-<tr class="odd">
-<td align="center">Exponencial</td>
-<td align="center">exp</td>
-</tr>
-<tr class="even">
-<td align="center">F de Snedecor</td>
-<td align="center">f</td>
-</tr>
-<tr class="odd">
-<td align="center">Gama</td>
-<td align="center">gamma</td>
-</tr>
-<tr class="even">
-<td align="center">Poisson</td>
-<td align="center">pois</td>
-</tr>
-</table>
 
 </article></slide><slide class=''><hgroup><h2>Vocabulário</h2></hgroup><article  id="vocabulario">
 
