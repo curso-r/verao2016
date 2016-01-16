@@ -31,6 +31,8 @@ markdown: kramdown
 mathjax: true
     
 
+categories: post, exercicio, lab
+
 # highlight
 # highlighter: pygments
 # highlighter: rouge
