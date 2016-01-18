@@ -148,7 +148,7 @@
 <li>Comunidade ativa e crescente</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Prós e contras do R vs. outros pacotes estatísticos</h2></hgroup><article  id="pros-e-contras-do-r-vs.-outros-pacotes-estatisticos">
+</article></slide><slide class=''><hgroup><h2>R vs. outros pacotes estatísticos</h2></hgroup><article  id="r-vs.-outros-pacotes-estatisticos">
 
 <div class="red2">
 <p><strong>Por que SAS/SPSS é preferido pelas empresas?</strong></p></div>
@@ -160,7 +160,7 @@
 <li>SAS é um &quot;canivete suíço&quot;.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>R vs. outros pacotes estatísticos</h2></hgroup><article  id="r-vs.-outros-pacotes-estatisticos">
+</article></slide><slide class=''><hgroup><h2>R vs. outros pacotes estatísticos</h2></hgroup><article  id="r-vs.-outros-pacotes-estatisticos-1">
 
 <div class="red2">
 <p><strong>O R é excelente em</strong></p></div>

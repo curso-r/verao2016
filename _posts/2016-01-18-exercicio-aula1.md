@@ -294,7 +294,7 @@ mean(x)
 
 
 {% highlight text %}
-## [1] 0.4488042
+## [1] 0.5177623
 {% endhighlight %}
 </div>
 <button type = "button" onclick="toggle(11);" class = "btn btn-success">+</button>
@@ -313,7 +313,7 @@ mean(x, na.rm = T)
 
 
 {% highlight text %}
-## [1] 0.4844457
+## [1] 0.4428363
 {% endhighlight %}
 </div>
 <button type = "button" onclick="toggle(12);" class = "btn btn-success">+</button>

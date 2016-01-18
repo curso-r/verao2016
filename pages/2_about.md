@@ -71,3 +71,22 @@ Aulas (12h), exercícios para casa e resultados do laboratório (12h).
 **Critérios:**
 
 Média ponderada dos laboratórios.
+
+### Instalação do R
+
+- [R cran para windows](https://cran.r-project.org/bin/windows/base/R-3.2.3-win.exe)
+- [RStudio para windows](https://s3.amazonaws.com/rstudio-dailybuilds/RStudio-0.99.858.exe  )
+- [RTools para windows](https://cran.r-project.org/bin/windows/Rtools/Rtools33.exe)
+- [Git para windows](https://github.com/git-for-windows/git/releases/download/v2.7.0.windows.1/Git-2.7.0-32-bit.exe)
+- Depois de instalar tudo (nessa ordem), Abrir RStudio e rodar
+
+```
+install.packages('devtools')
+devtools::install_github('curso-r/mcUFSCar2015')
+devtools::install_github('abjur/abjutils')
+```
+- RStudio > New Project > Version Control > Git
+- preencher com [https://github.com/curso-r/verao2016](https://github.com/curso-r/verao2016) em
+"Repository URL" e dar OK
+- A cada novo dia de aula, dar um 'git pull'
+

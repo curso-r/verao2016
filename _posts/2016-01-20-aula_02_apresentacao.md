@@ -536,7 +536,7 @@ x %&gt;% sum %&gt;% sqrt</pre>
 
 <pre class = 'prettyprint lang-r'>T %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
-<pre >## [1] 0.005266111</pre>
+<pre >## [1] -0.02074869</pre>
 
 <pre class = 'prettyprint lang-r'>F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
 
@@ -574,12 +574,12 @@ for (i in 1:ncol(mat)){
 }
 m</pre>
 
-<pre >## [1]  0.02276846 -0.09944701  0.01373704</pre>
+<pre >## [1] -0.20720821 -0.09519537 -0.04131554</pre>
 
 <pre class = 'prettyprint lang-r'>aaply(mat, 2, mean)</pre>
 
 <pre >##           1           2           3 
-##  0.02276846 -0.09944701  0.01373704</pre>
+## -0.20720821 -0.09519537 -0.04131554</pre>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr-2">
 
@@ -591,12 +591,12 @@ for(i in unique(df$x)){
 }
 m</pre>
 
-<pre >## [1]  0.04639145 -0.05073899 -0.01455668  0.23720644</pre>
+<pre >## [1]  0.07584459 -0.03224417 -0.02603115  0.05535181</pre>
 
 <pre class = 'prettyprint lang-r'>library(magrittr)
 daply(df, .(x), colwise(mean)) %&gt;% as.numeric()</pre>
 
-<pre >## [1]  0.04639145 -0.05073899 -0.01455668  0.23720644</pre>
+<pre >## [1]  0.07584459 -0.03224417 -0.02603115  0.05535181</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 
