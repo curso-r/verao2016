@@ -80,11 +80,12 @@ Média ponderada dos laboratórios.
 - [Git para windows](https://github.com/git-for-windows/git/releases/download/v2.7.0.windows.1/Git-2.7.0-32-bit.exe)
 - Depois de instalar tudo (nessa ordem), Abrir RStudio e rodar
 
-```
+{% highlight r %}
 install.packages('devtools')
 devtools::install_github('curso-r/mcUFSCar2015')
 devtools::install_github('abjur/abjutils')
-```
+{% endhighlight %}
+
 - RStudio > New Project > Version Control > Git
 - preencher com [https://github.com/curso-r/verao2016](https://github.com/curso-r/verao2016) em
 "Repository URL" e dar OK
