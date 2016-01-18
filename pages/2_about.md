@@ -88,5 +88,5 @@ devtools::install_github('abjur/abjutils')
 - RStudio > New Project > Version Control > Git
 - preencher com [https://github.com/curso-r/verao2016](https://github.com/curso-r/verao2016) em
 "Repository URL" e dar OK
-- A cada novo dia de aula, dar um 'git pull'
+- A cada novo dia de aula, dar um 'git pull'. 
 
