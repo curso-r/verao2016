@@ -36,7 +36,7 @@ Como se trata de um exercício de programação, o relatório deverá conter:
 
 1. Uma função em R, chamada `moeda` com o parâmetro `p` a probabilidade de ser cara. A função deve retornar 1 se o resultado do lançamento for cara e 0 caso contrário.
 
-2. Uma função chamada `moedas` com os parâmetro `n` e ` p` que simula o lançamento de `n` moedas com probabilidade `p` de serem cara e retorna um vetor de 0's e 1's com os resultados obtidos em cada um dos lançamentos.
+2. Uma função chamada `moedas` com os parâmetros `n` e `p` que simula o lançamento de `n` moedas com probabilidade `p` de serem cara e retorna um vetor de 0's e 1's com os resultados obtidos em cada um dos lançamentos.
 
 3. Uma função chamada `proporcao` com parâmetro `resultados` (que é um vetor de 0's e 1's) e retorna a proporção de 1's neste vetor.
 
