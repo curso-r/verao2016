@@ -76,7 +76,7 @@ print(0.3/3, digits = 16)
 a) Como você faria para permutar aleatoriamente as colunas?
 
 <div id="q3a"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 data(diamonds, package = 'ggplot2')
 diamonds[, sample(names(diamonds))]
 ```
@@ -93,7 +93,7 @@ Não, pois a ordem importa.
 c) Como ordenar as colunas do banco de dados em ordem alfabética?
 
 <div id="q3c"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 data(diamonds, package = 'ggplot2')
 diamonds[, sort(names(diamonds))]
 ```
@@ -179,7 +179,7 @@ qplot(x = sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T))
 ```
 
 <div id="q8"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 library(magrittr)
 x %>% 
   seq(1, 10, .) %>% 
@@ -217,7 +217,7 @@ plot(x, y, type = "l")
 a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.
 
 <div id="q10a"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 ```
 </div>
@@ -225,7 +225,7 @@ plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 
 b) Acrescente um título ao grafico.
 <div id="q10b"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 title('Meu titulo :D')
 ```
@@ -233,7 +233,7 @@ title('Meu titulo :D')
 <button type = "button" onclick="toggle('10b');" class = "btn btn-success">+</button>
 
 c) Acrescente uma reta vertical pontilhada no ponto x = 0.
-```{r}
+```{r eval=FALSE}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 abline(v = 0, lty = 2)
 ```
@@ -244,7 +244,7 @@ abline(v = 0, lty = 2)
 
 d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
 <div id="q10d"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 abline(v = 0, lty = 2)
 legend(x = -2, y = -1, legend = 'legenda')
@@ -255,11 +255,8 @@ legend(x = -2, y = -1, legend = 'legenda')
 **11**. Como construir dois gráficos na mesma janela?
 
 <div id="q11"  style="display:none;" class="answer_list">
-```{r}
+```{r eval=FALSE}
 par(mfrow = c(1, 2)) # ver ?par
 ```
 </div>
 <button type = "button" onclick="toggle('11');" class = "btn btn-success">+</button>
-
-
-
