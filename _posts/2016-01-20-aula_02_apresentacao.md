@@ -92,7 +92,7 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Estruturas de dados no R</h2></hgroup><article  id="estruturas-de-dados-no-r" class="build">
+<slide class=''><hgroup><h2>Estruturas de dados no R</h2></hgroup><article  id="estruturas-de-dados-no-r">
 
 <p>Tipos básicos de estrutura no R:</p>
 
@@ -131,7 +131,7 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <p><strong>Curiosidade</strong>: na função <code>c()</code>, o <em>c</em> é de <em>concatenate</em>.</p>
 
-</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-2" class="build">
+</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-2">
 
 <p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof()</code>.</p>
 
@@ -143,6 +143,10 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <pre >## [1] &quot;integer&quot;</pre>
 
+</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-3">
+
+<p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof()</code>.</p>
+
 <pre class = 'prettyprint lang-r'>typeof(var3)</pre>
 
 <pre >## [1] &quot;logical&quot;</pre>
@@ -151,7 +155,7 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <pre >## [1] &quot;character&quot;</pre>
 
-</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-3" class="build">
+</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-4" class="build">
 
 <p>Funções <code>is.xxx()</code>.</p>
 
@@ -167,7 +171,7 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 
 <pre >## [1] TRUE</pre>
 
-</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-4" class="build">
+</article></slide><slide class=''><hgroup><h2>Atomic Vectors</h2></hgroup><article  id="atomic-vectors-5" class="build">
 
 <pre class = 'prettyprint lang-r'>is.logical(var3)</pre>
 
@@ -176,8 +180,6 @@ var4 &lt;- c(&quot;essas são&quot;, &quot;algumas strings&quot;)</pre>
 <pre class = 'prettyprint lang-r'>is.character(var4)</pre>
 
 <pre >## [1] TRUE</pre>
-
-<p><strong>Nota:</strong> <code>is.numeric()</code> retorna <code>TRUE</code> tanto para objetos double quanto para integer.</p>
 
 </article></slide><slide class=''><hgroup><h2>Coerção</h2></hgroup><article  id="coercao">
 
@@ -244,15 +246,13 @@ as.numeric(f)</pre>
 
 <p>Funções <code>matrix()</code> e <code>array()</code>.</p>
 
-<pre class = 'prettyprint lang-r'># Um vetor para descrever todas as dimensões
-arr &lt;- array(1:12, c(3,2,2))
+<pre class = 'prettyprint lang-r'>vet &lt;- c(1, 2, 3)
 
 # Dois argumentos para determinar o número de linahs e colunas
-mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
+mat &lt;- matrix(1:6, ncol = 3, nrow = 2)
 
-<p>Essas estruturas apresentam o atribuito <em>dimensão</em>.</p>
-
-<p><strong>Nota</strong>: observe que uma matriz é um array com duas dimensões.</p>
+# Um vetor para descrever todas as dimensões
+arr &lt;- array(1:12, dim = c(3, 2, 2))</pre>
 
 </article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos">
 
@@ -260,41 +260,23 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos-1" class="build">
 
-<pre class = 'prettyprint lang-r'>dim(c(1, 2, 3))</pre>
+<pre class = 'prettyprint lang-r'>dim(vet)</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>nrow(c(1, 2, 3))</pre>
+<pre class = 'prettyprint lang-r'>nrow(vet)</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>ncol(c(1, 2, 3))</pre>
+<pre class = 'prettyprint lang-r'>ncol(vet)</pre>
 
 <pre >## NULL</pre>
 
-<pre class = 'prettyprint lang-r'>length(c(1, 2, 3))</pre>
+<pre class = 'prettyprint lang-r'>length(vet)</pre>
 
 <pre >## [1] 3</pre>
 
 </article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos-2" class="build">
-
-<pre class = 'prettyprint lang-r'>dim(arr)</pre>
-
-<pre >## [1] 3 2 2</pre>
-
-<pre class = 'prettyprint lang-r'>length(arr)</pre>
-
-<pre >## [1] 12</pre>
-
-<pre class = 'prettyprint lang-r'>nrow(arr)</pre>
-
-<pre >## [1] 3</pre>
-
-<pre class = 'prettyprint lang-r'>ncol(arr)</pre>
-
-<pre >## [1] 2</pre>
-
-</article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos-3" class="build">
 
 <pre class = 'prettyprint lang-r'>dim(mat)</pre>
 
@@ -312,6 +294,24 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
 <pre >## [1] 3</pre>
 
+</article></slide><slide class=''><hgroup><h2>Dimensões e comprimentos</h2></hgroup><article  id="dimensoes-e-comprimentos-3" class="build">
+
+<pre class = 'prettyprint lang-r'>dim(arr)</pre>
+
+<pre >## [1] 3 2 2</pre>
+
+<pre class = 'prettyprint lang-r'>length(arr)</pre>
+
+<pre >## [1] 12</pre>
+
+<pre class = 'prettyprint lang-r'>nrow(arr)</pre>
+
+<pre >## [1] 3</pre>
+
+<pre class = 'prettyprint lang-r'>ncol(arr)</pre>
+
+<pre >## [1] 2</pre>
+
 </article></slide><slide class=''><hgroup><h2>Listas e Data frames</h2></hgroup><article  id="listas-e-data-frames">
 
 <p>Função <code>list()</code>.</p>
@@ -321,14 +321,24 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
   c(&quot;homem&quot;, &quot;mulher&quot;),
   c(T, F, T),
   list(c(1,2,3), c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
-)</pre>
+)
+lista</pre>
+
+</article></slide><slide class=''><hgroup><h2>Listas e Data frames</h2></hgroup><article  id="listas-e-data-frames-1">
 
 <ul>
-<li>Data frames: listas com todos os elementos de mesmo comprimento.</li>
+<li><strong>Data frames</strong>: listas com todos os elementos de mesmo comprimento.</li>
 <li>Definidos usando a função <code>data.frame()</code>.</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)</pre>
+<pre class = 'prettyprint lang-r'>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
+df</pre>
+
+<pre >##   x  y    z
+## 1 1 oi TRUE
+## 2 2 oi TRUE
+## 3 3 oi TRUE
+## 4 4 oi TRUE</pre>
 
 </article></slide><slide class=''><hgroup><h2>Diferença entre data.frame e matrix</h2></hgroup><article  id="diferenca-entre-data.frame-e-matrix">
 
@@ -336,7 +346,7 @@ mat &lt;- matrix(1:6, ncol = 3, nrow = 2)</pre>
 
 <p>No <code>data.frame</code> do slide anterior, a variável <code>z</code> só foi definida para a primeira linha?</p>
 
-</article></slide><slide class=''><hgroup><h2>data.frames e factors</h2></hgroup><article  id="data.frames-e-factors" class="build">
+</article></slide><slide class=''><hgroup><h2>data.frames e factors</h2></hgroup><article  id="data.frames-e-factors">
 
 <pre class = 'prettyprint lang-r'>df &lt;- data.frame(x = 1:4, y = c(&quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;, &quot;oi&quot;), z = T)
 str(df)</pre>
@@ -395,7 +405,7 @@ df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Subsetting</h2></hgroup><article  id="subsetting" class="build">
 
-<p>Chamamos de <em>subsetting</em> a seleção de um subconjunto de um objeto. No R, existem três tipos principais de operação de subsetting:</p>
+<p><em>subsetting</em>: seleção de um subconjunto de um objeto.</p>
 
 <ul>
 <li>Números inteiros positivos</li>
@@ -406,7 +416,7 @@ df2 &lt;- data.frame(x = 1:2, y = c(&quot;n&quot;, &quot;n&quot;), z = F)</pre>
 </article></slide><slide class=''><hgroup><h2>Números inteiros positivos</h2></hgroup><article  id="numeros-inteiros-positivos" class="build">
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(13, 8, 5, 3, 2, 1, 1) 
-x[c(1,2,3)]</pre>
+x[c(1, 2, 3)]</pre>
 
 <pre >## [1] 13  8  5</pre>
 
@@ -420,7 +430,7 @@ x[c(1,2,3)]</pre>
 
 </article></slide><slide class=''><hgroup><h2>Números inteiros negativos</h2></hgroup><article  id="numeros-inteiros-negativos" class="build">
 
-<pre class = 'prettyprint lang-r'>x[-c(2, 5,6)]</pre>
+<pre class = 'prettyprint lang-r'>x[-c(2, 5, 6)]</pre>
 
 <pre >## [1] 13  5  3  1</pre>
 
@@ -430,7 +440,7 @@ x[c(1,2,3)]</pre>
 
 <pre >## [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>x[x==1]</pre>
+<pre class = 'prettyprint lang-r'>x[x == 1]</pre>
 
 <pre >## [1] 1 1</pre>
 
@@ -438,13 +448,13 @@ x[c(1,2,3)]</pre>
 
 <pre >## [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</pre>
 
-<pre class = 'prettyprint lang-r'>x[x&gt;5]</pre>
+<pre class = 'prettyprint lang-r'>x[x &gt; 5]</pre>
 
 <pre >## [1] 13  8</pre>
 
 </article></slide><slide class=''><hgroup><h2>Outras dimensões</h2></hgroup><article  id="outras-dimensoes" class="build">
 
-<pre class = 'prettyprint lang-r'>m &lt;- matrix(c(1:5, 11:15), nrow=5, ncol=2)
+<pre class = 'prettyprint lang-r'>m &lt;- matrix(c(1:5, 11:15), nrow = 5, ncol = 2)
 m</pre>
 
 <pre >##      [,1] [,2]
@@ -456,39 +466,29 @@ m</pre>
 
 </article></slide><slide class=''><hgroup><h2>Outras dimensões</h2></hgroup><article  id="outras-dimensoes-1" class="build">
 
-<pre class = 'prettyprint lang-r'>m[5,2] # Retorna o elemento especificado pelos índices.</pre>
+<pre class = 'prettyprint lang-r'>m[5, 2] # Retorna o elemento especificado pelos índices.</pre>
 
 <pre >## [1] 15</pre>
 
-<pre class = 'prettyprint lang-r'>m[,1] # Retorna todos os elementos da coluna 1.</pre>
+<pre class = 'prettyprint lang-r'>m[, 1] # Retorna todos os elementos da coluna 1.</pre>
 
 <pre >## [1] 1 2 3 4 5</pre>
 
-<pre class = 'prettyprint lang-r'>m[3,] # Retorna todos os elementos da linha 3.</pre>
+<pre class = 'prettyprint lang-r'>m[3, ] # Retorna todos os elementos da linha 3.</pre>
 
 <pre >## [1]  3 13</pre>
 
-<pre class = 'prettyprint lang-r'>m[m%%2 == 0] # Retorna os elementos pares.</pre>
+<pre class = 'prettyprint lang-r'>m[m %% 2 == 0] # Retorna os elementos pares.</pre>
 
 <pre >## [1]  2  4 12 14</pre>
 
 </article></slide><slide class=''><hgroup><h2>Alterando valores usando subsetting</h2></hgroup><article  id="alterando-valores-usando-subsetting" class="build">
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(13, 8, 5, 3, 2, 1, 1) 
-x[x&gt;5] &lt;- 0
+x[x &gt; 5] &lt;- 0
 x</pre>
 
 <pre >## [1] 0 0 5 3 2 1 1</pre>
-
-</article></slide><slide class=''><hgroup><h2>Leitura de dados</h2></hgroup><article  id="leitura-de-dados">
-
-<p>Para ler um banco de dados no R usamos a função <code>read.table()</code>. A seguir estão os principais argumentos dessa função e sua descrição:</p>
-
-<pre class = 'prettyprint lang-r'>help(read.table)</pre>
-
-</article></slide><slide class=''><hgroup><h2>Ler arquivo no R</h2></hgroup><article  id="ler-arquivo-no-r">
-
-<p>Vá para o R!</p>
 
 </article></slide><slide class=''><hgroup><h2>Estatísticas básicas</h2></hgroup><article  id="estatisticas-basicas">
 
@@ -506,8 +506,8 @@ x</pre>
 
 </article></slide><slide class=''><hgroup><h2>Uso do %&gt;%</h2></hgroup><article  id="uso-do" class="build">
 
-<pre class = 'prettyprint lang-r'>x &lt;- c(1,2,3,4)
-x %&gt;% sum %&gt;% sqrt</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- c(1, 2, 3, 4)
+x %&gt;% sum %&gt;% sqrt # ou x %&gt;% sum() %&gt;% sqrt()</pre>
 
 <pre >## [1] 3.162278</pre>
 
@@ -515,7 +515,7 @@ x %&gt;% sum %&gt;% sqrt</pre>
 
 <pre >## [1] 3.162278</pre>
 
-</article></slide><slide class=''><hgroup><h2>Uso do %&gt;%</h2></hgroup><article  id="uso-do-1">
+</article></slide><slide class=''><hgroup><h2>Por quê o pipe é legal?</h2></hgroup><article  id="por-que-o-pipe-e-legal">
 
 <pre class = 'prettyprint lang-r'>esfrie(asse(coloque(bata(acrescente(recipiente(
   rep(&quot;farinha&quot;, 2), &quot;água&quot;, &quot;fermento&quot;, &quot;leite&quot;, &quot;óleo&quot;), 
@@ -523,7 +523,7 @@ x %&gt;% sum %&gt;% sqrt</pre>
   lugar = &quot;forma&quot;, tipo = &quot;grande&quot;, 
   untada = T), duração = &quot;50min&quot;), &quot;geladeira&quot;, &quot;20min&quot;)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Uso do %&gt;%</h2></hgroup><article  id="uso-do-2">
+</article></slide><slide class=''><hgroup><h2>Legibilidade!</h2></hgroup><article  id="legibilidade">
 
 <pre class = 'prettyprint lang-r'>recipiente(rep(&quot;farinha&quot;, 2), &quot;água&quot;, &quot;fermento&quot;, &quot;leite&quot;, &quot;óleo&quot;) %&gt;%
   acrescente(&quot;farinha&quot;, até = &quot;macio&quot;) %&gt;%
@@ -532,15 +532,32 @@ x %&gt;% sum %&gt;% sqrt</pre>
   asse(duração = &quot;50min&quot;) %&gt;%
   esfrie(&quot;geladeira&quot;, &quot;20min&quot;)</pre>
 
-</article></slide><slide class=''><hgroup><h2>Uso do %&gt;%</h2></hgroup><article  id="uso-do-3" class="build">
+<ul>
+<li>Mais rápido de escrever</li>
+<li>Mais fácil de ler</li>
+</ul>
 
-<pre class = 'prettyprint lang-r'>T %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
+</article></slide><slide class=''><hgroup><h2>Uso do <code>%&gt;%</code> com <code>.</code></h2></hgroup><article  id="uso-do-com-.">
 
-<pre >## [1] -0.02074869</pre>
+<pre class = 'prettyprint lang-r'>TRUE %&gt;% mean(c(NA, 1:101), na.rm = .)</pre>
 
-<pre class = 'prettyprint lang-r'>F %&gt;% mean(c(NA, rnorm(100)), na.rm = .)</pre>
+<pre >## [1] 51</pre>
+
+<pre class = 'prettyprint lang-r'>FALSE %&gt;% mean(c(NA, 1:101), na.rm = .)</pre>
 
 <pre >## [1] NA</pre>
+
+</article></slide><slide class=''><hgroup><h2>Exercício</h2></hgroup><article  id="exercicio" class="build">
+
+<ul>
+<li>Reproduza o código <code>TRUE %&gt;% mean(c(NA, 1:101), na.rm = .)</code>, começando com <code>1:101</code>.</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>1:101 %&gt;% 
+  c(NA) %&gt;% 
+  mean(na.rm = TRUE)</pre>
+
+<pre >## [1] 51</pre>
 
 </article></slide><slide class=''><hgroup><h2>Gráficos simples</h2></hgroup><article  id="graficos-simples">
 
@@ -549,7 +566,7 @@ y &lt;- exp(-x)
 
 plot(x, y)</pre>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-20-aula_02_apresentacao_files/figure-html/unnamed-chunk-33-1.png" title="" alt="" width="720" /></p>
+<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-20-aula_02_apresentacao_files/figure-html/unnamed-chunk-34-1.png" title="" alt="" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr">
 
@@ -574,12 +591,12 @@ for (i in 1:ncol(mat)){
 }
 m</pre>
 
-<pre >## [1] -0.20720821 -0.09519537 -0.04131554</pre>
+<pre >## [1] -0.16329483  0.03097241  0.01167708</pre>
 
 <pre class = 'prettyprint lang-r'>aaply(mat, 2, mean)</pre>
 
 <pre >##           1           2           3 
-## -0.20720821 -0.09519537 -0.04131554</pre>
+## -0.16329483  0.03097241  0.01167708</pre>
 
 </article></slide><slide class=''><hgroup><h2>plyr</h2></hgroup><article  id="plyr-2">
 
@@ -591,12 +608,12 @@ for(i in unique(df$x)){
 }
 m</pre>
 
-<pre >## [1]  0.07584459 -0.03224417 -0.02603115  0.05535181</pre>
+<pre >## [1] -0.28840373 -0.34164252 -0.17856508 -0.09292708</pre>
 
 <pre class = 'prettyprint lang-r'>library(magrittr)
 daply(df, .(x), colwise(mean)) %&gt;% as.numeric()</pre>
 
-<pre >## [1]  0.07584459 -0.03224417 -0.02603115  0.05535181</pre>
+<pre >## [1] -0.28840373 -0.34164252 -0.17856508 -0.09292708</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
 

@@ -17,7 +17,7 @@ library(pander)
 panderOptions("table.style", "rmarkdown")
 ```
 
-## Estruturas de dados no R {.build}
+## Estruturas de dados no R
 
 Tipos básicos de estrutura no R:
 
@@ -54,13 +54,20 @@ var4 <- c("essas são", "algumas strings")
 
 **Curiosidade**: na função `c()`, o *c* é de *concatenate*.
 
-## Atomic Vectors {.build}
+## Atomic Vectors
 
 Para saber qual é o tipo de um objeto, utilizamos a função `typeof()`.
 
 ```{r tipos}
 typeof(var1)
 typeof(var2)
+```
+
+## Atomic Vectors
+
+Para saber qual é o tipo de um objeto, utilizamos a função `typeof()`.
+
+```{r}
 typeof(var3)
 typeof(var4)
 ```
@@ -81,8 +88,6 @@ is.numeric(var1)
 is.logical(var3)
 is.character(var4)
 ```
-
-**Nota:** `is.numeric()` retorna `TRUE` tanto para objetos double quanto para integer.
 
 ## Coerção
 
@@ -136,16 +141,14 @@ as.numeric(as.character(f))
 Funções `matrix()` e `array()`.
 
 ```{r}
-# Um vetor para descrever todas as dimensões
-arr <- array(1:12, c(3,2,2))
+vet <- c(1, 2, 3)
 
 # Dois argumentos para determinar o número de linahs e colunas
 mat <- matrix(1:6, ncol = 3, nrow = 2)
+
+# Um vetor para descrever todas as dimensões
+arr <- array(1:12, dim = c(3, 2, 2))
 ```
-
-Essas estruturas apresentam o atribuito *dimensão*.
-
-**Nota**: observe que uma matriz é um array com duas dimensões.
 
 ## Dimensões e comprimentos
 
@@ -154,19 +157,10 @@ As funções `length()`, `dim()`, `nrow()`, `ncol()` são usadas para determinar
 ## Dimensões e comprimentos {.build}
 
 ```{r}
-dim(c(1, 2, 3))
-nrow(c(1, 2, 3))
-ncol(c(1, 2, 3))
-length(c(1, 2, 3))
-```
-
-## Dimensões e comprimentos {.build}
-
-```{r}
-dim(arr)
-length(arr)
-nrow(arr)
-ncol(arr)
+dim(vet)
+nrow(vet)
+ncol(vet)
+length(vet)
 ```
 
 ## Dimensões e comprimentos {.build}
@@ -176,6 +170,15 @@ dim(mat)
 length(mat)
 nrow(mat)
 ncol(mat)
+```
+
+## Dimensões e comprimentos {.build}
+
+```{r}
+dim(arr)
+length(arr)
+nrow(arr)
+ncol(arr)
 ```
 
 ## Listas e Data frames
@@ -189,13 +192,17 @@ lista <- list(
   c(T, F, T),
   list(c(1,2,3), c("a", "b", "c"))
 )
+lista
 ```
 
-- Data frames: listas com todos os elementos de mesmo comprimento. 
+## Listas e Data frames
+
+- **Data frames**: listas com todos os elementos de mesmo comprimento. 
 - Definidos usando a função `data.frame()`.
 
 ```{r}
 df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
+df
 ```
 
 ## Diferença entre data.frame e matrix
@@ -204,7 +211,7 @@ Qual é a diferença entre `data.frame` e `matrix`?
 
 No `data.frame` do slide anterior, a variável `z` só foi definida para a primeira linha?
 
-## data.frames e factors {.build}
+## data.frames e factors
 
 ```{r}
 df <- data.frame(x = 1:4, y = c("oi", "oi", "oi", "oi"), z = T)
@@ -247,7 +254,7 @@ cbind(df1, df2)
 
 ## Subsetting {.build}
 
-Chamamos de *subsetting* a seleção de um subconjunto de um objeto. No R, existem três tipos principais de operação de subsetting:
+*subsetting*: seleção de um subconjunto de um objeto.
 
 - Números inteiros positivos
 - Números inteiros negativos
@@ -257,7 +264,7 @@ Chamamos de *subsetting* a seleção de um subconjunto de um objeto. No R, exist
 
 ```{r}
 x <- c(13, 8, 5, 3, 2, 1, 1) 
-x[c(1,2,3)]
+x[c(1, 2, 3)]
 order(x)
 x[order(x)]
 ```
@@ -265,54 +272,42 @@ x[order(x)]
 ## Números inteiros negativos {.build}
 
 ```{r}
-x[-c(2, 5,6)]
+x[-c(2, 5, 6)]
 ```
 
 ## Vetores lógicos {.build}
 
 ```{r}
 x == 1
-x[x==1]
+x[x == 1]
 
 x > 5
-x[x>5]
+x[x > 5]
 ```
 
 ## Outras dimensões {.build}
 
 ```{r}
-m <- matrix(c(1:5, 11:15), nrow=5, ncol=2)
+m <- matrix(c(1:5, 11:15), nrow = 5, ncol = 2)
 m
 ```
 
 ## Outras dimensões {.build}
 
 ```{r}
-m[5,2] # Retorna o elemento especificado pelos índices.
-m[,1] # Retorna todos os elementos da coluna 1.
-m[3,] # Retorna todos os elementos da linha 3.
-m[m%%2 == 0] # Retorna os elementos pares.
+m[5, 2] # Retorna o elemento especificado pelos índices.
+m[, 1] # Retorna todos os elementos da coluna 1.
+m[3, ] # Retorna todos os elementos da linha 3.
+m[m %% 2 == 0] # Retorna os elementos pares.
 ```
 
 ## Alterando valores usando subsetting {.build}
 
 ```{r}
 x <- c(13, 8, 5, 3, 2, 1, 1) 
-x[x>5] <- 0
+x[x > 5] <- 0
 x
 ```
-
-## Leitura de dados
-
-Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
-
-```{r, eval  = F}
-help(read.table)
-```
-
-## Ler arquivo no R
-
-Vá para o R!
 
 ## Estatísticas básicas
 
@@ -323,10 +318,13 @@ Vá para o R!
 O logo do nosso curso!
 o operador `%>%` usa o resultado do seu lado esquerdo como primeiro argumento da função do lado direito. "Só" isso!
 Para usar o operador `%>%`, primeiramente devemos instalar o pacote `magrittr` com a função `install.packages()`
+
 ```{r, , eval=FALSE}
 install.packages("magrittr")
 ```
+
 e carregá-lo com a função `library()`
+
 ```{r}
 library(magrittr)
 ```
@@ -334,12 +332,12 @@ library(magrittr)
 ## Uso do %>%  {.build}
 
 ```{r}
-x <- c(1,2,3,4)
-x %>% sum %>% sqrt
+x <- c(1, 2, 3, 4)
+x %>% sum %>% sqrt # ou x %>% sum() %>% sqrt()
 sqrt(sum(x))
 ```
 
-## Uso do %>% 
+## Por quê o pipe é legal?
 
 ```{r, eval=FALSE}
 esfrie(asse(coloque(bata(acrescente(recipiente(
@@ -349,7 +347,7 @@ esfrie(asse(coloque(bata(acrescente(recipiente(
   untada = T), duração = "50min"), "geladeira", "20min")
 ```
 
-## Uso do %>% 
+## Legibilidade!
 
 ```{r, eval = F}
 recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
@@ -360,11 +358,25 @@ recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
   esfrie("geladeira", "20min")
 ```
 
-## Uso do %>% {.build}
+- Mais rápido de escrever
+- Mais fácil de ler
+
+## Uso do `%>%` com `.`
 
 ```{r}
-T %>% mean(c(NA, rnorm(100)), na.rm = .)
-F %>% mean(c(NA, rnorm(100)), na.rm = .)
+TRUE %>% mean(c(NA, 1:101), na.rm = .)
+FALSE %>% mean(c(NA, 1:101), na.rm = .)
+```
+
+## Exercício {.build}
+
+- Reproduza o código `TRUE %>% mean(c(NA, 1:101), na.rm = .)`,
+começando com `1:101`.
+
+```{r}
+1:101 %>% 
+  c(NA) %>% 
+  mean(na.rm = TRUE)
 ```
 
 ## Gráficos simples
