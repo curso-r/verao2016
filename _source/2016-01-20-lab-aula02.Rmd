@@ -9,25 +9,26 @@ tags: lab
 category: lab
 ---
 
-# Leitura de dados
+# Parte 1: Leitura de dados
 
 ```{r, echo=FALSE}
 library(pander)
 panderOptions("table.style", "rmarkdown")
 ```
-## Resumo das maneiras de leitura de dados no R
+
+## Resumo sobre leitura de dados no R
 
 ```{r, echo=FALSE, results='asis'}
-leitura_de_dados <- dplyr::data_frame("Origem" = c("Arquivo (.txt, .csv, ...)"
-                                            ,"Excel"),
-                               "Pacotes e funções" = c("read.table(), read.csv(), read.fwf()"
-                                                       ,"read.xlsx do pacote")) 
+leitura_de_dados <- dplyr::data_frame(
+  "Origem" = c("Arquivo (.txt, .csv, ...)" ,"Excel", 'base SQL'),
+  "Pacotes e funções" = c("read.table(), read.csv(), ... ou pacote readr",
+                          "openxlsx::read.xlsx() ou readxl::read_excel()",
+                          "Pacotes dplyr, RMySQL, RSQLite, ...")) 
 
 pander::pander(leitura_de_dados)
 ```
 
-
-Para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
+Geralmente, para ler um banco de dados no R usamos a função `read.table()`. A seguir estão os principais argumentos dessa função e sua descrição:
 
 - `file =` é uma string contendo o caminho do arquivo quem contem os dados, por exemplo: *"C://users/daniel/Desktop/text.txt"*.
 
@@ -41,48 +42,163 @@ Para ler um banco de dados no R usamos a função `read.table()`. A seguir estã
 
 - `stringsAsFactors =` recebe um valor lógico e indica ao R se as colunas com *strings* devem ser transformadas em fatores, que, como vimos anteriormente, não são muito fáceis de serem trabalhados. Se quiser que este comportamento seja desligado basta usar esse argumento como `FALSE`.
 
-Dito tudo isso, vamos ler o arquivo *arq.txt* que se encontra na pasta *assets/dados/*.
+## Exemplos
 
-```{r}
-#dados <- read.table(file = "assets/dados/arq.txt") # li errado
+Vamos ler o arquivo *arq.txt* que se encontra na pasta `_source/assets/dados/arq.txt` do repositório `verao2016`.
+
+```{r eval=FALSE}
+arq <- '_source/assets/dados/arq.txt'
+dados <- read.table(file = arq)
+```
+
+```{r echo=FALSE, warning=TRUE}
+arq <- 'assets/dados/arq.txt'
+if (file.exists(arq)) {
+  dados <- read.table(file = arq)
+}
 ```
 
 Observe que a função retornou um erro e não leu o arquivo. Isso aconteceu porque o arquivo *arq.txt* tem os seus valores separados por ";" e o *default* do argumento `sep =` é o espaço.
 
 ```{r}
-dados <- read.table(file = "assets/dados/arq.txt", sep = ";") 
+dados <- read.table(file = arq, sep = ";") 
 str(dados)
 ```
 
 Dessa vez o arquivo foi lido e os dados foram salvos no objeto `dados`. No entanto, com o auxílio da função `str()` verificamos que as duas primeiras colunas, que deveriam ser numéricas, foram lidas como fatores. Isso aconteceu porque o separador de casa decimais no arquivo é a "," e, por *default* o R utiliza o ".". Dessa forma, ao encontrar uma vírgula entre os números, o R entende essa sequência de caracteres como uma *string*.
 
-
 ```{r}
-dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",") 
+dados <- read.table(file = arq, sep = ";", dec = ",") 
 str(dados) 
 ```
 
 Mesmo especificando o argumento `dec =` como ",", os dados não estão sendo lidos da maneira correta. Observe que o nome das colunas estão sendo lidos como se fossem um valor de cada variável. Para corrigir isso, devemos utilizar `header = T`.
 
-
 ```{r}
-dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T)
+dados <- read.table(file = arq, sep = ";", dec = ",", header = T)
 str(dados)
 ```
 
-Agora os dados foram lidos corretamente. No entanto, se você não deseja que a variável *cor* seja um fator, utilize `stringsAsFactors = F`.
+Agora os dados foram lidos corretamente. Se você não deseja que a variável *cor* seja um fator, utilize `stringsAsFactors = F`.
 
 ```{r}
-dados <- read.table(file = "assets/dados/arq.txt", sep = ";", dec = ",", header = T, stringsAsFactors = F)
+dados <- read.table(file = arq, sep = ";", dec = ",", header = T, 
+                    stringsAsFactors = F)
 str(dados)
 ```
 
 ## Pacote readr
 
-## Pacote readxl
+O pacote `readr` funciona de maneira similar às funções básicas do R de leitura
+de dados, mas têm padrões contemporâneos e usualmente são mais rápidas. Rode
+por exemplo
 
-## Pacote haven
+```{r eval=FALSE}
+library(readr)
+?read_table
+```
 
-## Pacote RMySQL
+para obter detalhes
 
+## Pacotes openxlsx e readxl
+
+Os pacotes `openxlsx` e `readxl` ajudam a ler dados de planilhas Excel. Temos
+duas principais diferenças entre os pacotes:
+
+- O pacote `openxlsx` além de possibilitar a leitura de dados com `read.xlsx`, também exporta para Excel com o comando `write.xlsx`.
+- O pacote `readxl` é mais rápido na leitura com `read_excel` e aceita formatos de dados mais antigos (arquivos `.xls`)
+
+## Arquivos binários
+
+O R contém dois tipos de estruturas de dados binários, `.rds` e `.RData` (ou `.rda`).
+
+- Com as funções `save()` e `load()` é possível salvar em formato `.RData`.
+- Com as funções `saveRDS()` e `readRDS()` é possível salvar em formato `.rds`.
+
+A grande diferença entre arquivos `.rda` e `.rds` é que no primeiro caso,
+é possível salvar diversos objetos (por exemplo, várias bases de dados) em um
+único arquivo, enquanto no segundo caso, só é possível salvar um objeto.
+
+## Pacotes de leitura de dados em SQL
+
+Existem diversos pacotes adequados para leitura de dados provenientes de bases de
+dados em SQL. Um desses pacotes é o `dplyr`, que pode conectar com bases MySQL,
+PostgreSQL, SQLite e MariaDB.
+
+Exemplo com os dados Diamonds:
+
+```{r eval=FALSE}
+library(dplyr)
+arq_diamonds <- '_source/assets/dados/diamonds.sqlite'
+
+dados_sqlite <- src_sqlite(arq_diamonds) %>% 
+  tbl("diamonds")
+
+dados_sqlite
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(RSQLite)
+arq_diamonds <- 'assets/dados/diamonds.sqlite'
+dados_sqlite <- src_sqlite(arq_diamonds) %>%
+  tbl("diamonds")
+dados_sqlite
+```
+
+## Extra: leitura de dados da web
+
+### Arquivos XML ou HTML
+
+Para leitura de dados em HTML, você pode 
+
+1. Utilizar o pacote `httr` para acessar a página web e baixar o arquivo HTML
+1. Utilizar o pacote `xml2` para estruturar o texto HTML em um formato de
+fácil manuseio
+1. Utilizar o pacote `rvest` para acessar partes do objeto retornado pelo `xml2`.
+
+Estude a documentação desses pacotes para obter exemplos de utilização.
+
+### Arquivos JSON
+
+Para leitura de dados em JSON, você pode 
+
+1. Utilizar o pacote `httr` para acessar a página web e baixar o arquivo HTML.
+1. Utilizar o pacote `jsonlite` para estruturar o resultado em um `data.frame`.
+
+Estude a documentação do pacote `jsonlite` para obter exemplos de utilização.
+
+## Exercício
+
+Leia de alguma forma adequada todos os arquivos dentro da pasta "dados"
+obtida [neste link](https://www.dropbox.com/sh/c54yhhxuk82jdmp/AABZ9P4qS_UfqC14vxxTxRz7a?dl=0), guardando os dados em objetos com nomes `pnud_xxx`, 
+sendo `xxx` o nome da extensão do arquivo. Para cada arquivo lido, rode
+o `summary()` para verificar que os dados foram obtidos corretamente.
+
+### Exercício extra
+
+Leia também os dados da web nesses endereços (adicionamos somente as 1000 primeiras linhas):
+
+- [pnud.html](https://www.dropbox.com/s/nsf3ewq9nji77cm/pnud.html?dl=1)
+- [pnud.json](https://www.dropbox.com/s/whlav3pgvrp7gff/pnud.json?dl=1)
+
+**Dica**: Para ler os arquivos, utilize `%>%` para simplificar o código e
+utilize `rvest::html_table` para ler uma tabela em HTML.
+
+# Parte 2: descritiva básica
+
+Vamos utilizar a planilha [_siglas_](), que contém a definição das variáveis e os dados do `pnud`, que contêm as informações demográficas e socioeconômicas por município brasileiro.
+
+__Queremos que vocês descubram__:
+
+- Quais são os seis municípios com os maiores IDH municipais em 2010.
+- Qual é a unidade federativa com menor expectativa de vida média, ponderada pela população dos municípios em 2000.
+- Quais são os municípios _outliers_ com relação ao índice de Gini em 1991 e em 2010 (**Dica**: utilize como critério para determinar outliers valores maiores que a média mais duas vezes o
+desvio padrão). 
+
+__Outras atividades__:
+
+- Categorize a renda per capita e associe com a expectativa de vida.
+- No nordeste o aumento de distribuição de renda foi maior do que no sudeste?
+- Insira mais pelo menos 3 estudos que você ache interessante.
 
