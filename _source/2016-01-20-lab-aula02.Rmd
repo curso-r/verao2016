@@ -192,9 +192,12 @@ Vamos utilizar a planilha [_siglas_](https://www.dropbox.com/s/47ue4367onjcryw/s
 
 **OBS**: considere essa versão simplificada do `pnud`:
 
-```{r}
-link_pnud <- ''
-pnud <- readRDS(link_pnud)
+```{r eval=FALSE}
+link_pnud <- 'https://www.dropbox.com/s/seqctcl46qeemgu/pnud_simplificado.rds?dl=1'
+tmp <- tempfile()
+download.file(link_pnud, tmp, quiet = TRUE)
+pnud <- readRDS(tmp)
+file.remove(tmp)
 ```
 
 __Queremos que vocês descubram__:
