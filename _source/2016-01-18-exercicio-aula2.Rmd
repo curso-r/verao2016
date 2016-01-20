@@ -224,12 +224,11 @@ plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 <button type = "button" onclick="toggle('10a');" class = "btn btn-success">+</button>
 
 b) Acrescente um título ao grafico.
+<div id="q10b"  style="display:none;" class="answer_list">
 ```{r}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 title('Meu titulo :D')
 ```
-<div id="q10b"  style="display:none;" class="answer_list">
-
 </div>
 <button type = "button" onclick="toggle('10b');" class = "btn btn-success">+</button>
 
