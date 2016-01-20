@@ -187,7 +187,7 @@ utilize `rvest::html_table` para ler uma tabela em HTML.
 
 # Parte 2: descritiva básica
 
-Vamos utilizar a planilha [_siglas_](), que contém a definição das variáveis e os dados do `pnud`, que contêm as informações demográficas e socioeconômicas por município brasileiro.
+Vamos utilizar a planilha [_siglas_](https://www.dropbox.com/s/47ue4367onjcryw/siglas.xlsx?dl=1), que contém a definição das variáveis e os dados do `pnud`, que contêm as informações demográficas e socioeconômicas por município brasileiro.
 
 __Queremos que vocês descubram__:
 
