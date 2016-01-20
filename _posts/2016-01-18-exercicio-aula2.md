@@ -63,7 +63,7 @@ O primeiro parâmetro igual a `NULL` significa que a matriz não tem nomes das l
 c) No lugar de `matrix`, qual seria a melhor estrutura para se utilizar neste caso? 
 
 <div id="q1c"  style="display:none;" class="answer_list">
-`data.frame`
+data frame!
 </div>
 <button type = "button" onclick="toggle('1c');" class = "btn btn-success">+</button>
 
@@ -275,6 +275,7 @@ plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 <button type = "button" onclick="toggle('10a');" class = "btn btn-success">+</button>
 
 b) Acrescente um título ao grafico.
+
 <div id="q10b"  style="display:none;" class="answer_list">
 
 {% highlight r %}
@@ -286,16 +287,17 @@ title('Meu titulo :D')
 
 c) Acrescente uma reta vertical pontilhada no ponto x = 0.
 
+<div id="q10c"  style="display:none;" class="answer_list">
+
 {% highlight r %}
 plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 abline(v = 0, lty = 2)
 {% endhighlight %}
-<div id="q10c"  style="display:none;" class="answer_list">
-
 </div>
 <button type = "button" onclick="toggle('10c');" class = "btn btn-success">+</button>
 
 d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
+
 <div id="q10d"  style="display:none;" class="answer_list">
 
 {% highlight r %}
