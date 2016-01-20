@@ -17,144 +17,250 @@ category: exercicio
   }
 </script>
 
+## Aula 02
 
+### Estruturas de dados
 
-1) Calcule o número de ouro no R.
+**1**. O senhor Adalberto é dono de uma loja e, utilizando o R, ele quer criar um cadastro de seus clientes. Para isso, ele está armazenando as informações em uma matriz da seguinte maneira:
 
-$$ \frac{1 + \sqrt{5}}{2} $$
-
-<div id="q1"  style="display:none;" class="answer_list">
 ```{r}
-(1 + sqrt(5))/2
+cadastro <- matrix(c(NA, NA, NA, NA), nrow = 100, ncol = 4, 
+                   dimnames = list(NULL, c("Nome", "Idade", "Cidade", "Telefone")))
+
+cadastro[1, ] <- c("Maria das Dores", 56, 3025-111, "São Paulo")
+cadastro[2, ] <- c("José Aníbal", 40, 3333-012, "Santos")
+cadastro[3, ] <- c("Pedro Silva", 23, 3091-777, "São Paulo")
+# ...
 ```
+
+a) O que faz o argumento `dimnames =`? O que significa o primeiro argumento da lista ser `NULL`?
+
+<div id="q1a"  style="display:none;" class="answer_list">
+Dimnames são os nomes de cada dimensão, na ordem "linhas", "colunas", ...
+O primeiro parâmetro igual a `NULL` significa que a matriz não tem nomes das linhas.
 </div>
+<button type = "button" onclick="toggle('1a');" class = "btn btn-success">+</button>
 
-<button type = "button" onclick="toggle(1);" class = "btn btn-success">+</button>
+b) O que vai acontecer se o senhor Adalberto tentar tirar a média da idade dos seus clientes fazendo `mean(cadastro[,2])`? Como ele poderia calcular essa média sem mudar a estrutura do objeto `cadastro`?
 
-2) O que dá divisão de 1 por 0? E -1 por 0?
+<div id="q1b"  style="display:none;" class="answer_list">
+Vai dar erro pois a coluna é do tipo `character`. Seria possível resolver assim:
+```{r}
+mean(as.numeric(cadastro[, 2]), na.rm = TRUE)
+```
+O primeiro parâmetro igual a `NULL` significa que a matriz não tem nomes das linhas.
+</div>
+<button type = "button" onclick="toggle('1b');" class = "btn btn-success">+</button>
+
+c) No lugar de `matrix`, qual seria a melhor estrutura para se utilizar neste caso? 
+
+<div id="q1c"  style="display:none;" class="answer_list">
+`data.frame`
+</div>
+<button type = "button" onclick="toggle('1c');" class = "btn btn-success">+</button>
+
+**2**. Por que `0.1 == 0.3/3` retorna `FALSE`? 
 
 <div id="q2"  style="display:none;" class="answer_list">
+Por conta dos pontos flutuantes
 ```{r}
-1/0
--1/0
+print(0.3/3, digits = 16)
 ```
 </div>
+<button type = "button" onclick="toggle('2');" class = "btn btn-success">+</button>
 
-<button type = "button" onclick="toggle(2);" class = "btn btn-success">+</button>
+### Subsetting
 
-3) Quais as diferenças entre `NaN`, `NULL`, `NA` e `Inf`?
+**3**. Considere o `data.frame` *diamonds* do R:
 
-<div id="q3"  style="display:none;" class="answer_list">
+a) Como você faria para permutar aleatoriamente as colunas?
+
+<div id="q3a"  style="display:none;" class="answer_list">
 ```{r}
-# NaN é o resultado de uma operação matemática inválida. Significa Not A Number
-0/0
-# NULL é o vazio do R. É como se o objeto não existisse
-NULL
-a = NULL
-is.null(integer(length = 0)) # veja que um vetor, mesmo sem elementos não é NULL
-# NA é uma constante lógica do R. Siginifica Not Availlable. NA pode ser 
-# convertido para quase todos os tipos de vetores do R. É usado principalmente para
-# indicar valores faltantes.
-NA
-# Inf é significa infinito. É o resultado de operações matemáticas cujo limite é infinito.
-1/0
-1/Inf
+data(diamonds, package = 'ggplot2')
+diamonds[, sample(names(diamonds))]
 ```
 </div>
+<button type = "button" onclick="toggle('3a');" class = "btn btn-success">+</button>
 
-<button type = "button" onclick="toggle(3);" class = "btn btn-success">+</button>
+b) É possível permutar linhas e colunas simultaneamente em um passo? 
 
-4) Tente mentalmente calcular o que dá a conta 5 + 3 * 10 %/% 3 == 15 no R, sem rodar.
+<div id="q3b"  style="display:none;" class="answer_list">
+Não, pois a ordem importa.
+</div>
+<button type = "button" onclick="toggle('3b');" class = "btn btn-success">+</button>
 
-5) Adicionando apenas parênteses, faça a expressão acima retornar o resultado contrário.
+c) Como ordenar as colunas do banco de dados em ordem alfabética?
 
-<div id="q5"  style="display:none;" class="answer_list">
+<div id="q3c"  style="display:none;" class="answer_list">
 ```{r}
-5 + (3 * 10) %/% 3 == 15
+data(diamonds, package = 'ggplot2')
+diamonds[, sort(names(diamonds))]
 ```
 </div>
-<button type = "button" onclick="toggle(5);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('3c');" class = "btn btn-success">+</button>
 
-6) O que acontece se você rodar:
+d) Crie uma nova variável no banco de dados que seja 1 se o preço (`price`) for menor 300 e 0 caso contrário.
 
-```{r, eval = F}
-x <- 4
-if(x = 4) {
-  'isso aqui apareceu'
-}
-x
+<div id="q3d"  style="display:none;" class="answer_list">
+```{r}
+data(diamonds, package = 'ggplot2')
+diamonds$price_cat <- ifelse(diamonds$price < 300, 1, 0)
 ```
+</div>
+<button type = "button" onclick="toggle('3d');" class = "btn btn-success">+</button>
+
+**4**. Considere o vetor abaixo:
+
+```{r}
+x1 <- 1:8
+```
+
+a) Por que a expressão `x1 == c(2, 3)` não retorna TRUE nas posições de `x1` que são iguais a 2 ou 3? 
+<div id="q4a"  style="display:none;" class="answer_list">
+Pois conta da reciclagem. O valor `2` do vetor `x1` é comparado com o segundo elemento de `c(2, 3)`, que é `3`. Com o valor `3` ocorre o contrário.
+</div>
+<button type = "button" onclick="toggle('4a');" class = "btn btn-success">+</button>
+
+b) O que faz o operador `%in%`?
+
+<div id="q4b"  style="display:none;" class="answer_list">
+retorna um vetor indicando os elementos do objeto da esquerda que estão contidos no conjunto formado pelos elementos do objeto da direita.
+</div>
+<button type = "button" onclick="toggle('4b');" class = "btn btn-success">+</button>
+
+
+### Leitura de dados
+
+**5**. Vamos supor que o seu diretório de trabalho seja `"~/Desktop/pasta1/pasta2"` e que dentro da *pasta2* você tenha uma *pasta3*. Sem mudar o diretório de trabalho, escreva um código, utilizando a função `read.table()`, para ler um arquivo que esteja
+
+a) dentro da *pasta3*.
+
+<div id="q5a"  style="display:none;" class="answer_list">
+```{r eval=FALSE}
+read.table("pasta3/arq.txt")
+```
+</div>
+<button type = "button" onclick="toggle('5a');" class = "btn btn-success">+</button>
+
+
+b) dentro da *pasta1*.
+
+<div id="q5b"  style="display:none;" class="answer_list">
+```{r eval=FALSE}
+read.table("../arq.txt")
+```
+</div>
+<button type = "button" onclick="toggle('5b');" class = "btn btn-success">+</button>
+
+**6**. É possível ler um arquivo em que o separador de valores (`sep`) é igual ao separador de casas decimais (`dec`)?
 
 <div id="q6"  style="display:none;" class="answer_list">
-```{r, eval = F}
-> x <- 4
-> if(x = 4) {
-Erro: '=' inesperado in "if(x ="
->   'isso aqui apareceu'
-[1] "isso aqui apareceu"
-> }
-Erro: '}' inesperado in "}"
-> x
-[1] 4
-```
+Sim, desde que o as células tenham um parâmetro `quote` diferente de `""`.
 </div>
-<button type = "button" onclick="toggle(6);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('6');" class = "btn btn-success">+</button>
 
-7) Como você faria para que o código da pergunta anterior fizesse com que `'isso aqui apareceu'` 
-fosse impresso no console mas nenhum erro aparecesse?
+**7**. Qual a diferença entre as funções `read.csv()` e `read.csv2()`?
 
 <div id="q7"  style="display:none;" class="answer_list">
-```{r}
-x <- 4
-if (x == 4) {
-  'isso aqui apareceu'
-}
-x
-```
+`read.csv()` é o padrão americano ("," como separador e "." como decimal) e 
+`read.csv2()` é o padrão europeu/brasileiro (";" como separador e "," como decimal)
 </div>
-<button type = "button" onclick="toggle(7);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('7');" class = "btn btn-success">+</button>
 
-8) **Difícil**: Usando `for`, `if` e `else` escreva as seguintes frases no console:
+### O operador *pipe*
 
-```{r, eval=FALSE}
-> 1 elefante(s) incomoda(m) muita gente
-> 2 elefante(s) incomoda(m) incomoda(m) muito mais
-> 3 elefante(s) incomoda(m) muita gente
-> 4 elefante(s) incomoda(m) incomoda(m) incomoda(m) incomoda(m) muito mais
+**8**. Reescreva a expressão abaixo utilizando o operador `%>%`.
+
+```{r}
+x <- 0.1
+library(ggplot2)
+qplot(x = sample(sqrt((log(seq(1, 10, x)) + 2)), 40, replace = T))
 ```
-
-*Dica*: Leia o help da função `paste` e preste atenção em todos os seus argumentos.
 
 <div id="q8"  style="display:none;" class="answer_list">
 ```{r}
-for (i in 1:4) {
-  if (i %% 2 == 0) {
-    print(paste(i, "elefante(s)", paste(rep("incomoda(m)", times = i), collapse = " "), "muito mais"))
-  } else {
-   print(paste(i, "elefante(s) incomoda(m) muita gente")) 
-  }
-}
+library(magrittr)
+x %>% 
+  seq(1, 10, .) %>% 
+  log %>% 
+  `+`(2) %>% 
+  sqrt %>% 
+  sample(40, replace = T) %>% 
+  qplot()
 ```
 </div>
-<button type = "button" onclick="toggle(8);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('8');" class = "btn btn-success">+</button>
 
-9) Crie um vetor com o nome `x` que contenha os números `1, 20, 40, 50, 60` no R.
+
+**9**. Para que servem os operadores:
+
+a) `%<>%`?
+b) `%T>%`?
+c) `%$%`?
 
 <div id="q9"  style="display:none;" class="answer_list">
+Ver `?"%>%"`
+</div>
+<button type = "button" onclick="toggle('9');" class = "btn btn-success">+</button>
+
+### Gráficos com o pacote *graphics*
+
+**10**. Considere o gráfico abaixo:
+
 ```{r}
-x <- c(1, 20, 40, 50, 60)
+x <- seq(-3, 3, 0.01)
+y <- 1/x
+plot(x, y, type = "l")
+```
+
+a) Altere os limites do eixo x para que o gráfico seja visualizado apenas do -2 ao 2.
+
+<div id="q10a"  style="display:none;" class="answer_list">
+```{r}
+plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
 ```
 </div>
-<button type = "button" onclick="toggle(9);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('10a');" class = "btn btn-success">+</button>
 
-10) Crie um vetor com o nome `x` de 100 números aleatórios entre 0 e 1.
-
-<div id="q10"  style="display:none;" class="answer_list">
+b) Acrescente um título ao grafico.
 ```{r}
-x <- runif(100)
+plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
+title('Meu titulo :D')
+```
+<div id="q10b"  style="display:none;" class="answer_list">
+
+</div>
+<button type = "button" onclick="toggle('10b');" class = "btn btn-success">+</button>
+
+c) Acrescente uma reta vertical pontilhada no ponto x = 0.
+```{r}
+plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
+abline(v = 0, lty = 2)
+```
+<div id="q10c"  style="display:none;" class="answer_list">
+
+</div>
+<button type = "button" onclick="toggle('10c');" class = "btn btn-success">+</button>
+
+d) Acrescente uma legenda ao gráfico no "terceiro quadrante".
+<div id="q10d"  style="display:none;" class="answer_list">
+```{r}
+plot(x, y, type = "l", xlim = c(-2, 2), ylim = c(-2, 2))
+abline(v = 0, lty = 2)
+legend(x = -2, y = -1, legend = 'legenda')
 ```
 </div>
-<button type = "button" onclick="toggle(10);" class = "btn btn-success">+</button>
+<button type = "button" onclick="toggle('10d');" class = "btn btn-success">+</button>
+
+**11**. Como construir dois gráficos na mesma janela?
+
+<div id="q11"  style="display:none;" class="answer_list">
+```{r}
+par(mfrow = c(1, 2)) # ver ?par
+```
+</div>
+<button type = "button" onclick="toggle('11');" class = "btn btn-success">+</button>
 
 
 
