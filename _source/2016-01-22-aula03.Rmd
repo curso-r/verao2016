@@ -28,6 +28,10 @@ simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que
 inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
 organizados, sem perder velocidade de execução.
 
+> “(...) The fact that data science exists as a field is a colossal failure of statistics. To me, [what I do] is what statistics is all about. It is gaining insight from data using modelling and visualization. Data munging and manipulation is hard and statistics has just said that’s not our domain.”
+
+> Hadley Wickham
+
 Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
 e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
 como uma revolução no `R`.
@@ -221,7 +225,7 @@ pnud_muni %>%
 ```{r}
 pnud_muni %>%
   group_by(ano, ufn) %>%
-  summarise(populacao=sum(popt)) %>%
+  summarise(populacao = sum(popt)) %>%
   ungroup() %>%
   spread(ano, populacao)
 ```
@@ -232,7 +236,7 @@ pnud_muni %>%
 
 ```{r}
 pnud_muni %>%
-  filter(ano==2010) %>%
+  filter(ano == 2010) %>%
   select(ufn, municipio, starts_with('idhm_')) %>%
   gather(tipo_idh, idh, starts_with('idhm_'))
 ```
@@ -254,4 +258,4 @@ pnud_muni %>%
 - `lubridate` para trabalhar com datas.
 - `rvest` para trabalhar com arquivos HTML.
 
-<hr/ >
+<hr />

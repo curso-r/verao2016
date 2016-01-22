@@ -111,127 +111,7 @@ Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\f
 
 2. Summarise em uma tabela quais foram os 10 destinos com mais viagens com atraso superior a 60 minutos. Considere o atraso total definido na pergunta anterior.
 
----
-
-## Sobre ggplot2
-
-Nestes exercícios você utilizará a base de dados `diamonds`, do pacote `ggplot2`.
-
-Instalação do pacote `ggplot2`:
-
-```{r, eval = F}
-install.packages("ggplot2")
-```
-
-Para carregar o pacote `ggplot2`:
-
-```{r}
-library(ggplot2)
-```
-
-Enfim, os dados:
-
-```{r}
-head(diamonds, 10)
-```
-
-Para ver uma descrição das variáveis deste banco de dados, utilize a função `help()`:
-
-```{r}
-help(diamonds)
-```
-
-
-## Geral
-
-**1.** Segundo a *Grammar of Graphics*, o que é um gráfico estatístico? Responda de forma sucinta.
-
-**2.** Qual operador é usado para acrescentar *camadas* em um gráfico no ggplot?
-
-### geom_point
-
-**3.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_point()`?
-
-Dica: utilizar a função `help()`.
-
-**4.** Faça um gráfico de dispersão do preço (*price*) pela variável quilates (*carat*). Utilize as funções `xlab()` e `ylab()` para trocar os *labels* dos eixos x e y, respectivamente.
-
-**5.** Utilize a função `facet_grid()` ou `facet_wrap()` para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (*clarity*).
-
-### geom_line
-
-**6.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_line()`?
-
-Dica: visitar a seguinte [página](http://docs.ggplot2.org/current/) e consultar o tópico `geom_line`.
-
-**7.** Utilizando o argumento `stat = summary` e `fun.y = mean`, calcule a média do preço para cada corte, faça um gráfico desses pontos utilizando a função `geom_point()`e trace uma reta sobre esses pontos utilizando a função `geom_line()`. 
-
-Dicas: não se esqueça de especificar o *aesthetic* `group =` dentro do `geom_line()`. Veja mais exemplos de como usar o `stat = summary` [aqui](http://docs.ggplot2.org/current/stat_summary.html).
-
-### geom_histogram
-
-**8.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_histogram()`?
-
-**9.** Faça um histograma da variável preço. 
-
-**10.** Utilize a função `geom_density()` para **adicionar** ao gráfico anterior uma estimativa suavizada da densidade. Por que, neste caso, é preciso especificar o argumento `y = ` como `..density..`?
-
-
-### geom_boxplot
-
-**11.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_boxplot()`?
-
-**12.** Faça boxplots da variável preço pela variável corte (*cut*).
-
-### geom_bar
-
-**13.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_bar()`?
-
-**14.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
-
-
-### Desafio (opcional)
-
-Supondo que esses diamantes são vendidos nos EUA, siga os seguintes passos:
-
-
-- Considerando que, para obter o seu lucro, um vendedor brasileiro venda um diamante (em reais) por `2.61*price*2.2`, acrescente uma coluna ao banco de dados representando o preço de venda no Brasil.
-
-- Considere agora que, para importar um diamante diretamente dos EUA, uma transportadora cobre (em reais) `(carat*price*0.70)*2.61 + price*2.68`, já considerando o preço de compra do diamante. Adicione ao banco de dados uma coluna referente ao preço de cada diamante se importado diretamente.
-
-- Faça um gráfico de dispersão do preço de venda no Brasil pelo preço de importação. Adicione a esse gráfico uma reta x=y para avaliar quais diamantes compensam ser importados diretamente.
-
-- Mapeie a variável *clarity* ao gráfico acima. Quais são os tipos de claridades que, em geral, não compensam ser importadas diretamente? Faça o mesmo para a variável *color*.
-
-*Dica*: para fazer a reta x=y, utilize a função `geom_abline()`.
-
-# Desafios com bases de dados reais
-
-Primeiro, instale o pacote `abjutils`. Para isso, instale primeiro o pacote `devtools`.
-
-```{r eval=FALSE}
-# verifica se o pacote devtools já está instalado e instala se não estiver
-if(!require(devtools)) install.packages('devtools')
-
-# verifica se o pacote abjutils já está instalado e instala se não estiver
-# Como o pacote não está no CRAN, instalamos via github usando o comando do pacote devtools
-if(!require(abjutils)) devtools::install_github('abjur/abjutils')
-
-# OBS: O pacote abjutils já vai carregar as bibliotecas dplyr, stringr e lubridate
-```
-
-
-## PNUD
-
-Vamos começar com a base de dados do PNUD do lab 1, para aquecer :)
-
-Você pode carregar o banco de dados do PNUD rodando
-
-```{r eval=FALSE}
-data(pnud_muni , package='abjutils')
-```
-
-**1** Refaça todas as análises do laboratório 1 usando `dplyr` e `ggplot2`.
+# Desafios com outras bases de dados reais
 
 ## Coalitions
 
@@ -249,17 +129,13 @@ A base de dados `wto_dyad_sample` contém, em cada linha, uma coalizão ocorrida
 
 Os países estão identificados pelas colunas `ccode1` e `ccode2` (analogamente à base `wto_data`). A coalizão é identificada `coalition`, que vale `1` se houve coalizão e `0` caso contrário. A coluna `ccoalition` é um identificador de qual foi a coalizão que aconteceu (Mercosul, acordos da Europa, etc).
 
-**1** Faça um mapa com as posições geográficas dos países, com um mapa múndi no fundo.
+**1**. Qual é a unidade observacional (o que identifica uma observação) na base `wto_data`?
 
-Dica: Leia o script da aula 05.
+**1**. Quantas coalizões tivemos em cada ano?
 
-**2**. Qual é a unidade observacional (o que identifica uma observação) na base `wto_data`?
+**1**. Qual é o código do país que entrou mais vezes em alguma coalizão?
 
-**3**. Quantas coalizões tivemos em cada ano?
-
-**4**. Qual é o código do país que entrou mais vezes em alguma coalizão?
-
-**5**. Construa uma matriz de adjacências usando `dplyr` e `tidyr`. Queremos um `data.frame` `wto_adj` com número de linhas igual ao número de colunas, e o conteúdo da célula `wto_adj[i, j]` é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. Utilize a função `row.names()` para atribuir os nomes às linhas.
+**1**. Construa uma matriz de adjacências usando `dplyr` e `tidyr`. Queremos um `data.frame` `wto_adj` com número de linhas igual ao número de colunas, e o conteúdo da célula `wto_adj[i, j]` é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. Utilize a função `row.names()` para atribuir os nomes às linhas.
 
 ## CARF
 
@@ -279,11 +155,11 @@ Montamos uma base de dados com todas as decisões encontradas no conselho. Nosso
 
 **1** Quantos processos temos na base de dados?
 
-**2** Construa um gráfico contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?
+**1** Construa uma tabela contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?
 
-**3** Agora retire da base os acórdãos que contêm texto da decisão e texto da ementa vazios. Refaça o gráfico e interprete.
+**1** Agora retire da base os acórdãos que contêm texto da decisão e texto da ementa vazios. Refaça a tabela e interprete.
 
-**4** Utilizando a função `str_detect()`, crie colunas (que valem `TRUE` ou `FALSE`) na base de dados de acordo com as expressões regulares abaixo.
+**1** Utilizando a função `str_detect()`, crie colunas (que valem `TRUE` ou `FALSE`) na base de dados de acordo com as expressões regulares abaixo.
 
 ```{r eval=FALSE}
 negar_provimento <- 'negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido'
@@ -294,7 +170,7 @@ nao_conhecer <- 'conhec'
 anular <- 'nul(a|o|i)'
 ```
 
-**5** Faça um gráfico de barras mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que `tipo_recurso` é recurso voluntário.
+**5** Faça uma tabela mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que `tipo_recurso` é recurso voluntário.
 
 ## SABESP
 
@@ -306,12 +182,10 @@ data(sabesp, package='abjutils')
 
 **1** Descreva a base de dados.
 
-**2** Crie um boxplot por mês, mostrando os lugares separadamente.
+**1** Crie uma tabela descritiva (média, desvio padrão, mediana, quartis, 
+máximo, mínimo) por mês, mostrando os lugares separadamente.
 
-**3** Tente montar um gráfico parecido com esse (inclusive as cores e as labels inclinadas do eixo x). Não vale olhar o código do repositório no github!
+**1** Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.
 
-<img src="https://raw.githubusercontent.com/jtrecenti/sabesp/master/sabesp_files/figure-html/unnamed-chunk-2-2.png" />
+**1** Comente sobre a crise hídrica em São Paulo com base em conhecimentos próprios e usando os dados da sabesp.
 
-**4** Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.
-
-**5** Comente sobre a crise hídrica em São Paulo com base em conhecimentos próprios e usando os dados da sabesp.
