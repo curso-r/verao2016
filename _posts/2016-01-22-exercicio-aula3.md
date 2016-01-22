@@ -1,6 +1,6 @@
 ---
-title: "Aula 02 - Exercícios"
-date : 2016-01-20
+title: "Aula 03 - Exercícios"
+date : 2016-01-22
 layout: post
 comments: true
 tags: exercicio
