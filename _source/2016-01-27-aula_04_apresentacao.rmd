@@ -1,5 +1,5 @@
 ---
-title: Aula 05 - ggplot2
+title: Aula 04 - ggplot2
 author: "Curso de R: Do casual ao avançado"
 date : 2015-01-26
 layout: post
@@ -23,18 +23,13 @@ library(ggplot2)
 
 O que é um gráfico estatístico? 
 
-Leland Wilkinson respondeu essa pergunta!
+> "... that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars). The plot may also contain statistical transformations of the data and is drawn on a specific coordinate system."
 
-*The Grammar of Graphics*
-
-- Conjunto de dados
-
-- Aspectos estéticos de formas geométricas
-
+Essa é a ideia de Leland Wilkinson, proposta em **The Grammar of Graphics**.
 
 ## Motivação 1
 
-- É fácil de usar.
+- É fácil de usar, e uma vez que você aprende, consegue fazer qualquer gráfico.
 
 - Foi criado pelo Hardley.
 
@@ -42,19 +37,19 @@ Leland Wilkinson respondeu essa pergunta!
 
 ## Motivação 2 | SAS
 
-<img src="figure/ggplot2/g_sas.png" height="430px" width="650px"/>
+<img src="http://curso-r.github.io/verao2016/images/jitter1.png" height="430px" width="650px"/>
 
 ## Motivação 2 | SPSS
 
-<img src="figure/ggplot2/g_spss.png" height="430px" width="650px"/>
+<img src="http://curso-r.github.io/verao2016/images/spss_jitter.png" height="430px" width="650px"/>
 
 ## Motivação 2 | Matlab
 
-<img src="figure/ggplot2/g_matlab.png" height="430px" width="650px"/>
+<img src="http://curso-r.github.io/verao2016/images/matlab_jitter.png" height="430px" width="650px"/>
 
 ## Motivação 2 | Minitab
 
-<img src="figure/ggplot2/g_minitab.gif" height="430px" width="650px"/>
+<img src="http://curso-r.github.io/verao2016/images/minitab_jitter.jpg" height="430px" width="650px"/>
 
 ## Motivação 2 | R-base
 
@@ -169,16 +164,6 @@ ggplot(data = mtcars) +
 ```{r}
 
 ggplot(data = mtcars) +
-  geom_point(aes(x = disp, y = mpg))
-
-```
-
-
-## Exemplos
-
-```{r}
-
-ggplot(data = mtcars) +
   geom_point(aes(x = disp, y = mpg, colour = as.character(am)))
 
 ```
@@ -212,51 +197,8 @@ ggplot(data = mtcars) +
 
 ```
 
-## Exemplos {.build}
-
-```{r, eval=FALSE}
-
-ggplot(data = mtcars) +
-  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-
-```
-
-```{r, echo = FALSE}
-
-ggplot(data = mtcars) +
-  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-
-```
-
 
 ## Exemplos {.build}
-
-```{r, eval = FALSE}
-
-ggplot(data = mtcars) +
-  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-
-```
-
-```{r, echo = FALSE}
-
-ggplot(data = mtcars) +
-  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-
-```
-
-## Exemplos
-
-```{r, fig.height=3, fig.width=5}
-
-ggplot(data = mtcars) +
-  geom_line(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean) +
-  geom_point(aes(x = cyl, y = mpg), stat = "summary", fun.y= mean)
-
-```
-
-
-## Exemplos
 
 ```{r, fig.height=3, fig.width=5, eval = FALSE}
 
@@ -274,6 +216,28 @@ ggplot(data = mtcars) +
 
 ```
 
+## Exemplos
+
+```{r}
+head(economics)
+```
+
+## Exemplos {.build}
+
+```{r, fig.height=3, fig.width=5, eval = FALSE}
+
+ggplot(economics, aes(date, unemploy)) + 
+  geom_line()
+
+```
+
+```{r, fig.height=3, fig.width=5, echo = FALSE}
+
+ggplot(economics, aes(x = date, y = unemploy)) + 
+  geom_line()
+
+```
+
 
 ## Exemplos
 
@@ -282,9 +246,7 @@ ggplot(data = mtcars) +
 ggplot(data = mtcars) +
   geom_boxplot(aes(x = as.character(gear), y = mpg, 
                    fill = as.character(gear))) +
-  xlab("") +
-  ylab("Milhas por galão") +
-  labs(fill="Número de marchas")
+  labs(fill="Número de marchas", x = "", y = "Milhas por galão")
 
 ```
 

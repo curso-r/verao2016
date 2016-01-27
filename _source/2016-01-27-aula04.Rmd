@@ -1,255 +1,215 @@
 ---
-title: Aula 04 - Manipulação de dados
-date : 2015-01-26
+title: Aula 04 - Gráficos com estilo - ggplot2
+date : 2016-01-27
 layout: post
 comments: true
+tags: aula
 ---
- 
-<a href="http://curso-r.github.io/slides/aula_04_apresentacao.html" target="_blank">Slides dessa aula</a>
 
-<a href="http://curso-r.github.io/script/aula_04.R" target="_blank">Script dessa aula</a>
+<a href="http://curso-r.github.io/slides/aula_05_apresentacao.html" target="_blank">Slides dessa aula</a>
 
-```{r pacotes, echo=FALSE, message=FALSE, warning=FALSE}
-require(dplyr)
-require(tidyr)
-data(pnud_muni, package = 'abjutils')
+<a href="http://curso-r.github.io/script/aula_05.R" target="_blank">Script dessa aula</a>
+
+# O pacote ggplot2
+
+O `ggplot2` é um pacote do R voltado para a criação de gráficos estatísticos. Ele é baseado na Gramática dos Gráficos (*grammar of graphics*, em inglês), criado por Leland Wilkinson, que é uma resposta para a pergunta: o que é um gráfico estatístico? Resumidamente, a gramática diz que um gráfico estatístico é um mapeamento dos dados a partir de atributos estéticos (cores, formas, tamanho) de formas geométricas (pontos, linhas, barras).
+
+Para mais informações sobre a Gramática dos Gráficos, você pode consultar o livro [*The Grammar of graphics*](http://www.springer.com/statistics/computational+statistics/book/978-0-387-24544-7), escrito pelo Leland Wilkinson, ou o livro [ggplot2: elegant graphics for data analysis](http://ggplot2.org/book/), do Hadley Wickham.
+Um [pdf do livro](http://moderngraphics11.pbworks.com/f/ggplot2-Book09hWickham.pdf) também está disponível.
+
+## Instalação
+
+O `ggplot2` não faz parte dos pacotes base do R. Assim, antes de usá-lo, você precisa baixar e instalar o pacote. Para isso, é necessário ter pelo menos a versão 2.8 do R, pois o `ggplot2` não é compatível com versões anteriores.
+
+Para baixar e instalar o pacote, utilize a seguitne linha de código:
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+Não se esqueça de carregar o pacote antes de utilizá-lo:
+
+```{r aula05chunk01}
+library(ggplot2)
 ```
 
-## Manipulação de dados com dplyr
+# Construindo gráficos
 
-A manipulação de dados é uma tarefa usualmente bastante
-dolorosa e demorada, podendo muitas vezes tomar mais tempo do que desejaríamos. No entanto,
-como nosso interesse geralmente é na modelagem dos dados, essa tarefa é muitas vezes negligenciada.
+A seguir, vamos discutir os aspcetos básicos para a construção de gráficos com o pacote `gglplot2`. Para isso, utilizaremos o banco de dados contido no objeto `mtcars`. Para visualizar as primeiras linhas deste banco, utilize o comando:
 
-O `dplyr` é um dos pacotes mais úteis para realizar manipulação de dados, e procura aliar 
-simplicidade e eficiência de uma forma bastante elegante. Os scripts em `R` que fazem uso 
-inteligente dos verbos `dplyr` e as facilidades do operador _pipe_ tendem a ficar mais legíveis e 
-organizados, sem perder velocidade de execução.
-
-Por ser um pacote que se propõe a realizar um dos trabalhos mais árduos da análise estatística,
-e por atingir esse objetivo de forma elegante, eficaz e eficiente, o `dplyr` pode ser considerado 
-como uma revolução no `R`.
-
-### Trabalhando com tbl e tbl_df
-
-```{r}
-pnud_muni <- tbl_df(pnud_muni)
-pnud_muni
+```{r aula05chunk02}
+head(mtcars)
 ```
 
-### Filosofia do Hadley para análise de dados
+## As camadas de um gráfico
 
-<img src="http://curso-r.github.io/verao2016/images/hadley_view.png" style="width: 800px;"/>
+No `ggplot2`, os gráficos são construídos camada por camada (ou, *layers*, em inglês), sendo que a primeira delas é dada pela função `ggplot` (não tem o "2"). Cada camada representa um tipo de mapeamento ou personalização do gráfico. O código abaixo é um exemplo de um gráfico bem simples, construído a partir das duas principais camadas. 
 
-### As cinco funções principais do dplyr
 
-- `filter`
-- `mutate`
-- `select`
-- `arrange`
-- `summarise`
-
-#### Características
-
-- O _input_  é sempre um `data.frame` (`tbl`), e o _output_  é sempre um `data.frame` (`tbl`).
-- No primeiro argumento colocamos o `data.frame`, e nos outros argumentos colocamo o que queremos fazer.
-- A utilização é facilitada com o emprego do operador `%>%`
-
-#### Vantagens
-
-- Utiliza `C` e `C++` por trás da maioria das funções, o que geralmente torna o código mais eficiente.
-- Pode trabalhar com diferentes fontes de dados, como bases relacionais (SQL) e `data.table`.
-
-## select
-
-- Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
-- Possível colocar nomes, índices, e intervalos de variáveis com `:`.
-
-```{r}
-# por indice (nao recomendavel!)
-pnud_muni %>%
-  select(1:10)
+```{r aula05chunk03}
+ggplot(data = mtcars, aes(x = disp, y = mpg)) + 
+  geom_point()
 ```
 
-```{r}
-# especificando nomes (maneira mais usual)
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm)
+Observe que o primeiro argumento da função `ggplot` é um data frame. A função `aes()` descreve como as variáveis são mapeadas em aspectos visuais de formas geométricas definidas pelos *geoms*. Aqui, essas formas geométricas são pontos, selecionados pela função `geom_point()`, gerando, assim, um gráfico de dispersão. A combinação dessas duas camadas define o tipo de gráfico que você deseja construir.
+
+### Aesthetics
+
+A primeira camada de um gráfico deve indicar a relação entre os dados e cada aspecto visual do gráfico, como qual variável será representada no eixo x, qual será representada no eixo y, a cor e o tamanho dos componentes geométricos etc. Os aspectos que podem ou devem ser mapeados depende do tipo de gráfico que você deseja fazer.
+
+No exemplo acima, atribuímos aspectos de posição: ao eixo y mapeamos a variável `mpg` (milhas por galão) e ao eixo x a variável `disp` (cilindradas). Outro aspecto que pode ser mapeado nesse gráfico é a cor dos pontos
+
+
+```{r aula05chunk04}
+ggplot(data = mtcars, aes(x = disp, y = mpg, colour = as.factor(am))) + 
+  geom_point()
 ```
 
-```{r}
-# intervalos e funcoes auxiliares (para economizar trabalho)
-pnud_muni %>%
-  select(ano:municipio, starts_with('idhm'))
+Agora, a variável `am` (tipo de transmissão) foi mapeada à cor dos pontos, sendo que pontos vermelhos correspondem à transmissão automática (valor 0) e pontos azuis à transmissão manual (valor 1). Observe que inserimos a variável `am` como um fator, pois temos interesse apenas nos valores "0" e "1". No entanto, tambem podemos mapear uma variável contínua à cor dos pontos:
+
+```{r aula05chunk05}
+ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl)) + 
+  geom_point()
 ```
 
-## filter
+Aqui, o número de cilindros, `cyl`, é representado pela tonalidade da cor azul.
 
-- Parecido com `subset`.
-- Condições separadas por vírgulas é o mesmo que separar por `&`.
+**Nota**: por *default*, a legenda é insirida no gráfico automaticamente.
 
-```{r}
-# somente estado de SP, com IDH municipal maior que 80% no ano 2010
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ufn=='São Paulo', idhm > .8, ano==2010)
+Também podemos mapear o tamanho dos pontos à uma variável de interesse:
+
+```{r aula05chunk06}
+ggplot(mtcars, aes(x = disp, y = mpg, colour = cyl, size = wt)) +
+  geom_point()
 ```
 
-```{r}
-# mesma coisa que o anterior
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ufn=='São Paulo' & idhm > .8 & ano==2010)
+**Exercício**: pesquisar mais aspectos que podem ser alterados no gráfico de dispersão.
+
+### Geoms
+
+Os *geoms* definem qual forma geométrica será utilizada para a visualização dos dados no gráfico. Como já vimos, a função `geom_point()` gera gráficos de dispersão transformando pares (x,y) em pontos. Veja a seguir outros *geoms* bastante utilizados:
+
+- geom_line: para retas definidas por pares (x,y)
+- geom_abline: para retas definidas por um intercepto e uma inclinação
+- geom_hline: para retas horizontais
+- geom_boxplot: para boxplots
+- geom_histogram: para histogramas
+- geom_density: para densidades
+- geom_area: para áreas
+- geom_bar: para barras
+
+Veja a seguir como é fácil gerar diversos gráficos diferentes utilizando a mesma estrutura do gráfico de dispersão acima:
+
+```{r aula05chunk07}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
+  geom_boxplot()
 ```
 
-```{r}
-# !is.na(x)
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm, PEA) %>%
-  filter(!is.na(PEA))
+```{r aula05chunk08}
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram()
 ```
 
-```{r}
-# %in%
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(municipio %in% c('CAMPINAS', 'SÃO PAULO'))
+```{r aula05chunk09}
+ggplot(mtcars, aes(x = as.factor(cyl))) + 
+  geom_bar()
 ```
 
-## mutate
+Para fazer um boxplot para cada grupo, precisamos passar para o aspecto x do gráfico uma variável do tipo fator. 
 
-- Parecido com `transform`, mas aceita várias novas colunas iterativamente.
-- Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
+## Personalizando os gráficos
 
-```{r}
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ano==2010) %>%
-  mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, '%'))
+### Cores
+
+O aspecto colour do boxplot, muda a cor do contorno. Para mudar o preenchimento, basta usar o `fill`.
+
+```{r aula05chunk10, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, colour = as.factor(cyl))) + 
+  geom_boxplot()
 ```
 
-```{r}
-# media de idhm_l e idhm_e
-pnud_muni %>%
-  select(ano, ufn, municipio, starts_with('idhm')) %>%
-  filter(ano==2010) %>%
-  mutate(idhm2 = (idhm_e + idhm_l)/2)
+
+```{r aula05chunk11, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) + geom_boxplot()
 ```
 
-```{r}
-## errado
-# pnud_muni %>%
-#   select(ano, ufn, municipio, starts_with('idhm')) %>%
-#   filter(ano==2010) %>%
-#   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
+Você pode também mudar a cor dos objetos sem mapeá-la a uma variável. Para isso, observe que os aspectos `colour` e `fill` são especificados fora do `aes()`.
 
-## uma alternativa (+ demorada)
-# pnud_muni %>%
-#   select(ano, ufn, municipio, starts_with('idhm')) %>%
-#   filter(ano==2010) %>%
-#   rowwise() %>%
-#   mutate(idhm2 = mean(c(idhm_e, idhm_l)))
+```{r aula05chunk12, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), y = mpg)) + 
+  geom_boxplot(color = "red", fill = "pink")
 ```
 
-## arrange
+### Eixos
 
-- Simplesmente ordena de acordo com as opções.
-- Utilizar `desc` para ordem decrescente.
+Para alterar os labels dos eixos acrescentamos as funções `xlab()` ou `ylab()`.
 
-```{r}
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ano==2010) %>%
-  mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, '%')) %>%
-  arrange(idhm)
+```{r aula05chunk13, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram() +
+  xlab("Milhas por galão") +
+  ylab("Frequência")
 ```
 
-```{r}
-pnud_muni %>%
-  select(ano, ufn, municipio, idhm) %>%
-  filter(ano==2010) %>%
-  mutate(idhm_porc = idhm * 100,
-         idhm_porc_txt = paste(idhm_porc, '%')) %>%
-  arrange(desc(idhm))
+
+Para alterar os limites dos gráficos usamos as funções `xlim()` e `ylim()`.
+
+```{r aula05chunk14, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = mpg)) + 
+  geom_histogram() +
+  xlab("Milhas por galão") +
+  ylab("Frequência") +
+  xlim(c(0, 40)) +
+  ylim(c(0,8))
 ```
 
-## summarise
 
-- Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
-- Geralmente é utilizado em conjunto com `group_by`.
-- Algumas funções importantes: `n()`, `n_distinct()`.
+### Legendas
 
-```{r}
-pnud_muni %>%
-  filter(ano==2010) %>%  
-  group_by(ufn) %>%
-  summarise(n=n(), 
-            idhm_medio=mean(idhm),
-            populacao_total=sum(popt)) %>%
-  arrange(desc(idhm_medio))
+A legenda de um gráfico pode ser facilmente personalizada.
+
+Para trocar o *label* da leganda:
+
+```{r aula05chunk15, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  labs(fill = "cyl")
 ```
 
-```{r}
-pnud_muni %>%
-  filter(ano==2010) %>%  
-  count(ufn)
+Para trocar a posição da legenda:
+
+```{r aula05chunk16, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  labs(fill = "cyl") +
+  theme(legend.position="top")
 ```
 
-```{r}
-pnud_muni %>%
-  group_by(ano, ufn) %>%
-  tally() %>%
-  head # nao precisa de parenteses!
+Para retirar a legenda:
+
+```{r aula05chunk17, fig.height=3, fig.width=5}
+ggplot(mtcars, aes(x = as.factor(cyl), fill = as.factor(cyl))) + 
+  geom_bar() +
+  guides(fill=FALSE)
 ```
 
-## Data Tidying com tidyr
 
-### Sobre tidy data
+Veja mais opções de personalização [aqui!](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/)
 
-- Cada observação é uma linha do bd.
-- Cada variável é uma coluna do bd.
-- Para cada unidade observacional temos um bd separado (possivelmente com chaves de associacao).
+### Facets
 
-### spread
+Outra funcionalidade muito importante do ggplot é o uso de *facets*.
 
-- "Joga" uma variável nas colunas
-
-```{r}
-pnud_muni %>%
-  group_by(ano, ufn) %>%
-  summarise(populacao=sum(popt)) %>%
-  ungroup() %>%
-  spread(ano, populacao)
+```{r aula05chunk18}
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) + 
+  geom_point() + 
+  facet_grid(am~.)
 ```
 
-### gather
+Podemos colocar os graficos lado a lado também:
 
-- "Empilha" o banco de dados
-
-```{r}
-pnud_muni %>%
-  filter(ano==2010) %>%
-  select(ufn, municipio, starts_with('idhm_')) %>%
-  gather(tipo_idh, idh, starts_with('idhm_'))
+```{r aula05chunk19}
+ggplot(mtcars, aes(x = mpg, y = disp, colour = as.factor(cyl))) +
+  geom_point() + 
+  facet_grid(.~am)
 ```
 
-### Funções auxiliares
-
-- `unite` junta duas ou mais colunas usando algum separador (`_`, por exemplo).
-- `separate` faz o inverso de `unite`, e uma coluna em várias usando um separador.
-
-## Um pouco mais de manipulação de dados
-
-- Para juntar tabelas, usar `inner_join`, `left_join`, `anti_join`, etc.
-- Para realizar operações mais gerais, usar `do`.
-- Para retirar duplicatas, utilizar `distinct`.
-
-### Outros pacotes úteis para limpar bases de dados
-
-- `stringr` para trabalhar com textos.
-- `lubridate` para trabalhar com datas.
-- `rvest` para trabalhar com arquivos HTML.
-
-<hr/ >

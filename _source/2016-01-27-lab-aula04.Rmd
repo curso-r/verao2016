@@ -1,0 +1,113 @@
+---
+title: "Aula 04 - Laboratório"
+author: "Curso R"
+date: 2016-01-22
+output: html_document
+tags: lab
+layout: post
+comments: true
+category: lab
+---
+
+Os exercícios desse laboratório ajudarão o aluno a construir seus primeiros gráficos usando o `ggplot2`, começando de gráficos bem simples até gráficos um pouco mais complexos. Nestes exercícios você utilizará a base de dados `diamonds` , do pacote `ggplot2`.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+```
+
+Enfim, os dados:
+
+```{r}
+head(diamonds, 10)
+```
+
+Para ver uma descrição das variáveis deste banco de dados, utilize a função `help()`:
+
+```{r}
+help(diamonds)
+```
+
+### geom_point
+
+**1.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_point()`?
+
+Dica: utilizar a função `help()`.
+
+**2.** Faça um gráfico de dispersão do preço (*price*) pela variável quilates (*carat*). Utilize as funções `xlab()` e `ylab()` para trocar os *labels* dos eixos x e y, respectivamente.
+
+**3.** Utilize a `facets` para fazer gráficos de dispersão do preço pela variável quilate (o mesmo gráfico do exercício 1) para cada nível da variável claridade (*clarity*).
+
+### geom_histogram
+
+**4.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_histogram()`?
+
+**5.** Faça um histograma da variável preço. 
+
+**6.** Utilize a função `geom_density()` para **adicionar** ao gráfico anterior uma estimativa suavizada da densidade. 
+
+### geom_boxplot
+
+**7.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_boxplot()`?
+
+**8.** Faça boxplots da variável preço pela variável corte (*cut*).
+
+### geom_bar
+
+**9.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_bar()`?
+
+**10.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
+
+## Outra base de dados
+
+A partir de agora utilizaremos a base de dados `economics` para fazer os gráficos. Alguns exercícios exigirão manipulações na base de dados, que devem ser feitas usando `dplyr` e `tidyr`, antes da construção dos gráficos.
+
+**11.** Faça um gráfico de dispersão do número de desempregados (eixo x) pelo tempo médio de desemprego (eixo y). Não se esqueça de alterar o `label` dos eixos.
+
+**12.** Faça o mesmo gráfico do exercício anterior, no entanto, os pontos devem ter cores diferentes para cada ano, seguindo uma escala contínua.
+
+Dica: utilize a função `year` do pacote `lubridate` para saber o ano de cada data.
+
+**13.** Faça um gráfico de linha do número de desempregados (eixo y) e a data (eixo x).
+
+**14.** Repita o gráfico anterior, no entanto desta vez a periodicidade deve ser anual e o valor apresentado no eixo y deve ser o número médio de desempregados.
+
+Dica: Agregue a base usando o `dplyr` antes.
+
+**15** Tente reproduzir o seguinte gráfico:
+
+- a linha é a mediana de desempregados por ano
+- o limite inferior da banda é o quantil de 1% do número de desempregados
+- o limtie superior da banda é o quantil de 99% do número de desempregados
+
+```{r, echo = F}
+economics %>% 
+  mutate(ano = year(date)) %>% 
+  group_by(ano) %>% 
+  summarise(
+    mediana = median(unemploy), 
+    q1 = quantile(unemploy,probs = 0.01), 
+    q3 = quantile(unemploy, probs = 0.99)
+    ) %>%
+  ggplot(aes(ano, mediana)) + geom_line() + geom_ribbon(aes(ymin = q1, ymax = q3), color = "grey", alpha = 0.5) + labs(x = "Ano", y = "Número de Desempregados")
+```
+
+Dica: utilize a função `geom_ribbon` para fazer a banda envolta da linha.
+
+**16.** Afim de comparar a evolução no tempo dos índices `pce`, `psaver` e taxa de desemprego (`unemploy`/`pop`), tente refazer o seguinte gráfico.
+
+```{r, echo = F}
+economics %>%
+  mutate(txa_desemprego = unemploy/pop) %>%
+  select(date, pce, psavert, txa_desemprego) %>%
+  gather(indice, valor, -date) %>%
+  ggplot(aes(date, valor)) + geom_line() + facet_grid(indice~., scales = "free_y")
+```
+
+Você precisará deixar os seus dados no formato long usando a função `gather` do `tidyr`.
+
+
+
+
