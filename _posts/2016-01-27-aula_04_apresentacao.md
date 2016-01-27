@@ -251,12 +251,13 @@
 
 <p><img src="http://curso-r.github.io/verao2016/images//Users/dfalbel/Documents/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-20-1.png" title="" alt="" width="480" /></p>
 
-<pre class = 'prettyprint lang-r'>head(df, 3) # Shape = 22 e Size = 5.</pre>
+<pre class = 'prettyprint lang-r'>head(df, 4) # Shape = 22 e Size = 5.</pre>
 
 <pre >##    ano prop
 ## 1 2010 0.01
 ## 2 2011 0.09
-## 3 2012 0.14</pre></article></slide>
+## 3 2012 0.14
+## 4 2013 0.18</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

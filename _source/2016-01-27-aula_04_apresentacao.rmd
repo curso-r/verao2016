@@ -265,9 +265,9 @@ ggplot(df, aes(x = as.character(ano), y = prop, group = 1)) +
   ylab("Proporção de usuários no mundo")
   
 ```
-
+  
 ```{r}
-head(df, 3) # Shape = 22 e Size = 5.
+head(df, 4) # Shape = 22 e Size = 5.
 ```
 
 
