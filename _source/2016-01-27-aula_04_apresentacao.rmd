@@ -12,10 +12,9 @@ output:
     self_contained: true
 ---
 
+
 ```{r, echo=FALSE}
-
 library(ggplot2)
-
 ```
 
 
@@ -236,38 +235,6 @@ ggplot(economics, aes(date, unemploy)) +
 ggplot(economics, aes(x = date, y = unemploy)) + 
   geom_line()
 
-```
-
-
-## Exemplos
-
-```{r, fig.height=3, fig.width=5}
-
-ggplot(data = mtcars) +
-  geom_boxplot(aes(x = as.character(gear), y = mpg, 
-                   fill = as.character(gear))) +
-  labs(fill="Número de marchas", x = "", y = "Milhas por galão")
-
-```
-
-## Desafio {.build}
-
-```{r, echo=FALSE, fig.height=3, fig.width=5}
-
-df <- data.frame(ano = 2010:2020,
-                 prop = c(0.01, 0.09, 0.14, 0.18, 0.23, 0.34, 0.39, 0.44, 0.60, 0.88, 1.1))
-
-ggplot(df, aes(x = as.character(ano), y = prop, group = 1)) +
-  geom_line() +
-  geom_point(size=5, shape = 22, fill = "green") +  
-  guides(fill=FALSE) +
-  xlab("Ano") +
-  ylab("Proporção de usuários no mundo")
-  
-```
-  
-```{r}
-head(df, 4) # Shape = 22 e Size = 5.
 ```
 
 

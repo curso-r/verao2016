@@ -14,25 +14,29 @@ head(economics)
 # Os valores devem ser padronizados.
 
 
-
-
-
-
-
-
-economics %>% 
+g <- economics %>% 
   select(date, unemploy, uempmed) %>%
   gather(indice, valor, -date) %>%
   group_by(indice) %>% mutate(valor = (valor - min(valor))/(max(valor) - min(valor))) %>%
   ggplot(aes(date, valor, colour = indice)) + 
   geom_line()
 
+plot(g)
+
+
+g + scale_colour_manual(
+  "Índices Padronizados", 
+  values = c("red","blue"), 
+  labels = c("tempo mediano de desemprego", "numero de desempregados"))
+
+
 # Histograma do preço dos diamantes
 
 head(diamonds)
 
-ggplot(diamonds, aes(price)) +
-  geom_histogram()
+g <- ggplot(diamonds, aes(price)) +
+  geom_histogram(colour = "white", fill = "blue")
+g
 
 
 # Investigar a relação entre consumo e peso dos carros por quantidade
@@ -42,18 +46,20 @@ ggplot(mtcars, aes(mpg, wt, colour = as.factor(cyl))) + geom_point()
 ggplot(mtcars, aes(mpg, wt, colour = as.factor(cyl))) + geom_point() + facet_grid(. ~ cyl)
 
 
-
 # Colocar uma reta de regressão em um gráfico de dispersão.
+
+g <- ggplot(mtcars, aes(wt, mpg)) +
+  geom_point()
+g
 
 coef(lm(mpg ~ wt, data = mtcars))
 
-ggplot(mtcars, aes(wt, mpg)) +
-  geom_point() +
-  geom_abline(intercept = 37, slope = -5)
+g +  geom_abline(intercept = 37, slope = -5, colour = "blue")
 
-ggplot(mtcars, aes(wt, mpg)) +
-  geom_point() +
-  stat_smooth(method = "lm")
+g + stat_smooth(method = "lm", se = F)
+
+g +  geom_abline(intercept = 37, slope = -5, colour = "blue") + 
+  stat_smooth(method = "lm", se = F)
 
 
 # Gráfico de barras: Quantidade de veículos por classe
@@ -127,7 +133,7 @@ data.frame(USAccDeaths) %>%
          ano=factor(year(data_date))) %>%
   ggplot() +
   geom_boxplot(aes(x=factor(month(data_date)),
-                y=USAccDeaths))
+                   y=USAccDeaths))
 
 # 1) Fazer um gráfico da série
 
