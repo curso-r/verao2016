@@ -11,17 +11,11 @@ category: lab
 
 Os exercícios desse laboratório ajudarão o aluno a construir seus primeiros gráficos usando o `ggplot2`, começando de gráficos bem simples até gráficos um pouco mais complexos. Nestes exercícios você utilizará a base de dados `diamonds` , do pacote `ggplot2`.
 
-```{r}
+```{r, echo = F}
 library(ggplot2)
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 library(tidyr)
-library(lubridate)
-```
-
-Enfim, os dados:
-
-```{r}
-head(diamonds, 10)
+suppressPackageStartupMessages(library(lubridate))
 ```
 
 Para ver uma descrição das variáveis deste banco de dados, utilize a função `help()`:
@@ -44,7 +38,7 @@ Dica: utilizar a função `help()`.
 
 **4.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_histogram()`?
 
-**5.** Faça um histograma da variável preço. 
+**5.** Faça um histograma da variável preço. Modifique a cor das barras de forma que elas não pareçam grudadas umas nas outras.
 
 **6.** Utilize a função `geom_density()` para **adicionar** ao gráfico anterior uma estimativa suavizada da densidade. 
 
@@ -52,31 +46,34 @@ Dica: utilizar a função `help()`.
 
 **7.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_boxplot()`?
 
-**8.** Faça boxplots da variável preço pela variável corte (*cut*).
+**8.** Faça boxplots da variável preço coloridos de acordo com a variável corte (*cut*).
+
+**9.** Substitua as cores padrões e remova a legenda do gráfico anterior. (Dica: use a função `scale_color_manual`)
 
 ### geom_bar
 
-**9.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_bar()`?
+**10.** Quais são os aspectos estéticos (*aesthetics*) exigidos (obrigatórios) da função `geom_bar()`?
 
-**10.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
+**11.** Faça um gráfico de barras do número de diamantes em cada categoria da variável cor (*color*).
+
 
 ## Outra base de dados
 
-A partir de agora utilizaremos a base de dados `economics` para fazer os gráficos. Alguns exercícios exigirão manipulações na base de dados, que devem ser feitas usando `dplyr` e `tidyr`, antes da construção dos gráficos.
+A partir de agora utilizaremos a base de dados `economics` para fazer os gráficos. Alguns exercícios exigirão manipulações na base de dados, que devem ser feitas usando `dplyr` e `tidyr`, antes da construção dos gráficos. Esse tipo de manipulação é muito comum para a construção dos gráficos.
 
-**11.** Faça um gráfico de dispersão do número de desempregados (eixo x) pelo tempo médio de desemprego (eixo y). Não se esqueça de alterar o `label` dos eixos.
+**12.** Faça um gráfico de dispersão do número de desempregados (eixo x) pelo tempo médio de desemprego (eixo y). Não se esqueça de alterar o `label` dos eixos.
 
-**12.** Faça o mesmo gráfico do exercício anterior, no entanto, os pontos devem ter cores diferentes para cada ano, seguindo uma escala contínua.
+**13.** Faça o mesmo gráfico do exercício anterior, no entanto, os pontos devem ter cores diferentes para cada ano, seguindo uma escala contínua.
 
 Dica: utilize a função `year` do pacote `lubridate` para saber o ano de cada data.
 
-**13.** Faça um gráfico de linha do número de desempregados (eixo y) e a data (eixo x).
+**14.** Faça um gráfico de linha do número de desempregados (eixo y) e a data (eixo x).
 
-**14.** Repita o gráfico anterior, no entanto desta vez a periodicidade deve ser anual e o valor apresentado no eixo y deve ser o número médio de desempregados.
+**15.** Repita o gráfico anterior, no entanto desta vez a periodicidade deve ser anual e o valor apresentado no eixo y deve ser o número médio de desempregados.
 
 Dica: Agregue a base usando o `dplyr` antes.
 
-**15** Tente reproduzir o seguinte gráfico:
+**16** Tente reproduzir o seguinte gráfico:
 
 - a linha é a mediana de desempregados por ano
 - o limite inferior da banda é o quantil de 1% do número de desempregados
@@ -96,7 +93,7 @@ economics %>%
 
 Dica: utilize a função `geom_ribbon` para fazer a banda envolta da linha.
 
-**16.** Afim de comparar a evolução no tempo dos índices `pce`, `psaver` e taxa de desemprego (`unemploy`/`pop`), tente refazer o seguinte gráfico.
+**17.** Afim de comparar a evolução no tempo dos índices `pce`, `psaver` e taxa de desemprego (`unemploy`/`pop`), tente refazer o seguinte gráfico.
 
 ```{r, echo = F}
 economics %>%
