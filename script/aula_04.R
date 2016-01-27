@@ -5,14 +5,37 @@ library(magrittr)
 library(dplyr)
 library(tidyr)
 
-#
-## Exemplos {.build}
+# Histograma do preço dos diamantes
+
+head(diamonds)
+
+g <- ggplot(diamonds, aes(price)) +
+  geom_histogram(colour = "white", fill = "blue")
+g
+
+## Dispersão dos precos vs peso (carat)
+
+g <- ggplot(diamonds, aes(carat, price)) +
+  geom_point(alpha = 0.2)
+g
+
+g + labs(title = "Gráfico de dispersão", x = "Peso (Quilates)", y = "Preço (U$)")
+
+# Agora a cor dos pontos vai ser pela qualidade do corte do diamante:
+
+g <- ggplot(diamonds, aes(carat, price, colour = cut)) +
+  geom_point(alpha = 0.2)
+g
+
+# Não deu pra ver, direito, usar facet?
+
+g + facet_wrap(~cut)
+
 
 head(economics)
 
 # Queremos plotar taxa desemprego e tempo de duracao do desemprego cada um em uma linha e com cores diferentes. 
 # Os valores devem ser padronizados.
-
 
 g <- economics %>% 
   select(date, unemploy, uempmed) %>%
@@ -29,21 +52,6 @@ g + scale_colour_manual(
   values = c("red","blue"), 
   labels = c("tempo mediano de desemprego", "numero de desempregados"))
 
-
-# Histograma do preço dos diamantes
-
-head(diamonds)
-
-g <- ggplot(diamonds, aes(price)) +
-  geom_histogram(colour = "white", fill = "blue")
-g
-
-
-# Investigar a relação entre consumo e peso dos carros por quantidade
-# de cilindros
-
-ggplot(mtcars, aes(mpg, wt, colour = as.factor(cyl))) + geom_point()
-ggplot(mtcars, aes(mpg, wt, colour = as.factor(cyl))) + geom_point() + facet_grid(. ~ cyl)
 
 
 # Colocar uma reta de regressão em um gráfico de dispersão.
