@@ -66,7 +66,7 @@ ggplot(mtcars) +
 summary(ajuste_lm)
 ```
 
-![summary lm](figure/summary_lm.png)
+![summary lm](../images/summary_lm.png)
 
 ## Regressão Linear e ANOVA {.smaller}
 
@@ -409,6 +409,8 @@ text(ajuste_tree, pretty = 0)
 **Gráfico**
 
 ```{r, echo=FALSE, fig.height=3}
+library(tree)
+ajuste_tree <- tree(factor(am) ~ wt, data = mtcars)
 plot(ajuste_tree)
 text(ajuste_tree, pretty = 0)
 ```
