@@ -33,7 +33,7 @@ panderOptions("table.style", "rmarkdown")
 ajuste <- lm(resposta ~ explicativas, data = meus_dados)
 ```
 
-O objeto `ajuste` contém todos os resultados e com a ajuda de alguns comandos, você extrai tudo o que é interessante.
+O objeto `ajuste` contém todos os resultados e, com a ajuda de alguns comandos, você extrai tudo o que é interessante.
 
 ## Regressão Linear e ANOVA {.smaller}
 
@@ -112,21 +112,6 @@ plot(ajuste_lm)
 
 # retorna ao normal
 par(mfrow = c(1,1))
-```
-
-## Regressão Linear e ANOVA {.smaller}
-
-**anova()**
-
-Uma parte importante da modelagem é a redução de modelos. 
-
-- A função `anova()` compara dois (ou mais) modelos encaixados por meio da estatística F (por padrão)
-
-```{r, eval=FALSE}
-# modelo nulo, com apenas o intercepto
-ajuste_lm_nulo <- lm(mpg ~ 1, data = mtcars)
-# compara o modelo com wt com o modelo nulo
-anova(ajuste_lm_nulo, ajuste_lm)
 ```
 
 ## Regressão Linear e ANOVA {.smaller}
@@ -222,7 +207,7 @@ Situação:
 - Suposição de normalidade não se verifica; e/ou 
 - Homocedasticidade não se sustenta
 
-Alternativa: regressão logística/Poisson/Gama...
+Alternativa: regressão Binomial (logística), Poisson, Gama...
 
 ## Regressão Linear Generalizada
 
@@ -338,6 +323,7 @@ anova(ajuste_glm, test="Chisq")
 - Medidas Repetidas
 - Dados longitudinais
 - Observações dependentes
+
 ## Modelos mistos
 
 **Estrutura**
@@ -386,31 +372,18 @@ summary(modelo)
 
 ## Árvore de Decisão
 
-- arvores de decisão unem simplicidade com eficiência. 
+- Árvores de decisão unem simplicidade com eficiência. 
 - No R seu ajuste é tão simples quanto ajustar um modelo de regressão.
 - Possui um conjunto de funções igualmente convenientes para extrair resultados, basta conhecê-los (e iremos).
 
 ## Árvore de Decisão {.smaller}
 
-- Vamos apresentar como ajustar arvore de decisão usando o pacote `tree`. 
+- Vamos apresentar como ajustar árvore de decisão usando o pacote `tree`. 
 - Porém, como tudo no R, existe inúmeros pacotes e jeitos de ajustar uma arvore de decisão (ver este [link](http://statistical-research.com/a-brief-tour-of-the-trees-and-forests/?utm_source=rss&utm_medium=rss&utm_campaign=a-brief-tour-of-the-trees-and-forests)).
 
 **Ajuste**
 
 ```{r, eval=FALSE}
-library(tree)
-ajuste_tree <- tree(factor(am) ~ wt, data = mtcars)
-summary(ajuste_tree)
-```
-
-## Árvore de Decisão {.smaller}
-
-- Vamos apresentar como ajustar arvore de decisão usando o pacote `tree`. 
-- Porém, como tudo no R, existe inúmeros pacotes e jeitos de ajustar uma arvore de decisão (ver este [link](http://statistical-research.com/a-brief-tour-of-the-trees-and-forests/?utm_source=rss&utm_medium=rss&utm_campaign=a-brief-tour-of-the-trees-and-forests)).
-
-**Ajuste**
-
-```{r, echo=FALSE}
 library(tree)
 ajuste_tree <- tree(factor(am) ~ wt, data = mtcars)
 summary(ajuste_tree)
@@ -433,7 +406,7 @@ text(ajuste_tree, pretty = 0)
 - Vamos apresentar como ajustar arvore de decisão usando o pacote `tree`. 
 - Porém, como tudo no R, existe inúmeros pacotes e jeitos de ajustar uma arvore de decisão (ver este [link](http://statistical-research.com/a-brief-tour-of-the-trees-and-forests/?utm_source=rss&utm_medium=rss&utm_campaign=a-brief-tour-of-the-trees-and-forests)).
 
-**Grafico**
+**Gráfico**
 
 ```{r, echo=FALSE, fig.height=3}
 plot(ajuste_tree)
@@ -442,7 +415,7 @@ text(ajuste_tree, pretty = 0)
 
 ## Árvore de Decisão
 
-**comparação entre os modelos logístico e arvore**
+**comparação entre os modelos logístico e árvore**
 
 Tabelas de observado versus predito:
 ```{r, eval=FALSE}
@@ -457,10 +430,10 @@ table(mtcars$am, predict(ajuste_tree)[,"1"] > 0.5)
 
 **Cross-validation**
 
-- arvores tendem a "super-ajustar" (*overfit*) o modelo. 
-- Para evitar este problema, *cross-validation* é uma boa pratica. 
+- árvores tendem a "super-ajustar" (*overfit*) o modelo. 
+- Para evitar este problema, *cross-validation* é uma boa prática. 
 - *Cross-validation* consiste em reservar parte da base reservada para depois ser usada para calcular o erro preditivo do modelo.
-- O erro preditivo vira o novo critério de parada para a "podagem" da arvore.
+- O erro preditivo vira o novo critério de parada para a "podagem" da árvore.
 
 ## Árvore de Decisão
 
@@ -494,9 +467,9 @@ O grafico mostra qual tamanho da arvore que apresentou o menor erro de prediçã
 Para recuperar esse ajuste de tamanho `2`, chamamos a função `prune.tree()` da seguinte forma:
 
 ```{r, eval=FALSE}
-# seleciona a arvoore com 2 nós
+# seleciona a árvore com 2 nós
 melhor_tree <- prune.tree(ajuste_tree, best = 2)
-# Grafico que representa a arvore `melhor_tree`
+# Gráfico que representa a árvore `melhor_tree`
 plot(melhor_tree)
 text(melhor_tree, pretty = 0)
 ```
