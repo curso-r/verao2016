@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Aula 04 - ggplot2</title>
+  <title>Aula 06 - Dos alunos</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,7 +26,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Aula 04 - ggplot2',
+                title: 'Aula 06 - Dos alunos',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -93,148 +93,161 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Introdução</h2></hgroup><article  id="introducao" class="build">
+<slide class=''><hgroup><h2>Como saber se meu problema é big data?</h2></hgroup><article  id="como-saber-se-meu-problema-e-big-data">
 
-<p>O que é um gráfico estatístico?</p>
+<p>Big data is extremely overhyped and not terribly well defined. Many people think they have big data, when they actually don&#39;t.</p>
 
-<blockquote>
-<p>&quot;&#8230; that a statistical graphic is a mapping from data to aesthetic attributes (colour, shape, size) of geometric objects (points, lines, bars). The plot may also contain statistical transformations of the data and is drawn on a specific coordinate system.&quot;</p>
-</blockquote>
-
-<p>Essa é a ideia de Leland Wilkinson, proposta em <strong>The Grammar of Graphics</strong>.</p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 1</h2></hgroup><article  id="motivacao-1">
+</article></slide><slide class=''><hgroup><h2>Pontos de transição</h2></hgroup><article  id="pontos-de-transicao">
 
 <ul>
-<li><p>É fácil de usar, e uma vez que você aprende, consegue fazer qualquer gráfico.</p></li>
-<li><p>Foi criado pelo Hardley.</p></li>
-<li><p>Gráficos bonitos e elegantes.</p></li>
+<li>From in-memory to disk. If your data fits in memory, it’s small data. And these days you can get 1 TB of ram, so even small data is big! Moving from in-memory to on-disk is an important transition because access speeds are so different. You can do quite naive computations on in-memory data and it’ll be fast enough. You need to plan (and index) much more with on-disk data</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> SAS</h3></hgroup><article  id="motivacao-2-sas">
-
-<p><img src="http://curso-r.github.io/verao2016/images/jitter1.png" height="430px" width="650px"/></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> SPSS</h3></hgroup><article  id="motivacao-2-spss">
-
-<p><img src="http://curso-r.github.io/verao2016/images/spss_jitter.png" height="430px" width="650px"/></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> Matlab</h3></hgroup><article  id="motivacao-2-matlab">
-
-<p><img src="http://curso-r.github.io/verao2016/images/matlab_jitter.png" height="430px" width="650px"/></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> Minitab</h3></hgroup><article  id="motivacao-2-minitab">
-
-<p><img src="http://curso-r.github.io/verao2016/images/minitab_jitter.jpg" height="430px" width="650px"/></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> R-base</h3></hgroup><article  id="motivacao-2-r-base">
-
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 2 </h2><h3> R-ggplot2</h3></hgroup><article  id="motivacao-2-r-ggplot2">
-
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-3-1.png" title="" alt="" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 3</h2></hgroup><article  id="motivacao-3">
-
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 3</h2></hgroup><article  id="motivacao-3-1">
-
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Motivação 3</h2></hgroup><article  id="motivacao-3-2">
-
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Estrutura</h2></hgroup><article  id="estrutura">
+</article></slide><slide class=''><hgroup><h2>Pontos de transição</h2></hgroup><article  id="pontos-de-transicao-1">
 
 <ul>
-<li><p>Dados &#8212; <code>data =</code></p></li>
-<li><p>Aspectos estéticos (<em>mapping</em>) &#8212; <code>aes()</code></p></li>
-<li><p>Formas geométricas &#8212; <code>geom_()</code></p></li>
-<li><p>Transformações estatísticas &#8212; <code>stat =</code></p></li>
+<li>From one computer to many computers. The next important threshold occurs when you data no longer fits on one disk on one computer. Moving to a distributed environment makes computation much more challenging because you don’t have all the data needed for a computation in one place. Designing distributed algorithms is much harder, and you’re fundamentally limited by the way the data is split up between computers.</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos">
+</article></slide><slide class=''><hgroup><h2>Pontos de transição</h2></hgroup><article  id="pontos-de-transicao-2">
 
-<pre class = 'prettyprint lang-r'>head(mtcars, 10)</pre>
+<p>I personally believe it’s impossible for one system to span from in-memory to on-disk to distributed. R is a fantastic environment for the rapid exploration of in-memory data, but there’s no elegant way to scale it to much larger datasets. Hadoop works well when you have thousands of computers, but is incredible slow on just one machine. Fortunately, I don’t think one system needs to solve all big data problems.</p>
 
-<pre >##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
-## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
-## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
-## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
-## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
-## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
-## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
-## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
-## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
-## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</pre>
+</article></slide><slide class=''><hgroup><h2>Classes de problemas</h2></hgroup><article  id="classes-de-problemas">
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-1">
+<ol>
+<li>Big data problems that are actually small data problems, once you have the right subset/sample/summary. Inventing numbers on the spot, I’d say 90% of big data problems fall into this category. To solve this problem you need a distributed database (like hive, impala, teradata etc), and a tool like dplyr to let you rapidly iterate to the right small dataset (which still might be gigabytes in size).</li>
+</ol>
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars, aes(x = disp, y = mpg)) +
-  geom_point()</pre>
+</article></slide><slide class=''><hgroup><h2>Classes de problemas</h2></hgroup><article  id="classes-de-problemas-1">
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="720" /></p>
+<ol>
+<li>Big data problems that are actually lots and lots of small data problems, e.g. you need to fit one model per individual for thousands of individuals. I’d say ~9% of big data problems fall into this category. This sort of problem is known as a trivially parallelisable problem and you need some way to distribute computation over multiple machines. The foreach package is a nice solution to this problem because it abstracts away the backend, allowing you to focus on the computation, not the details of distributing it.</li>
+</ol>
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-2">
+</article></slide><slide class=''><hgroup><h2>Classes de problemas</h2></hgroup><article  id="classes-de-problemas-2">
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars) +
-  geom_point(aes(x = disp, y = mpg))</pre>
+<ol>
+<li>Finally, there are irretrievably big problems where you do need all the data, perhaps because you fitting a complex model. An example of this type of problem is recommender systems which really do benefit from lots of data because they need to recognise interactions that occur only rarely. These problems tend to be solved by dedicated systems specifically designed to solve a particular problem.</li>
+</ol>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="720" /></p>
+</article></slide><slide class=''><hgroup><h2>Big Data no R?</h2></hgroup><article  id="big-data-no-r" class="build">
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-3">
+<p>O R não é uma ferramenta de Big Data. Mas o que podemos fazer?</p>
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars) +
-  geom_point(aes(x = disp, y = mpg, colour = as.character(am)))</pre>
+<ul>
+<li>Usar linguagens de programação de baixo nível, principalmente C</li>
+<li>Usar pacotes que lêem as bases do disco rígido e não da memória RAM</li>
+<li>Tirar uma amostra</li>
+<li>Usar um computador com mais memória RAM</li>
+</ul>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="720" /></p>
+</article></slide><slide class=''><hgroup><h2>Usar um computador com mais memória RAM</h2></hgroup><article  id="usar-um-computador-com-mais-memoria-ram">
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-4">
+<ul>
+<li>Não tenho dinheiro para comprar um computador com muita memória RAM.</li>
+<li>Usar computador na Amazon</li>
+</ul>
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars) +
-  geom_point(aes(x = disp, y = mpg, colour = as.character(am),
-                                size = cyl))</pre>
+</article></slide><slide class=''><hgroup><h2>Usando a memória RAM de forma mais eficiente</h2></hgroup><article  id="usando-a-memoria-ram-de-forma-mais-eficiente">
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="720" /></p>
+<ul>
+<li>Família de pacotes big*</li>
+<li>Exemplos: bigmemmory, bigglm</li>
+</ul>
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-5" class="build">
+</article></slide><slide class=''><hgroup><h2>Exemplo com o base R</h2></hgroup><article  id="exemplo-com-o-base-r">
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars) +
-  geom_point(aes(x = disp, y = mpg), colour = &quot;blue&quot;, size = 5, 
-             shape = 2)</pre>
+<pre class = 'prettyprint lang-r'>n &lt;- 1e6
+y &lt;- rnorm(n)
+d &lt;- data.frame(y = y, x1 = 2*y + runif(n), 
+                x2 = 3*y + runif(n), 
+                x3 = rnorm(n), x4 = rnorm(n))
+modelo &lt;- lm(y ~ x1*x2*x3*x4, data = d)</pre>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="720" /></p>
+</article></slide><slide class=''><hgroup><h2>Exemplo usando biglm</h2></hgroup><article  id="exemplo-usando-biglm">
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-6" class="build">
+<pre class = 'prettyprint lang-r'>library(biglm)
+n &lt;- 1e6
+y &lt;- rnorm(n)
+d &lt;- data.frame(y = y, x1 = 2*y + runif(n), 
+                x2 = 3*y + runif(n), 
+                x3 = rnorm(n), x4 = rnorm(n))
+modelo &lt;- biglm(y ~ x1*x2*x3*x4, data = d)</pre>
 
-<pre class = 'prettyprint lang-r'>ggplot(data = mtcars) +
-  geom_boxplot(aes(x = as.character(gear), y = mpg, 
-                   fill = as.character(gear)))</pre>
+<ul>
+<li>para glm é a mesma coisa!!</li>
+</ul>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-15-1.png" title="" alt="" width="480" /></p>
+<p><code>biglm</code> gera um objeto com tamanho menor, além de ser mais efciente.</p>
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-7">
+</article></slide><slide class=''><hgroup><h2>Outras funções big</h2></hgroup><article  id="outras-funcoes-big">
 
-<pre class = 'prettyprint lang-r'>head(economics)</pre>
+<pre class = 'prettyprint lang-r'>library(biganalytics)
+n &lt;- 5*1e6
+y &lt;- rnorm(n)
+m &lt;- matrix(c(y, 2*y + runif(n), 3*y + runif(n), 
+              rnorm(n), rnorm(n)), ncol = 5)
+modelo &lt;- bigkmeans(x = m, centers = 2, iter.max = 100)</pre>
 
-<pre >##         date   pce    pop psavert uempmed unemploy
-## 1 1967-07-01 507.4 198712    12.5     4.5     2944
-## 2 1967-08-01 510.5 198911    12.5     4.7     2945
-## 3 1967-09-01 516.3 199113    11.7     4.6     2958
-## 4 1967-10-01 512.9 199311    12.5     4.9     3143
-## 5 1967-11-01 518.1 199498    12.5     4.7     3066
-## 6 1967-12-01 525.8 199657    12.1     4.8     3018</pre>
+</article></slide><slide class=''><hgroup><h2>Estratégias para ler bases grandes</h2></hgroup><article  id="estrategias-para-ler-bases-grandes">
 
-</article></slide><slide class=''><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-8" class="build">
+<p><a href='http://stackoverflow.com/questions/1727772/quickly-reading-very-large-tables-as-dataframes-in-r' title=''>Estratégias para ler bases grandes</a></p>
 
-<pre class = 'prettyprint lang-r'>ggplot(economics, aes(date, unemploy)) + 
-  geom_line()</pre>
+<ul>
+<li>função <code>fread</code> do pacote <code>data.table</code></li>
+</ul>
 
-<p><img src="http://curso-r.github.io/verao2016/images//home/jtrecenti/Erri/verao2016/_posts/2016-01-27-aula_04_apresentacao_files/figure-html/unnamed-chunk-18-1.png" title="" alt="" width="480" /></p></article></slide>
+</article></slide><slide class=''><hgroup><h2><code>fread</code> é muito fácil de usar</h2></hgroup><article  id="fread-e-muito-facil-de-usar">
+
+<pre class = 'prettyprint lang-r'>download.file(&quot;http://stat-computing.org/dataexpo/2009/2008.csv.bz2&quot;,
+              destfile=&quot;2008.csv.bz2&quot;)
+system(&quot;bunzip2 2008.csv.bz2&quot;)
+library(data.table)
+system.time(DT &lt;- fread(&quot;2008.csv&quot;))</pre>
+
+</article></slide><slide class=''><hgroup><h2><code>fread</code></h2></hgroup><article  id="fread">
+
+<ul>
+<li>já aloca a memória necessária para ler o arquivo</li>
+<li>estabelece os tipos de colunas antes de ler o arquivo</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Paralelização</h2></hgroup><article  id="paralelizacao">
+
+<p>uso do pacote <code>parallel</code> junto com o <code>plyr</code></p>
+
+</article></slide><slide class=''><hgroup><h2>Criando um cluster (backend)</h2></hgroup><article  id="criando-um-cluster-backend">
+
+<pre class = 'prettyprint lang-r'>library(parallel)
+library(foreach)
+library(doParallel)</pre>
+
+<pre >## Loading required package: iterators</pre>
+
+<pre class = 'prettyprint lang-r'>c &lt;- makePSOCKcluster(2)
+registerDoParallel(c)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Usando o cluster por meio do pacote plyr</h2></hgroup><article  id="usando-o-cluster-por-meio-do-pacote-plyr">
+
+<pre class = 'prettyprint lang-r'>library(plyr)
+system.time(l_ply(1:5, .fun = function(x) {Sys.sleep(1)}, 
+                  .parallel = T))</pre>
+
+<pre >## Warning: &lt;anonymous&gt;: ... may be used in an incorrect context: &#39;.fun(piece, ...)&#39;
+
+## Warning: &lt;anonymous&gt;: ... may be used in an incorrect context: &#39;.fun(piece, ...)&#39;</pre>
+
+<pre >##    user  system elapsed 
+##   0.032   0.000   3.373</pre>
+
+<pre class = 'prettyprint lang-r'>system.time(l_ply(1:5, .fun = function(x) {Sys.sleep(1)}, 
+                  .parallel = F))</pre>
+
+<pre >##    user  system elapsed 
+##   0.001   0.000   5.006</pre>
+
+<pre class = 'prettyprint lang-r'>stopCluster(c)</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
