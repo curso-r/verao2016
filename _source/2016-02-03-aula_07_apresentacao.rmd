@@ -1,5 +1,5 @@
 ---
-title: "Aula 07 - Modelando"
+title: "Aula 07 - Pacotes"
 author: "Curso de R"
 layout: post
 tags: slides
@@ -10,4 +10,169 @@ output:
     self_contained: true
 ---
 
-## Regressão Linear e ANOVA
+## Criação de pacotes
+
+Baseado no [livro do Hadley](http://r-pkgs.had.co.nz/).
+
+## Vantagens
+
+- Economia de tempo para tarefas futuras
+- Forma de organização pré-estabelecida
+- Contribuir e aproveitar contribuições da comunidade
+
+## Filosofia
+
+- Tudo que pode ser automatizado, deve ser automatizado
+- Utilização do pacote devtools como base para criação de pacotes
+- Um pacote não precisa estar no CRAN para ser útil
+- Trabalhar menos com os detalhes (estrutura, etc.) e mais com funcionalidades (funções úteis, etc)
+- Se for necessário trabalhar com coisas mais complexas, ler [Writing R extensions](https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages)
+
+## Pré-requisitos
+
+- Pacotes `devtools`, `roxygen2`, `testthat`, `knitr`
+- **R** e **RStudio** atualizados (recomenda-se preview version do RStudio)
+
+## Configurações recomendáveis
+
+- Instalar versão dev do devtools
+
+```{r, eval = F}
+devtools::install_github('hadley/devtools')
+```
+
+- No Windows, instalar o Rtools
+- No Mac, instalar o XCode
+- No linux, instalar o pacote de desenvolvimento r-base-dev. No Ubuntu, basta digitar
+
+```{r, eval = F}
+sudo apt-get install r-base-dev
+```
+
+Verifique se está tudo certo digitando devtools::has_devel().
+
+## Como criar um pacote?
+
+Clicar em "Novo projeto" -> "R package" do RStudio
+
+## Estrutura
+
+Essa é a estrutura mínima para criar um pacote.
+
+- Tudo dentro de uma pasta
+- `DESCRIPTION`: Metadados do pacote.
+- `NAMESPACE`: Trata das interações do seu pacote com outros pacotes.
+- `R/`: Pasta onde fica os códigos em R
+- `man/`: Pasta onde fica a documentação
+- `xxx.Rproj`: Seu projeto (não é necessário).
+
+## Arquivo `DESCRIPTION`
+
+- Versões (>= 0.3), `devtools::numeric_version()`
+- `Depends` (versões de R).
+- `Authors@R`
+- [Licensas](https://choosealicense.com/)
+- Definir `Imports`, `Suggests`, e usar o `::.`
+- `devtools::use_package('xxxxxx')`
+
+## Código `R`
+
+- Todo o código em R fica aqui
+- Tudo é baseado em funções
+- Crie objetos, principalmente funções, não use coisas como View()
+
+## Código `R`
+
+Organizando funções:
+
+- dividir arquivos por temas,
+- manter padrão de títulos e conteúdos
+
+Não use `library()`, `require()` nem `source()`, `setwd()`, etc.
+Ao invés disso, coloque dependências na documentação.
+
+## Documentação dos objetos
+
+Facilmente construído
+
+- colocando headers nas funções do R e
+- usando devtools::document()
+
+Começar com #'
+
+## Documentação dos objetos
+
+**workflow**: Adicionar documentação em roxygen -> chamar devtools::document() -> visualizar documentação com ? -> Adicionar documentação em roxygen -> …
+
+Tags com @tag (ex: @param).
+
+Textos:
+
+- Primeira sentença é o título
+- Segundo parágrafo é uma descrição
+- Os outos parágrafos vão para Details
+
+## Vignettes
+
+- Útil para dar uma explicação geral de um pacote
+- Facilmente construído usando RMarkdown
+- Geralmente usado para pacotes mais complexos
+
+## Testes
+
+Pacote `testthat`, do Hadley.
+
+```{r, eval = F}
+devtools::use_testthat()
+```
+
+Defina o que você quer testar (função e parâmetros), e o que você espera de resultado
+
+**workflow**: mude códigos -> `devtools::test()` -> repita.
+
+## `Namespace`
+
+- Pode ser necessário se preocupar com isso se você quiser colocar seu pacote no CRAN.
+- imports e exports.
+- Search path, load e attach.
+- requireNamespace() dá load e não attach.
+- Geralmente também é criado usando devtools::document() e roxygen2.
+- Use `@export` para fazer sua função ficar disponível para o usuário via ::
+- Use Depends se você quiser dar attach de um pacote e usar suas funções (no DESCRIPTION).
+
+## Dados externos
+Quatro maneiras de incluir dados no pacote.
+- Binários (.RData) na pasta data/. Utilizar devtools::use_data().
+- Dados utilizados internamente pelas funções em R/sysdata.rda.
+- Dados em texto (csv, excel, etc), na pasta inst/extdata.
+- Dados que não são utilizados pelo pacote em data-raw. Utilizar `devtools::use_data_raw()`.
+
+Documentar dados é semelhante a documentar funções, adicionando @format e @source.
+
+Não é necessário usar @export.
+
+## Dados externos
+
+```{r, eval = F}
+#' Prices of 50,000 round cut diamonds.
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#' diamonds.
+#'
+#' @format A data frame with 53940 rows and 10 variables:
+#' \describe{
+#'   \item{price}{price, in US dollars}
+#'   \item{carat}{weight of the diamond, in carats}
+#'   ...
+#' }
+#' @source \url{http://www.diamondse.info/}
+"diamonds"
+```
+
+## Código compilado (C, C++, etc)
+
+- Usar o pacote RCpp
+- Programar em C e C++ foge do escopo do curso
+- Usando o RStudio e abrindo um novo arquivo, é possível visualizar um template.
+- Usar Ctrl+Shift+B ao invés de devtools::load_all()
+
