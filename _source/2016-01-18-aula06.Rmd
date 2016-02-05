@@ -408,7 +408,6 @@ tm_novo <- dir('../data-raw/cjsg_novo', full.names = TRUE) %>%
   tm::VCorpus() %>% 
   tm::DocumentTermMatrix()
 
-  
 topicmodels::posterior(ementas_lda, tm_novo)$topics %>% 
   as.data.frame() %>% 
   dplyr::add_rownames('processo') %>%

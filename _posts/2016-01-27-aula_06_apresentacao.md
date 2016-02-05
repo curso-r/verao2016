@@ -239,13 +239,13 @@ system.time(l_ply(1:5, .fun = function(x) {Sys.sleep(1)},
 ## Warning: &lt;anonymous&gt;: ... may be used in an incorrect context: &#39;.fun(piece, ...)&#39;</pre>
 
 <pre >##    user  system elapsed 
-##   0.031   0.000   3.318</pre>
+##   0.029   0.000   3.351</pre>
 
 <pre class = 'prettyprint lang-r'>system.time(l_ply(1:5, .fun = function(x) {Sys.sleep(1)}, 
                   .parallel = F))</pre>
 
 <pre >##    user  system elapsed 
-##   0.000   0.000   5.004</pre>
+##   0.000   0.000   5.006</pre>
 
 <pre class = 'prettyprint lang-r'>stopCluster(c)</pre></article></slide>
 
